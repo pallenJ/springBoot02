@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bootweb.mapper.BoardMapper">
+
+<insert id="insert" parameterType="com.example.bootweb.domain.BoardVO">
+
+INSERT INTO tbl_board  
+(title,writer,content,ip_address,password) VALUES (#{title},#{writer},#{content},#{ip_address},#{password})
+
+</insert>
+
+<update id="update" parameterType="com.example.bootweb.domain.BoardVO">
+UPDATE tbl_board A 
+SET 
+A.title = #{title} , A.content = #{content},A.ip_address = #{ip_address}, A.updateDate = NOW(), A.state = 'UPDATED' WHERE bno = #{bno}
+
+</update>
+
+<select id="listAll" resultType="com.example.bootweb.domain.BoardVO">
+SELECT * FROM tbl_board
+</select>
+
+<select id="listWithPaging" resultType="com.example.bootweb.domain.BoardVO" parameterType="com.example.bootweb.domain.Criteria">
+<include refid="forSelect"/>
+
+WHERE A.state !='DELETED'
+ORDER BY A.updateDate DESC ,A.bno DESC
+
+LIMIT #{limit},#{amount}
+</select>
+
+<select id="countAll" resultType="int">
+SELECT COUNT(*) FROM tbl_board A
+</select>
+
+<delete id="delete" parameterType="int">
+DELETE FROM tbl_board WHERE bno = #{bno}
+</delete>
+
+<select id="select" parameterType="int" resultType="com.example.bootweb.domain.BoardVO">
+
+SELECT
+A.*
+FROM tbl_board A
+
+WHERE bno = #{bno}
+</select>
+
+
+
+<select id="stateList" resultType="com.example.bootweb.domain.BoardVO" parameterType="com.example.bootweb.domain.Criteria">
+<include refid="forSelect"/>
+
+WHERE A.state = #{state}
+ORDER BY A.updateDate DESC ,A.bno DESC
+LIMIT #{limit},#{amount}
+
+</select>
+
+<select id="stateCntInv" resultType="int">
+SELECT COUNT(*) FROM tbl_board A WHERE A.state !=#{state}
+</select>
+
+<select id="stateCnt" resultType="int">
+SELECT COUNT(*) FROM tbl_board WHERE state = #{state};
+</select>
+
+<select id="pageNum" parameterType="int" resultType = "int">
+
+SELECT TRUNCATE(C.num/10,0)+1 AS pageNum from (SELECT 
+    @num:=@num+1 as num,
+    B.bno
+    FROM (SELECT @num:=0) A, tbl_board B WHERE B.state != 'DELETED' ORDER BY B.updateDate DESC, B.bno DESC) C  WHERE C.bno = #{bno}
+</select>
+
+<update id="updatehisDel" parameterType = "int">
+UPDATE tbl_board A SET A.state = 'DELETED' WHERE A.bno = #{bno}
+
+</update>
+
+<insert id="insertHistory"  parameterType="com.example.bootweb.domain.BoardVO">
+INSERT INTO tbl_board_history
+(bno,title,writer,content,regDate,ip_address,password) 
+SELECT bno,title,writer,content,updateDate,ip_address,password FROM tbl_board B WHERE bno = #{bno}
+</insert>
+
+
+
+<select id="getBoardHistory" resultType="com.example.bootweb.domain.BoardVO" parameterType="int">
+SELECT
+A.*
+ FROM tbl_board_history A
+WHERE A.bno = #{bno} ORDER BY hbno DESC
+</select>
+
+<sql id="forSelect">
+SELECT 
+A.bno ,
+A.title,
+A.writer,
+A.content,
+if(
+TIMESTAMPDIFF(DAY,DATE_FORMAT(A.regdate,'%Y-%m-%d'),DATE_FORMAT(NOW(),'%Y-%m-%d'))>0
+,DATE_FORMAT(A.regdate,'%Y-%m-%d') ,
+ DATE_FORMAT(A.regdate,'%H:%i')) AS regdate,
+if(
+TIMESTAMPDIFF(DAY,DATE_FORMAT(A.updateDate,'%Y-%m-%d'),DATE_FORMAT(NOW(),'%Y-%m-%d'))>0
+,DATE_FORMAT(A.updateDate,'%Y-%m-%d') , DATE_FORMAT(A.updateDate,'%H:%i')) AS updatedate
+,A.ip_address AS ip_address
+ FROM tbl_board A
+
+</sql>
+<sql id="forSelectHis">
+SELECT
+A.*
+ FROM tbl_board_history A
+
+</sql>
+
+</mapper>

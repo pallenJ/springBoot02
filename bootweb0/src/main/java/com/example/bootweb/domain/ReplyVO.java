@@ -18,20 +18,23 @@ public class ReplyVO {
 	private String updateDate;
 	private String ip_address;
 	private String state = "NORMAL";
+	private String password;
 	
-	public ReplyVO(int bno, String writer, String content) {
+	public ReplyVO(int bno, String writer, String content,String password) {
 		super();
 		this.bno = bno;
 		this.writer = writer;
 		this.content = content;
+		this.password = password;
 	}
 
-	public ReplyVO(int bno, String writer, String content, String state) {
+	public ReplyVO(int bno, String writer, String content, String state, String password) {
 		super();
 		this.bno = bno;
 		this.writer = writer;
 		this.content = content;
 		this.state = state;
+		this.password = password;
 	}
 	
 	

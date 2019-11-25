@@ -11,5 +11,5 @@ public interface ReplyMapper {
 	public List<?> list(int bno); 
 	public List<?> allList();
 	public int delete(int rno);
-	public void update(ReplyVO vo);
+	public void update(ReplyVO vo); 
 }

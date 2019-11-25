@@ -2,11 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.bootweb.mapper.ReplyMapper">
 
+<!-- register&modify -->
 <insert id="insert" parameterType="com.example.bootweb.domain.ReplyVO">
 	INSERT INTO tbl_reply
 	(bno, writer , content , ip_address,state,password)
 	VALUES 
 	(#{bno},#{writer},#{content},#{ip_address},#{state},#{password})
 </insert>
+
+<update id="update" parameterType="com.example.bootweb.domain.ReplyVO">
+
+UPDATE tbl_reply A SET 
+A.content = #{content},
+A.ip_address = #{ip_address},
+A.updateDate = NOW(),
+A.state = 'UPDATED'
+WHERE A.rno = #{rno}
+
+</update>
+
+<insert id="hisInsert" parameterType="int">
+	
+	INSERT INTO tbl_reply_history
+	(rno,bno,writer,content,regDate,ip_address,state,password)
+	SELECT rno,bno,writer,content,regDate,ip_address,state,password FROM tbl_reply WHERE rno = #{rno}
+
+</insert>
+<!-- detail -->
+
+<select id="detail" resultType="com.example.bootweb.domain.ReplyVO" parameterType="int">
+SELECT A.* FROM tbl_reply A WHERE A.rno = #{rno}
+</select>
 
 </mapper>

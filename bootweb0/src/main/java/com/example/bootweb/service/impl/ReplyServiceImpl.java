@@ -25,6 +25,8 @@ public class ReplyServiceImpl implements ReplyService{
 			replyMapper.insert(vo);
 			return "register";
 		}else {
+			replyMapper.hisInsert(vo.getRno());
+			replyMapper.update(vo);
 			return "modify";
 		}
 	}

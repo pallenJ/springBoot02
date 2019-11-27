@@ -51,8 +51,8 @@
 				</div>
 
 				<c:if test="${board.state ne 'NORMAL' }">
-					<button id = "editHis" class="btn btn-outline-info pull-right" data-toggle="modal"
-						data-target="#historyModal">수정내역보기</button>
+					<button id="editHis" class="btn btn-outline-info pull-right"
+						data-toggle="modal" data-target="#historyModal">수정내역보기</button>
 				</c:if>
 
 				<!-- /.panel-heading -->
@@ -108,8 +108,8 @@
 					<!-- 글쓴이는 변경 불가 -->
 					<!-- /.writer -->
 					<!-- button들 -->
-					<div id="detail-pg-btns"> 
-					
+					<div id="detail-pg-btns">
+
 						<!-- 그냥 볼때를 detail상태, 수정시 modify라고 구분. -->
 						<!-- btn-for-detail은 detail상태에서만 보이는 버튼 -->
 						<!-- btn-for-modify는 modify상태에서만 보이는 버튼 -->
@@ -171,17 +171,29 @@
 			</div>
 			<div class="card-body">
 
-				<table class="table">
+				<table class="table" id="reply_add_area">
 
 					<thead>
 						<tr>
-							<td colspan="100%">
-								<div class="form-inline">
-									<textarea class="btn-block" id ="reply_add_area"></textarea>
-									<button class="btn btn-success btn-md">add</button>
-								</div> <!-- <td align="center" colspan="10%"> <button class = "btn btn-success btn-block">add</button> -->
+							<td>
+								<div class="form-group col-md-3 reply_add_area" id="reply_writer_area"
+									hidden="hidden">
+									<label class="text-white">writer</label> <input
+										class="form-control" type="text" value="guest">
+								</div>
+								<div class="form-inline" id="reply_content_area">
+									<textarea class="btn-block"></textarea>
+									
+								</div>
+								<div class="form-group col-md-3 reply_add_area text-white" id="reply_pw_area"
+									hidden="hidden">
+									<jsp:include page="forms/pw_form.jsp"></jsp:include>	
+								</div>
+								<button class="btn btn-success btn-md">add</button>
 					</thead>
-
+					<tbody>
+						<!-- 댓글 리스트 올곳 -->
+					</tbody>
 				</table>
 
 				<!-- 	<form class="form-inline">
@@ -263,32 +275,32 @@
 
 					}
 
-					$("#passwordSubmit").click(
-							function() {
-								var bno = "${board.bno}";
-								var insertPW = $("#modalPWCheck").val();
-								
-								 $.ajax({
-									    url: 'pwCheck',
-									    type: 'POST',
-									    async: false,
-									    dataType: 'json',
-									    data: {bno:bno,pw:insertPW},
-									    success: function(data){
-									   		if(data){
-									   			modifyActive();
-									   		}else{
+					$("#passwordSubmit").click(function() {
+						var bno = "${board.bno}";
+						var insertPW = $("#modalPWCheck").val();
 
-											$("#modalPWCheck").addClass(
-													"is-invalid");
-											return;}
-									    }
-									});
-								
-								
-							})
+						$.ajax({
+							url : 'pwCheck',
+							type : 'POST',
+							async : false,
+							dataType : 'json',
+							data : {
+								bno : bno,
+								pw : insertPW
+							},
+							success : function(data) {
+								if (data) {
+									modifyActive();
+								} else {
 
-							
+									$("#modalPWCheck").addClass("is-invalid");
+									return;
+								}
+							}
+						});
+
+					})
+
 					$(".btn-modal-save").click(
 							function() {
 								$("input[name='content']").prop("value",
@@ -328,9 +340,9 @@
 								[ 'view', [ 'fullscreen', 'codeview' ] ],
 								[ 'help', [ 'help' ] ] ],
 						height : 300,
-						  codemirror: { // codemirror options
-							    theme: 'monokai'
-							  },
+						codemirror : { // codemirror options
+							theme : 'monokai'
+						},
 						//airMode: true,
 						lang : 'ko-KR',
 					});
@@ -386,15 +398,15 @@
 			 */
 
 		});
-		
-		$("#reply_add_area").focus(function() {
+
+		$("#reply_content_area").children("textarea").focus(function() {
 			$(this).summernote({
-				width:  "100%" ,
+				width : "100%",
 				lang : 'ko-KR'
 			});
+			$(".reply_add_area").prop("hidden", false);
 		})
-		
-
+		/* 댓글 입력버튼 활성화 비활성화  */
 	});
 </script>
 

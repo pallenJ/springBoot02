@@ -176,7 +176,7 @@
 
 					<thead>
 						<tr>
-							<td>
+							<td colspan="100%">
 							<form action="${path}" method="post">
 								<div class="form-group col-md-3 reply_add_area" id="reply_writer_area"
 									hidden="hidden">
@@ -197,8 +197,16 @@
 					</thead>
 					<tbody>
 						<!-- 댓글 리스트 올곳 -->
-						
 						<c:forEach items="${replyList}" var = "replyItem">
+						<tr class = "table-hover">
+						<td class = "bg-info" style="width:120px">
+							<p class="h5"><c:out value="${replyItem.writer}"/></p>
+						<td class="col-md-1">
+						<div class="summernote-trs">
+							<c:out value="${replyItem.content}"/>
+						</div>
+						</td>	
+						<tr><td colspan="100%">
 							<c:out value="${replyItem}"/>
 						</c:forEach>
 						

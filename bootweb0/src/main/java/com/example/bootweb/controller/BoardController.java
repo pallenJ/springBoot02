@@ -69,6 +69,7 @@ public class BoardController {
 		vo.setPassword("");
 		model.addAttribute("bno", bno);
 		model.addAttribute("board", vo);
+		log.info("rpy:"+replyService.list(bno));
 		model.addAttribute("replyList", replyService.list(bno));
 		//model.addAttribute("editHistory", boardService.historyList(bno));
 		

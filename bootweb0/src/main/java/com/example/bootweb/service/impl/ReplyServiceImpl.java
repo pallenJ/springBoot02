@@ -34,25 +34,25 @@ public class ReplyServiceImpl implements ReplyService{
 	@Override
 	public List<?> list(int bno) {
 		// TODO Auto-generated method stub
-		return null;
+		return replyMapper.list(bno);
 	}
 
 	@Override
 	public List<?> allList() {
 		// TODO Auto-generated method stub
-		return null;
+		return replyMapper.allList();
 	}
 
 	@Override
 	public int remove(int rno) {
 		// TODO Auto-generated method stub
-		return 0;
+		return replyMapper.delete(rno);
 	}
 
 	@Override
 	public List<?> historyReply(int rno) {
 		// TODO Auto-generated method stub
-		return null;
+		return replyMapper.hisList(rno);
 	}
 
 }

@@ -165,14 +165,14 @@
 		</div>
 		<!-- /.card -->
 		<hr>
-		<div class="card bg-primary">
-			<div class="card-header text-white">
+		<div class="card">
+			<div class="card-header text-white bg-primary">
 				<span class="fa fa-comment"> reply</span>
 
 			</div>
 			<div class="card-body">
 
-				<table class="table" id="reply_add_area">
+				<table class="table table-hover" id="reply_add_area">
 
 					<thead>
 						<tr>
@@ -195,19 +195,21 @@
 							</form>
 								
 					</thead>
-					<tbody>
+					<tbody class="">
 						<!-- 댓글 리스트 올곳 -->
 						<c:forEach items="${replyList}" var = "replyItem">
-						<tr class = "table-hover">
+						<tr class = "">
 						<td class = "bg-info" style="width:120px">
 							<p class="h5"><c:out value="${replyItem.writer}"/></p>
-						<td class="col-md-1">
+						<td style = "width:80%">
 						<div class="summernote-trs">
 							<c:out value="${replyItem.content}"/>
 						</div>
+						<td style="width:120px">
+						<small class="text-info">${replyItem.updateDate}</small><br>
+						<small class="text-secondary">${replyItem.ip_address}</small>
 						</td>	
-						<tr><td colspan="100%">
-							<c:out value="${replyItem}"/>
+						
 						</c:forEach>
 						
 					</tbody>
@@ -332,7 +334,7 @@
 			$("#content_div").prop("data-target", "#modifyModal") */
 			$("input[name!='writer']").prop("readonly", false);
 
-			$("#bno_div").hide();
+			$("#bno_div").hide(); 
 			$(".brd-date-info").hide();
 			$(".btn-for-detail").hide();
 			$(".btn-for-edit").show();

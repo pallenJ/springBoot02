@@ -11,8 +11,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.example.bootweb.domain.BoardVO;
 import com.example.bootweb.domain.Criteria;
+import com.example.bootweb.domain.ReplyVO;
 import com.example.bootweb.mapper.BoardMapper;
+import com.example.bootweb.mapper.ReplyMapper;
 import com.example.bootweb.service.inf.BoardService;
+import com.example.bootweb.service.inf.ReplyService;
 import com.example.bootweb.util.UserSHA256;
 
 import lombok.extern.slf4j.Slf4j;
@@ -22,20 +25,16 @@ import lombok.extern.slf4j.Slf4j;
 @SpringBootTest
 public class Bootweb0ApplicationTests {
 
-	@Resource(name="boardService")
-	BoardService boardService;
+	@Resource(name="replyService")
+	ReplyService replyService;
 	
-	@Autowired
-	private BoardMapper boardMapper;
+	@Resource
+	private ReplyMapper replyMapper;
 	
 	@Test
 	public void contextLoads() {
-		log.info("1:{}",UserSHA256.encrypt(""));
-		//log.info(boardMapper.pageNum(9,10)+"");
-		//boardMapper.insert(new BoardVO("ttt", "www", "ccc"));
-		//int max = boardService.listAll().size();
-		
-		//boardMapper.listWithPaging(new Criteria(2, 10, max)).forEach(e->log.info(e.toString()));
+		replyMapper.delete(2);
+		//replyMapper.hisList(3).forEach(e->log.info(e.toString()));
 	}
 
 }

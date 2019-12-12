@@ -30,6 +30,7 @@
 <title>Board</title>
 </head>
 <body>
+<c:set var="path" value="${requestScope['javax.servlet.forward.servlet_path']}" />
 
 	<div id="hisSetting"></div>
 
@@ -176,23 +177,31 @@
 					<thead>
 						<tr>
 							<td>
+							<form action="${path}" method="post">
 								<div class="form-group col-md-3 reply_add_area" id="reply_writer_area"
 									hidden="hidden">
 									<label class="text-white">writer</label> <input
-										class="form-control" type="text" value="guest">
+										class="form-control" type="text" value="guest" name = "writer" required>
 								</div>
 								<div class="form-inline" id="reply_content_area">
-									<textarea class="btn-block"></textarea>
+									<textarea class="btn-block" name="content" required></textarea>
 									
 								</div>
 								<div class="form-group col-md-3 reply_add_area text-white" id="reply_pw_area"
 									hidden="hidden">
 									<jsp:include page="forms/pw_form.jsp"></jsp:include>	
 								</div>
-								<button class="btn btn-success btn-md">add</button>
+								<button class="btn btn-success btn-md" type="submit">add</button>
+							</form>
+								
 					</thead>
 					<tbody>
 						<!-- 댓글 리스트 올곳 -->
+						
+						<c:forEach items="${replyList}" var = "replyItem">
+							<c:out value="${replyItem}"/>
+						</c:forEach>
+						
 					</tbody>
 				</table>
 
@@ -201,7 +210,7 @@
 			</form> -->
 
 			</div>
-		</div>
+		</div> 
 
 
 	</div>

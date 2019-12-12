@@ -16,7 +16,7 @@ import com.example.bootweb.service.inf.ReplyService;
 
 @Slf4j
 @Controller
-@RequestMapping("//")
+@RequestMapping("/reply/*")
 public class ReplyController {
 
 	@Resource(name="replyService")

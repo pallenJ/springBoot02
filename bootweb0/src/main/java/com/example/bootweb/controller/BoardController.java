@@ -20,7 +20,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.bootweb.domain.BoardVO;
 import com.example.bootweb.domain.Criteria;
 import com.example.bootweb.domain.PagingView;
+import com.example.bootweb.domain.ReplyVO;
 import com.example.bootweb.service.inf.BoardService;
+import com.example.bootweb.service.inf.ReplyService;
 import com.example.bootweb.util.UserSHA256;
 
 import lombok.extern.slf4j.Slf4j;
@@ -37,6 +39,8 @@ public class BoardController {
 	 */
 	@Resource
 	private BoardService boardService;
+	@Resource(name="replyService")
+	private ReplyService replyService;
 	
 	@GetMapping("list")
 	public void list(HttpServletRequest request,Model model) {
@@ -59,17 +63,27 @@ public class BoardController {
 	}
 	
 	@GetMapping(value = "/{bno}")
-	public String detail(@PathVariable("bno")int bno, Model model) {
+	public String detail(@PathVariable("bno")int bno,String reply, Model model) {
+		
 		BoardVO vo = boardService.detail(bno);
 		vo.setPassword("");
 		model.addAttribute("bno", bno);
 		model.addAttribute("board", vo);
+		model.addAttribute("replyList", replyService.list(bno));
 		//model.addAttribute("editHistory", boardService.historyList(bno));
 		
 		log.info("vo = "+vo);
 		//log.info("edit = "+boardService.historyList(bno));
 		
 		return "board/detail";
+	}
+	@PostMapping(value = "/{bno}")
+	public String replyRegister(@PathVariable("bno")int bno,ReplyVO rpy,HttpServletRequest request, Model model) {
+		rpy.setBno(bno);
+		rpy.setIp_address(getIpAdress(request));
+		log.info(rpy.toString());
+		replyService.register(rpy);
+		return "redirect:/board/"+bno;
 	}
 	
 	@GetMapping("editHistoryForm")

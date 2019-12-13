@@ -174,8 +174,10 @@
 
 				<table class="table table-hover" id="reply_add_area">
 
-					<thead>
+					<tfoot>
+						<tr><td colspan="100%"><br> <h5>new Reply</h5>
 						<tr>
+						
 							<td colspan="100%">
 							<form action="${path}" method="post">
 								<div class="form-group col-md-3 reply_add_area" id="reply_writer_area"
@@ -195,13 +197,13 @@
 								<button class="btn btn-success btn-md" type="submit">add</button>
 							</form>
 								
-					</thead>
+					</tfoot>
 					<tbody class="">
 					
 						<!-- 댓글 리스트 올곳 -->
 						<c:forEach items="${replyList}" var = "replyItem">
-						<tr class = "">
-						<td class = "bg-info" style="width:120px">
+						<tr class = "table-bordered">
+						<td class = "" style="width:120px">
 							<p class="h5"><c:out value="${replyItem.writer}"/></p>
 						<td style = "width:80%">
 						<div class="summernote-trs">

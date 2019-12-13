@@ -180,15 +180,16 @@
 							<form action="${path}" method="post">
 								<div class="form-group col-md-3 reply_add_area" id="reply_writer_area"
 									hidden="hidden">
-									<label class="text-white">writer</label> <input
+									<label class="">writer</label> <input
 										class="form-control" type="text" value="guest" name = "writer" required>
 								</div>
 								<div class="form-inline" id="reply_content_area">
 									<textarea class="btn-block" name="content" required></textarea>
 									
 								</div>
-								<div class="form-group col-md-3 reply_add_area text-white" id="reply_pw_area"
+								<div class="form-group col-md-3 reply_add_area" id="reply_pw_area"
 									hidden="hidden">
+									
 									<jsp:include page="forms/pw_form.jsp"></jsp:include>	
 								</div>
 								<button class="btn btn-success btn-md" type="submit">add</button>
@@ -196,6 +197,7 @@
 								
 					</thead>
 					<tbody class="">
+					
 						<!-- 댓글 리스트 올곳 -->
 						<c:forEach items="${replyList}" var = "replyItem">
 						<tr class = "">
@@ -208,6 +210,10 @@
 						<td style="width:120px">
 						<small class="text-info">${replyItem.updateDate}</small><br>
 						<small class="text-secondary">${replyItem.ip_address}</small>
+							<br><br>
+						<c:if test="${replyItem.regDate ne replyItem.updateDate}">
+							<a class="text-secondary" id = "edit_his_reply" data-toggle="modal" data-target="#historyModalReply"> 수정됨 </a>
+						</c:if>
 						</td>	
 						
 						</c:forEach>
@@ -243,6 +249,39 @@
 			<div id="content_history" class="modal-body">
 				<!-- modal history 페이지를 불러옴 -->
 				<%-- <jsp:include page="detail_history.jsp"></jsp:include> --%>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="historyModalReply">
+	<div class="modal-dialog modal-lg" role="dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">댓글 수정내역</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div id="reply_history" class="modal-body">
+				<table>
+						<tr><td colspan="100%"><h3>date</h3>
+						<tr class = "">
+							<td class = "bg-info" style="width:120px">
+							<p class="h5">writer1</p>
+						<td style = "width:80%">
+						<div class="summernote-trs">
+							content1
+						</div>
+						<td style="width:120px">
+						<small class="text-info">date</small><br>
+						<small class="text-secondary">ip_address</small>
+						</td>	
+				</table>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

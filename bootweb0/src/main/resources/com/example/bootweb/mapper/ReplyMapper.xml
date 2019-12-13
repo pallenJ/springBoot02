@@ -31,19 +31,19 @@ WHERE A.rno = #{rno}
 <!-- detail -->
 
 <select id="detail" resultType="com.example.bootweb.domain.ReplyVO" parameterType="int">
-SELECT A.* FROM tbl_reply A WHERE A.rno = #{rno}
+SELECT A.* FROM tbl_reply WHERE A.rno = #{rno}
 </select>
 
 <!-- list -->
 <select id="list" resultType="com.example.bootweb.domain.ReplyVO" parameterType="int">
-SELECT A.* FROM tbl_reply A WHERE A.bno = #{bno}
+<include refid="forSelect_RPY"/> FROM tbl_reply A WHERE A.bno = #{bno}
 </select>
 <select id="allList" resultType="com.example.bootweb.domain.ReplyVO">
-SELECT A.* FROM tbl_reply A WHERE 1=1
+<include refid="forSelect_RPY"/> FROM tbl_reply A WHERE 1=1
 </select>
 
 <select id="hisList" resultType="com.example.bootweb.domain.ReplyVO" parameterType="int">
-SELECT HIS.* FROM tbl_reply_history HIS WHERE HIS.rno = #{rno}
+<include refid="forSelect_RPY"/> FROM tbl_reply_history A WHERE A.rno = #{rno}
 </select>
 
 <delete id="delete" parameterType="int">
@@ -54,5 +54,22 @@ UPDATE tbl_reply A SET
 A.state = 'DELETED'
 WHERE A.rno = #{rno}
 </update>
+<sql id="forSelect_RPY">
+SELECT 
+
+A.rno,
+A.bno,
+A.writer,
+A.content,
+if(
+TIMESTAMPDIFF(DAY,DATE_FORMAT(A.regdate,'%Y-%m-%d'),DATE_FORMAT(NOW(),'%Y-%m-%d'))>0
+,DATE_FORMAT(A.regdate,'%Y-%m-%d') ,
+ DATE_FORMAT(A.regdate,'%H:%i')) AS regdate,
+if(
+TIMESTAMPDIFF(DAY,DATE_FORMAT(A.updateDate,'%Y-%m-%d'),DATE_FORMAT(NOW(),'%Y-%m-%d'))>0
+,DATE_FORMAT(A.updateDate,'%Y-%m-%d') , DATE_FORMAT(A.updateDate,'%H:%i')) AS updatedate
+,A.ip_address
+
+</sql>
 
 </mapper>

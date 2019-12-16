@@ -55,4 +55,10 @@ public class ReplyServiceImpl implements ReplyService{
 		return replyMapper.hisList(rno);
 	}
 
+	@Override
+	public ReplyVO detail(int rno) {
+		// TODO Auto-generated method stub
+		return replyMapper.detail(rno);
+	}
+
 }

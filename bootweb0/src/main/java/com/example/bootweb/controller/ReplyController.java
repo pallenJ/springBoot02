@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import com.example.bootweb.domain.ReplyVO;
 import com.example.bootweb.service.inf.ReplyService;
+import com.example.bootweb.util.UserSHA256;
 
 
 @Slf4j
@@ -29,5 +30,11 @@ public class ReplyController {
 		return replyService.register(vo);
 	}
 	
+	@ResponseBody
+	@PostMapping("pwCheck")
+	public boolean pwCheck(int rno , String pw) {
+		ReplyVO vo = replyService.detail(rno);
+		return UserSHA256.encrypt(pw).equals(vo.getPassword());
+	}
 	
 }

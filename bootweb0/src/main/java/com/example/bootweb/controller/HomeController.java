@@ -28,7 +28,7 @@ public class HomeController {
 	@GetMapping("/")
 	public String home() {
 		if(session.getAttribute("designTheme")==null||session.getAttribute("designTheme").equals(""))
-		session.setAttribute("designTheme", themes[4]);
+		session.setAttribute("designTheme", themes[8]);
 		return "index";
 	}
 

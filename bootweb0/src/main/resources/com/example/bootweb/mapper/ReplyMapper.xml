@@ -72,4 +72,5 @@ TIMESTAMPDIFF(DAY,DATE_FORMAT(A.updateDate,'%Y-%m-%d'),DATE_FORMAT(NOW(),'%Y-%m-
 
 </sql>
 
+
 </mapper>

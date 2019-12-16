@@ -6,6 +6,7 @@ import com.example.bootweb.domain.ReplyVO;
 
 public interface ReplyService {
 	public String register(ReplyVO vo);
+	public ReplyVO detail(int rno);
 	public List<?> list(int bno);
 	public List<?> allList();
 	public int remove(int rno);

@@ -30,7 +30,8 @@
 <title>Board</title>
 </head>
 <body>
-<c:set var="path" value="${requestScope['javax.servlet.forward.servlet_path']}" />
+	<c:set var="path"
+		value="${requestScope['javax.servlet.forward.servlet_path']}" />
 
 	<div id="hisSetting"></div>
 
@@ -120,7 +121,8 @@
 						<!-- 수정버튼. detail상태에서 클릭시 비밀번호 입력 Modal이 뜸 -->
 						<!-- 그리고 수정 상태에서 클릭시 수정여부 Modal이 뜸.-->
 						<button data-oper="modify"
-							class="btn btn-secondary btn-icon-split border" id="brd_modify">
+							class="btn btn-secondary btn-icon-split border btn-modify"
+							id="brd_modify">
 							<span class="fa fas fa-edit active"></span> <span>Modify</span>
 						</button>
 
@@ -175,51 +177,53 @@
 				<table class="table table-hover" id="reply_add_area">
 
 					<tfoot>
-						<tr><td colspan="100%"><br> <h5>new Reply</h5>
 						<tr>
-						
+							<td colspan="100%"><br>
+								<h5>new Reply</h5>
+						<tr>
+
 							<td colspan="100%">
-							<form action="${path}" method="post">
-								<div class="form-group col-md-3 reply_add_area" id="reply_writer_area"
-									hidden="hidden">
-									<label class="">writer</label> <input
-										class="form-control" type="text" value="guest" name = "writer" required>
-								</div>
-								<div class="form-inline" id="reply_content_area">
-									<textarea class="btn-block" name="content" required></textarea>
-									
-								</div>
-								<div class="form-group col-md-3 reply_add_area" id="reply_pw_area"
-									hidden="hidden">
-									
-									<jsp:include page="forms/pw_form.jsp"></jsp:include>	
-								</div>
-								<button class="btn btn-success btn-md" type="submit">add</button>
-							</form>
-								
+								<form action="${path}" method="post">
+									<div class="form-group col-md-3 reply_add_area"
+										id="reply_writer_area" hidden="hidden">
+										<label class="">writer</label> <input class="form-control"
+											type="text" value="guest" name="writer" required>
+									</div>
+									<div class="form-inline" id="reply_content_area">
+										<textarea class="btn-block" name="content" required></textarea>
+
+									</div>
+									<div class="form-group col-md-3 reply_add_area"
+										id="reply_pw_area" hidden="hidden">
+
+										<jsp:include page="forms/pw_form.jsp"></jsp:include>
+									</div>
+									<button class="btn btn-success btn-md" type="submit">add</button>
+								</form>
 					</tfoot>
 					<tbody class="">
-					
+
 						<!-- 댓글 리스트 올곳 -->
-						<c:forEach items="${replyList}" var = "replyItem">
-						<tr class = "table-bordered">
-						<td class = "" style="width:120px">
-							<p class="h5"><c:out value="${replyItem.writer}"/></p>
-						<td style = "width:80%">
-						<div class="summernote-trs">
-							<c:out value="${replyItem.content}"/>
-						</div>
-						<td style="width:120px">
-						<small class="text-info">${replyItem.updateDate}</small><br>
-						<small class="text-secondary">${replyItem.ip_address}</small>
-							<br><br>
-						<c:if test="${replyItem.regDate ne replyItem.updateDate}">
-							<a class="text-secondary" id = "edit_his_reply" data-toggle="modal" data-target="#historyModalReply"> 수정됨 </a>
-						</c:if>
-						</td>	
-						
+						<c:forEach items="${replyList}" var="replyItem">
+							<tr class="table-bordered">
+								<td class="" style="width: 120px">
+									<p class="h5">
+										<c:out value="${replyItem.writer}" />
+									</p>
+								<td style="width: 80%" id="rpy_modify" class = "btn-modify">
+									<div class="summernote-trs" role = "${replyItem.rno}">
+										<c:out value="${replyItem.content}" />
+									</div>
+								<td style="width: 120px"><small class="text-info">${replyItem.updateDate}</small><br>
+									<small class="text-secondary">${replyItem.ip_address}</small> <br>
+								<br> <c:if
+										test="${replyItem.regDate ne replyItem.updateDate}">
+										<a class="text-secondary" id="edit_his_reply"
+											data-toggle="modal" data-target="#historyModalReply"> 수정됨
+										</a>
+									</c:if></td>
 						</c:forEach>
-						
+
 					</tbody>
 				</table>
 
@@ -228,7 +232,7 @@
 			</form> -->
 
 			</div>
-		</div> 
+		</div>
 
 
 	</div>
@@ -271,18 +275,15 @@
 			</div>
 			<div id="reply_history" class="modal-body">
 				<table>
-						<tr><td colspan="100%"><h3>date</h3>
-						<tr class = "">
-							<td class = "bg-info" style="width:120px">
+					<tr>
+						<td colspan="100%"><h3>date</h3>
+					<tr class="">
+						<td class="bg-info" style="width: 120px">
 							<p class="h5">writer1</p>
-						<td style = "width:80%">
-						<div class="summernote-trs">
-							content1
-						</div>
-						<td style="width:120px">
-						<small class="text-info">date</small><br>
-						<small class="text-secondary">ip_address</small>
-						</td>	
+						<td style="width: 80%">
+							<div class="summernote-trs">content1</div>
+						<td style="width: 120px"><small class="text-info">date</small><br>
+							<small class="text-secondary">ip_address</small></td>
 				</table>
 			</div>
 			<div class="modal-footer">
@@ -320,62 +321,87 @@
 
 		//alert(content);
 		//$("#content_div").html(content);
-		$("#brd_modify").click(
+		$(".btn-modify").click(
 				function() {
-
-					$(".btn-preview").hide();
-					var isDiv = ($("#content_div").prop("class"))
-							.indexOf("content-div") > -1;
-					if (isDiv) {
-						$("#passwordModal").modal();
-						//modifyActive();
-					} else {
-						//$("#board-form").submit();
-						$("#modifyModal").modal();
-
+					alert($(this).attr("id"));
+					//
+					switch ($(this).attr("id")) {
+					case "brd_modify":
+						brdModify();
+						
+						break;
+				
+					case "rpy_modify":
+						rpyModify(this);
+						
+						break;
+				
+					default:
+						alert("aa");
+						break;
 					}
 
-					$("#passwordSubmit").click(function() {
-						var bno = "${board.bno}";
-						var insertPW = $("#modalPWCheck").val();
+		});
 
-						$.ajax({
-							url : 'pwCheck',
-							type : 'POST',
-							async : false,
-							dataType : 'json',
-							data : {
-								bno : bno,
-								pw : insertPW
-							},
-							success : function(data) {
-								if (data) {
-									modifyActive();
-								} else {
+		function brdModify() {
+			$(".btn-preview").hide();
+			var isDiv = ($("#content_div").prop("class"))
+					.indexOf("content-div") > -1;
+			if (isDiv) {
+				$("#passwordModal").modal();
+				//modifyActive();
+			} else {
+				//$("#board-form").submit();
+				$("#modifyModal").modal();
 
-									$("#modalPWCheck").addClass("is-invalid");
-									return;
-								}
-							}
-						});
+			}
 
-					})
+			$("#passwordSubmit").click(function() {
+				var bno = "${board.bno}";
+				var insertPW = $("#modalPWCheck").val();
 
-					$(".btn-modal-save").click(
-							function() {
-								$("input[name='content']").prop("value",
-										$('#content_div').summernote("code"));
-								$("#board_form").submit();
-							})
+				$.ajax({
+					url : 'pwCheck',
+					type : 'POST',
+					async : false,
+					dataType : 'json',
+					data : {
+						bno : bno,
+						pw : insertPW
+					},
+					success : function(data) {
+						if (data) {
+							modifyActive();
+						} else {
 
+							$("#modalPWCheck").addClass("is-invalid");
+							return;
+						}
+					}
 				});
 
+			})
+			
+			
+			
+			$(".btn-modal-save").click(
+					function() {
+						$("input[name='content']").prop("value",
+								$('#content_div').summernote("code"));
+						$("#board_form").submit();
+					})
+
+		}
+		function rpyModify(rpy_comp){
+			
+
+		}
 		function modifyActive() {
 			/* $("#content_div").prop("data-toggle", "modal")
 			$("#content_div").prop("data-target", "#modifyModal") */
 			$("input[name!='writer']").prop("readonly", false);
 
-			$("#bno_div").hide(); 
+			$("#bno_div").hide();
 			$(".brd-date-info").hide();
 			$(".btn-for-detail").hide();
 			$(".btn-for-edit").show();

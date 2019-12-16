@@ -34,6 +34,7 @@ public class ReplyController {
 	@PostMapping("pwCheck")
 	public boolean pwCheck(int rno , String pw) {
 		ReplyVO vo = replyService.detail(rno);
+		log.info("insert :{}",UserSHA256.encrypt(pw));
 		return UserSHA256.encrypt(pw).equals(vo.getPassword());
 	}
 	

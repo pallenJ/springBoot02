@@ -210,8 +210,8 @@
 									<p class="h5">
 										<c:out value="${replyItem.writer}" />
 									</p>
-								<td style="width: 80%" id="rpy_modify" class = "btn-modify">
-									<div class="summernote-trs" role = "${replyItem.rno}">
+								<td style="width: 80%" id="rpy_modify" class = "btn-modify" role = "${replyItem.rno}">
+									<div class="summernote-trs">
 										<c:out value="${replyItem.content}" />
 									</div>
 								<td style="width: 120px"><small class="text-info">${replyItem.updateDate}</small><br>
@@ -393,8 +393,33 @@
 
 		}
 		function rpyModify(rpy_comp){
-			
+			var rno =Number($(rpy_comp).attr("role"));
+			alert(typeof(rno))
+			$("#passwordModal").modal();
+			$("#passwordSubmit").click(function() {
+			var insertPW = $("#modalPWCheck").val();
+			$.ajax({
+				url : '/reply/pwCheck',
+				type : 'POST',
+				async : false,
+				dataType : 'json',
+				data : {
+					rno : rno,
+					pw : insertPW
+				},
+				success : function(data) {
+					if (data) {
+						alert("success");
+						$("#passwordModal").modal("hide");
+					} else {
 
+						$("#modalPWCheck").addClass("is-invalid");
+						return;
+					}
+				}
+			});
+			});
+			
 		}
 		function modifyActive() {
 			/* $("#content_div").prop("data-toggle", "modal")

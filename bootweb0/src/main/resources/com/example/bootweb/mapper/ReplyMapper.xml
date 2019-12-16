@@ -31,7 +31,7 @@ WHERE A.rno = #{rno}
 <!-- detail -->
 
 <select id="detail" resultType="com.example.bootweb.domain.ReplyVO" parameterType="int">
-SELECT A.* FROM tbl_reply WHERE A.rno = #{rno}
+SELECT A.* FROM tbl_reply A WHERE A.rno = #{rno}
 </select>
 
 <!-- list -->

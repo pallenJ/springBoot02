@@ -201,12 +201,12 @@
 									<button class="btn btn-success btn-md" type="submit">add</button>
 								</form>
 					</tfoot>
-					<tbody class="">
+					<tbody class="" id = "reply_list">
 
 						<!-- 댓글 리스트 올곳 -->
 						<c:forEach items="${replyList}" var="replyItem">
 							<tr class="table-bordered">
-								<td class="" style="width: 120px">
+								<td class="" style="width: 17.5%; min-width: 130px; max-width: 200px;">
 									<p class="h5">
 										<c:out value="${replyItem.writer}" />
 									</p>
@@ -223,7 +223,6 @@
 										</a>
 									</c:if></td>
 						</c:forEach>
-
 					</tbody>
 				</table>
 
@@ -520,6 +519,8 @@
 		/* 댓글 입력버튼 활성화 비활성화  */
 	});
 </script>
+
+
 
 <footer>
 	<%@include file="../include/footer.jsp"%>

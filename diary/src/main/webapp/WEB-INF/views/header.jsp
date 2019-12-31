@@ -47,13 +47,13 @@
 <script
 	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
 <div class="pull-right">
-	<a href="#" data-toggle="modal" data-target="#modalPage" class = "modal-page" role = "login">로그인</a>|
-	<a href="#" data-toggle="modal" data-target="#modalPage" class = "modal-page" role = "register">회원가입</a>
+	<a href="#" data-toggle="modal" data-target="#components_modal" class = "modal-component" role = "login">로그인</a>|
+	<a href="#" data-toggle="modal" data-target="#components_modal" class = "modal-component" role = "register">회원가입</a>
 
 </div>
 
 
-<div class="modal fade" id="modalPage">
+<div class="modal fade" id="components_modal">
 	<div class="modal-dialog" role="dialog"
 		style="max-width: 100%; display: table;">
 		<div class="modal-content">
@@ -67,18 +67,20 @@
 			<div id="modal_form" class="modal-body">
 			</div>
 
-			<div class="modal-footer">
+<!-- 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </div>
 <script>
 $(function() {
-	$(".modal-page").click(function() {
+	$(".modal-component").click(function() {
 		var role = $(this).attr("role");
 		$("#modal_form").load("/components/"+role)
 
 	})
 })
 </script>
+ <script type="text/javascript" src="<c:url value='/resource/js/core.min.js'/>"></script>
+ <script type="text/javascript" src="<c:url value='/resource/js/sha256.min.js'/>"></script>

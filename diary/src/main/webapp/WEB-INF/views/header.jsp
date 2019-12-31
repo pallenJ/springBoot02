@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <%@ taglib prefix='fmt' uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -8,14 +8,15 @@
 <%
 	pageContext.setAttribute("tcnt", session.getAttribute("theme_num"));
 
-	String[] themes = new String[]{"cerulean", "cosmo", "cyborg", "darkly", "flatly", "journal", "litera",
+	String[] themes = new String[] { "cerulean", "cosmo", "cyborg", "darkly", "flatly", "journal", "litera",
 			"lumen", "lux", "materia", "minty", "pulse", "sandstone", "simplex", "sketchy", "slate", "solar",
-			"spacelab", "superhero", "united", "yeti"};
-	String designTheme = themes[8]; 
+			"spacelab", "superhero", "united", "yeti" };
+	String designTheme = themes[0];
 	pageContext.setAttribute("theme", designTheme);//21개 테마
 %>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
 <link rel="stylesheet" id="b-css"
@@ -23,7 +24,7 @@
 <link rel="stylesheet" id="b-min-css"
 	href="https://bootswatch.com/4/${theme}/bootstrap.min.css">
 <link rel="stylesheet" id="v-scss"
-	href="https://bootswatch.com/4/${theme}/_variables.scss"> 
+	href="https://bootswatch.com/4/${theme}/_variables.scss">
 <link rel="stylesheet" id="b-scss"
 	href="https://bootswatch.com/4/${theme}/_bootswatch.scss">
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -45,3 +46,39 @@
 	rel="stylesheet">
 <script
 	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
+<div class="pull-right">
+	<a href="#" data-toggle="modal" data-target="#modalPage" class = "modal-page" role = "login">로그인</a>|
+	<a href="#" data-toggle="modal" data-target="#modalPage" class = "modal-page" role = "register">회원가입</a>
+
+</div>
+
+
+<div class="modal fade" id="modalPage">
+	<div class="modal-dialog" role="dialog"
+		style="max-width: 100%; display: table;">
+		<div class="modal-content">
+			<div class="modal-header bg-secondary">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<div id="modal_form" class="modal-body">
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+$(function() {
+	$(".modal-page").click(function() {
+		var role = $(this).attr("role");
+		$("#modal_form").load("/components/"+role)
+
+	})
+})
+</script>

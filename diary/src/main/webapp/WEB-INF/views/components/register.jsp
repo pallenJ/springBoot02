@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
+<div class="card border-secondary mb-6" style="max-width: 40rem;display:flex;align-items:center;">
 <!-- <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id" content="134117933681-b7itj3i408ntkkfpofkjp5chl72v0322.apps.googleusercontent.com"> -->
   <fieldset>
@@ -28,9 +29,11 @@
 <form >
 </form>  
 
+	<hr>
 
 
   </fieldset>
+  </div>
   <br>
 <!--         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -30,5 +30,7 @@ public class User {
 	
 	@Column(length = 50, nullable = false)
 	private String name;	
+	@Column
+	private String password;	
 
 }

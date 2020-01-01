@@ -27,7 +27,12 @@ class DiaryApplicationTests {
 		
 		//User user = User.builder().email("test@test.test").name("pallen").build();
 		//log.info("user:{}",user.getCreateDate());
-		log.info("user:{}",userService.get("vhxj1@naver.com"));
+		try {
+			log.info("user:{}",userService.get("sdfasdf"));
+			
+		} catch (Exception e) {
+			log.info("not found");
+		}
 		
 		
 		//userRepository.save(user);

@@ -9,6 +9,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pallen.diary.entity.User;
@@ -41,7 +42,7 @@ public class ComponentController {
 	public boolean userExist(String email) {
 		log.info(email);
 		try {
-			User vo =userService.get(email);
+		  userService.get(email);
 		
 		} catch (Exception e) {
 			return false;
@@ -50,14 +51,30 @@ public class ComponentController {
 	}
 	
 	@GetMapping("login")
-	public void login(ModelMap model) {
-		
-	}
-	@PostMapping("login")
-	public String login(HttpSession session,
-			@Param(value = "email") String email,@Param(value = "password")String pw) {
-		
-		return "redirect:/Main";
+	public void login(HttpSession session,ModelMap model) {
+		if(session.getAttribute("loginUser")!=null) {
+			session.removeAttribute("loginUser");
+		}
 	}
 	
+	@PostMapping("login")
+	public String login(HttpSession session,
+			String email,@RequestParam(value = "password")String pw) {
+			
+			try {
+				User user = userService.get(email);
+				if(!pw.equals(user.getPassword())) 
+					throw new Exception();
+				session.setAttribute("loginUser", user);
+				log.info("로그인 성공");
+			} catch (Exception e) {
+				log.info("로그인 실패");
+			}
+		return "redirect:/Main";
+	}
+	@GetMapping("logout")
+	public String logout(HttpSession session,ModelMap model) {
+		session.removeAttribute("loginUser");
+		return "redirect:/Main";
+	}
 }

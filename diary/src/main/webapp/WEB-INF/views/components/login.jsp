@@ -11,18 +11,20 @@
 	<div>
     <div class="form-group">
       <label for="exampleInputEmail1" class = "text-left">Email address</label>
-      <input type="email" class="form-control" id="login_email" aria-describedby="emailHelp" placeholder="Enter email" name= "email">
+      <input type="email" class="form-control" id="login_email" aria-describedby="emailHelp" placeholder="Enter email" name= "email" required>
     </div>
     <div class="form-group">
       <label for="exampleInputPassword1" class = "text-left">Password</label>
-      <input type="password" class="form-control" id="login_pw" placeholder="Password" name = "password_before">
+      <input type="password" class="form-control" id="login_pw" placeholder="Password" name = "password_before" required>
       <input type="hidden" name = "password" id="pw_param">
     </div>
 	</div>
-   
+   	<div hidden="hidden">
+   		<button type="submit" id = "login_submit"></button>
+   	</div>
 </form>  
 <div align="right" class = "modal-footer">
-        <button type="button" class="btn btn-primary btn-modal-save" id= "login_submit">login</button>
+        <button type="button" class="btn btn-primary btn-modal-save" id= "login_submit_btn">login</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 </div>
 
@@ -32,11 +34,11 @@
 
  <script type="text/javascript">
 	$(function() {
-		$("#login_submit").click(function() {
+		$("#login_submit_btn").click(function() {
 			var shapw = CryptoJS.SHA256($("#login_pw").val()).toString();
 			$("#pw_param").val(shapw);
 			alert("pw:"+$("#pw_param").val());
-			$("#login_form").submit();
+			$("#login_submit").click();
 		})
 	})
  </script>     

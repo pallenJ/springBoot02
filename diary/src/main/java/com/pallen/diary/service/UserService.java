@@ -1,6 +1,6 @@
 package com.pallen.diary.service;
 
-import com.pallen.diary.entity.User;
+import com.pallen.diary.entity.user.User;
 
 public interface UserService {
 

@@ -1,8 +1,6 @@
-package com.pallen.diary.repository;
+package com.pallen.diary.entity.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.pallen.diary.entity.User;
 
 public interface UserRepository extends JpaRepository<User, String>{
 

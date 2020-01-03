@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.pallen.diary.entity.User;
-import com.pallen.diary.repository.UserRepository;
+import com.pallen.diary.entity.user.User;
+import com.pallen.diary.entity.user.UserRepository;
 import com.pallen.diary.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;

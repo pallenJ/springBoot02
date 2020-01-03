@@ -1,4 +1,4 @@
-package com.pallen.diary.entity;
+package com.pallen.diary.entity.user;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

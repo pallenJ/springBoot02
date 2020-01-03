@@ -3,8 +3,8 @@ package com.pallen.diary.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.pallen.diary.entity.User;
-import com.pallen.diary.repository.UserRepository;
+import com.pallen.diary.entity.user.User;
+import com.pallen.diary.entity.user.UserRepository;
 import com.pallen.diary.service.UserService;
 
 @Service

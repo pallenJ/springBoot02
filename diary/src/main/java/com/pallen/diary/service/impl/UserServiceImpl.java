@@ -1,6 +1,7 @@
 package com.pallen.diary.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 
 import com.pallen.diary.entity.user.User;
@@ -10,7 +11,7 @@ import com.pallen.diary.service.UserService;
 @Service
 public class UserServiceImpl implements UserService{
 	
-	@Autowired
+	@Resource
 	private UserRepository userRepository;
 
 	@Override

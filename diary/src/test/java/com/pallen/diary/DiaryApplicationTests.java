@@ -5,6 +5,8 @@ import javax.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import com.pallen.diary.entity.board.BoardRepository;
 import com.pallen.diary.entity.user.User;
@@ -35,7 +37,10 @@ class DiaryApplicationTests {
 			//log.info("board:{}",boardRepository.count());
 			//User user = userRepository.findByEmail("vhxj1@naver.com").get(0);
 			//boardRepository.findByUser(user).forEach(e->log.info("board : {}",e));
-			userRepository.deleteById("abc@abc.abc");
+			//userRepository.deleteById("abc@abc.abc");
+			Pageable pageble = PageRequest.of(2, 1);
+			boardRepository.findAll(pageble).forEach(e->log.info("brd:{}",e));
+			
 		} catch (Exception e) {
 			log.info("not found");
 		}

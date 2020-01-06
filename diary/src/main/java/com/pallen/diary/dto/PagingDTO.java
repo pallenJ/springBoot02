@@ -1,10 +1,9 @@
 package com.pallen.diary.dto;
 
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-public class PagingDTO {
+public class PagingDTO {//페이지 계산을 위해 만든 클래스
 	
 
 	private int page;
@@ -16,8 +15,8 @@ public class PagingDTO {
 	
 	private int pageCnt;
 	
-	private int startShow;//현재 페이지 네이션의 시작
-	private int endShow;//현재 페이지 네이션의 끝
+	private int startShow;//현재 페이지네이션의 시작
+	private int endShow;//현재 페이지네이션의 끝
 	
 	private void setting() {
 		pageCnt = (page/col_cnt)+(page%col_cnt==0?0:1);

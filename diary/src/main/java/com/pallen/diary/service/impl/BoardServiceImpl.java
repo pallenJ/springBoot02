@@ -4,6 +4,9 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.pallen.diary.entity.board.Board;
@@ -40,9 +43,10 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public List<Board> list(int page) {
+	public Page<Board> list(int page, int amount) {
 		// TODO Auto-generated method stub
-		return null;
+		Pageable pageable = PageRequest.of((page-1)*amount, amount);
+		return boardRepository.findAll(pageable);
 	}
 
 	@Override

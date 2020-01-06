@@ -1,7 +1,6 @@
 package com.pallen.diary.controller;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -83,5 +82,9 @@ public class ComponentController {
 	/*user end*/
 	
 
+	@GetMapping("brdList")
+	public void brdList(ModelMap model) {
+		
+	}
 	
 }

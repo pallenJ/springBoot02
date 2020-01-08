@@ -1,9 +1,16 @@
 package com.pallen.diary.entity.user;
 
+import java.util.Collection;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.pallen.diary.entity.board.Board;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -28,5 +35,9 @@ public class User {
 	private String name;	
 	@Column
 	private String password;	
-
+	
+	
+	  @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") 
+	  private List<Board> boardList;
+	  
 }

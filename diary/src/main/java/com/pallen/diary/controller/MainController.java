@@ -24,17 +24,8 @@ public class MainController {
 	
 	@GetMapping("/Main")
 	public String mainPage(HttpServletRequest request,ModelMap model) {
-		int page = 1;
-		try {
-			page = (int) request.getAttribute("pg");
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		PagingDTO paging = new PagingDTO(page,1,1);
-		Page<Board> brdList = boardService.list(1, 1);
-		log.info("brd : {}",brdList.get());
-		model.addAttribute("paging", paging);
-		model.addAttribute("brdList", brdList);
+//		log.info(request.getParameter("pg")+"");
+//		model.addAttribute("pg",request.getParameter("pg"));
 		return "/page/main";
 	}
 }

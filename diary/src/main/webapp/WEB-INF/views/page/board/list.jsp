@@ -16,7 +16,7 @@
 				<td>${brdItem.bno}
 				<td>${brdItem.title}
 				<td>${brdItem.user.name}
-				<td>${brdItem.reg_date}
+				<td class = "reg_date">${brdItem.reg_date}
 			
 			</tr>
 		</c:forEach>
@@ -69,7 +69,7 @@
     </li>
   </ul>
 </div>
-
+${paging}
 <!-- .paging -->
 
 <script type="text/javascript">
@@ -81,7 +81,7 @@
 			$(this).prop("href", path+"?pg="+$(this).text());
 		});
 		
-		//$("#brdList").load("/components/brdList")
+		
 		
 	})
 </script>

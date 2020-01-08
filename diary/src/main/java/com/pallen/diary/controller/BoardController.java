@@ -30,17 +30,19 @@ public class BoardController {
 	public String list(HttpServletRequest request , ModelMap model) {
 		int page = 1;
 		try {
-			page = (int) request.getAttribute("pg");
+			log.info(request.getParameter("pg"));
+			page = Integer.parseInt(request.getParameter("pg"));
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		PagingDTO paging = new PagingDTO(page,1,1);
+		PagingDTO paging = new PagingDTO(page);
 		List<Board> brdList = new ArrayList<>();
-		boardService.list(1, 1).forEach(e -> brdList.add(e));
+		boardService.list(page, paging.getAmount()).forEach(e -> brdList.add(e));
 		log.info("brd : {}",brdList);
+		log.info("page:{}",page);
 		model.addAttribute("paging", paging);
 		model.addAttribute("brdList", brdList);
-		model.addAttribute("aaa", "1234");
+		
 		return "/page/board/list";
 	}
 	

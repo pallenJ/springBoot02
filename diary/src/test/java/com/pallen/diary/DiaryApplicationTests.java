@@ -1,5 +1,7 @@
 package com.pallen.diary;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.junit.jupiter.api.Test;
@@ -45,7 +47,14 @@ class DiaryApplicationTests {
 //			Pageable pageble = PageRequest.of(2, 1);
 //			boardRepository.findAll(pageble).forEach(e->log.info("brd:{}",e));
 //			boardService.list(1, 10).forEach(e->log.info("brd:{}",e));
-			log.info("brds :{}",boardService.list(1, 10));
+//			log.info("brds :{}",boardService.list(1, 10));
+			List<User> users = userRepository.findAll();
+			String [] titles = {"title","TITLE","TEST","test" ,"jojo","JOJO"};
+			String [] contents = {"content","CONTENT","TESTTEST","testtest","'s bizzare adventure","'S BIZZARE ADVENTURE"};
+			int cnt = 100;
+			
+			
+			log.info("user:{}",userRepository.findAll());
 			
 		} catch (Exception e) {
 			log.info("not found");

@@ -1,8 +1,10 @@
 package com.pallen.diary.dto;
 
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
+@ToString
 public class PagingDTO {//페이지 계산을 위해 만든 클래스
 	
 

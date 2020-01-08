@@ -29,7 +29,9 @@
 <script type="text/javascript">
 
 	$(function() {
-		$("#loadPage").load("/board/list");
+		const pg = <%=request.getParameter("pg")%>;
+		alert(pg)
+		$("#loadPage").load("/board/list?pg="+pg);
 	})
 
 </script>

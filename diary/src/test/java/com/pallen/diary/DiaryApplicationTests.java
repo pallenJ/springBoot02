@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import com.pallen.diary.entity.board.BoardRepository;
 import com.pallen.diary.entity.user.User;
 import com.pallen.diary.entity.user.UserRepository;
+import com.pallen.diary.service.BoardService;
 import com.pallen.diary.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +29,9 @@ class DiaryApplicationTests {
 	@Resource
 	BoardRepository boardRepository;
 	
+	@Resource
+	BoardService boardService;
+	
 	@Test
 	void contextLoads() {
 		
@@ -38,8 +42,10 @@ class DiaryApplicationTests {
 			//User user = userRepository.findByEmail("vhxj1@naver.com").get(0);
 			//boardRepository.findByUser(user).forEach(e->log.info("board : {}",e));
 			//userRepository.deleteById("abc@abc.abc");
-			Pageable pageble = PageRequest.of(2, 1);
-			boardRepository.findAll(pageble).forEach(e->log.info("brd:{}",e));
+//			Pageable pageble = PageRequest.of(2, 1);
+//			boardRepository.findAll(pageble).forEach(e->log.info("brd:{}",e));
+//			boardService.list(1, 10).forEach(e->log.info("brd:{}",e));
+			log.info("brds :{}",boardService.list(1, 10));
 			
 		} catch (Exception e) {
 			log.info("not found");

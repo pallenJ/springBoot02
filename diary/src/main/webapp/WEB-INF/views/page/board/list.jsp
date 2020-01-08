@@ -5,7 +5,37 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
     <div class="panel panel-default">
   <div class="panel-header h4 text-dark border" align="center">board</div>
-  <div class="panel-body bg-secondary" id ="brdList">Panel Content</div>
+  <div class="panel-body bg-secondary" id ="brdList">
+  	
+  	<table class = "table" id = "brdList">
+
+
+	<tbody>
+		<c:forEach items="${brdList}" var ="brdItem">
+			<tr>
+				<td>${brdItem.bno}
+				<td>${brdItem.title}
+				<td>${brdItem.user.name}
+				<td>${brdItem.reg_date}
+			
+			</tr>
+		</c:forEach>
+	
+	</tbody>
+	
+	<thead>
+		<tr>
+			<th> no 		
+			<th> title 		
+			<th> writer		
+			<th> date 		
+		
+		</tr>
+	</thead>
+
+</table>
+  
+  </div>
   
   
 <div class="panel-footer">
@@ -39,15 +69,20 @@
     </li>
   </ul>
 </div>
+
 <!-- .paging -->
 
 <script type="text/javascript">
 		
 	$(function() {
 		const path = $(location).attr('pathname');
+		
 		$(".page-link").each(function() {
 			$(this).prop("href", path+"?pg="+$(this).text());
-		})
+		});
+		
+		//$("#brdList").load("/components/brdList")
+		
 	})
 </script>
 

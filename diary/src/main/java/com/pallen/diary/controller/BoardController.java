@@ -35,7 +35,7 @@ public class BoardController {
 		return "/page/board/list";
 	}
 	
-	private String getIpAdress(HttpServletRequest request) {
+	private String getIpAddress(HttpServletRequest request) {
 		 String ip = request.getHeader("X-Forwarded-For");
 		 
 	        log.info(">>>> X-FORWARDED-FOR : " + ip);

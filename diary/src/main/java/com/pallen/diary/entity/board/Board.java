@@ -1,8 +1,6 @@
 package com.pallen.diary.entity.board;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -70,11 +68,11 @@ public class Board {
 		this.update_date = this.now();
 	}
 	
-	public String timeFormat() {
-		long time = System.currentTimeMillis(); 
-		SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		return dayTime.format(new Date(time));
-	}
+//	public String timeFormat() {
+//		long time = System.currentTimeMillis(); 
+//		SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//		return dayTime.format(new Date(time));
+//	}
 	
 	private LocalDateTime now() {
 		return LocalDateTime.now().plusHours(9L);

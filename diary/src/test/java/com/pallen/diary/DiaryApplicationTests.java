@@ -10,10 +10,8 @@ import java.util.Set;
 import javax.annotation.Resource;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+
 
 import com.pallen.diary.entity.board.Board;
 import com.pallen.diary.entity.board.BoardRepository;
@@ -41,6 +39,13 @@ class DiaryApplicationTests {
 	BoardService boardService;
 
 	@Test
+	void updateBrd() {
+		Board brd = boardRepository.findByBno(300L).get(0);
+		brd.setUpdate_date();
+		boardRepository.save(brd);
+	}
+	
+	//@Test
 	void contextLoads() {
 
 		List<User> users = userRepository.findAll();
@@ -93,5 +98,8 @@ class DiaryApplicationTests {
 		// userRepository.findAll().forEach(e -> log.info("user:{}",e));
 
 	}
-
+	
+	
+	
+	
 }

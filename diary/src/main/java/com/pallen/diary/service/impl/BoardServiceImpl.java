@@ -44,9 +44,9 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public Page<Board> list(int page, int amount) {
+	public Page<Board> list(int page, int col_cnt) {
 		// TODO Auto-generated method stub
-		Pageable pageable = PageRequest.of((page-1), amount,Sort.Direction.DESC,"bno");
+		Pageable pageable = PageRequest.of((page-1), col_cnt,Sort.Direction.DESC,"bno");
 		return boardRepository.findAll(pageable);
 	}
 

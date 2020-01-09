@@ -1,6 +1,5 @@
 package com.pallen.diary.entity.user;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -37,7 +36,7 @@ public class User {
 	private String password;	
 	
 	
-	  @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") 
-	  private List<Board> boardList;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user") 
+	private List<Board> boardList;
 	  
 }

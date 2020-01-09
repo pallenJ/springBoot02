@@ -29,8 +29,8 @@ public class PagingDTO {//페이지 계산을 위해 만든 클래스
 		hasPrev = (amount<page);
 		hasNext = (page+(pageCnt%amount)<=pageCnt);
 		
-		startShow = page/amount+1;
-		endShow   = hasNext? (page/amount + amount):pageCnt;
+		startShow = ((page-1)/amount)*amount+1;
+		endShow   = hasNext? (startShow- 1 + amount):pageCnt;
 		
 		 
 	}

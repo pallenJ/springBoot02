@@ -10,7 +10,7 @@ public class PagingDTO {//페이지 계산을 위해 만든 클래스
 
 	private int page;
 	private int col_cnt = 10;
-	private int amount = 10;
+	private int amount = 5;
 	
 	private boolean hasPrev = false;
 	private boolean hasNext = false;

@@ -1,5 +1,9 @@
 package com.pallen.diary.entity.board;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,6 +31,7 @@ import lombok.ToString;
 @ToString
 public class Board {
 	
+	
 	@Id
 	@Column(name = "bno")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -38,10 +43,12 @@ public class Board {
 	private String title;
 	@Column(name = "content")
 	private String content;
-	@Column(name = "reg_date")
-	private String reg_date;
+	//@Temporal(TemporalType.TIMESTAMP)
+	//@Column(name = "reg_date")
+	//private String reg_date;
+	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "update_date")
-	private String update_date;
+	private LocalDateTime update_date;
 	@Column(name = "ip_address")
 	private String ip_address;
 	
@@ -58,7 +65,26 @@ public class Board {
 		this.content = content;
 		this.ip_address = ip_address;
 		this.user = user;
+		//this.reg_date = timeFormat();
+		//this.update_date = this.reg_date;
+		this.update_date = this.now();
 	}
+	
+	public String timeFormat() {
+		long time = System.currentTimeMillis(); 
+		SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		return dayTime.format(new Date(time));
+	}
+	
+	private LocalDateTime now() {
+		return LocalDateTime.now().plusHours(9L);
+	}
+	
+	public void setUpdate_date() {
+		//this.update_date = timeFormat();
+		this.update_date = now();
+	}
+	
 	
 	
 }

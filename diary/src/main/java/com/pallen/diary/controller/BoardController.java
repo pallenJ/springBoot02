@@ -37,7 +37,7 @@ public class BoardController {
 		}
 		PagingDTO paging = new PagingDTO(page);
 		List<Board> brdList = new ArrayList<>();
-		boardService.list(page, paging.getAmount()).forEach(e -> brdList.add(e));
+		boardService.list(page, paging.getCol_cnt()).forEach(e -> brdList.add(e));
 		log.info("brd : {}",brdList);
 		log.info("page:{}",page);
 		model.addAttribute("paging", paging);

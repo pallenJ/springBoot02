@@ -55,6 +55,12 @@ public class BoardController {
 		return "/page/board/detail";
 	}
 	
+	@GetMapping("/new")
+	public String register() {
+		
+		return "/page/board/register";
+	}
+	
 	private String getIpAddress(HttpServletRequest request) {
 		 String ip = request.getHeader("X-Forwarded-For");
 		 

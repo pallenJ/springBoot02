@@ -30,7 +30,6 @@
 
 	$(function() {
 		const pg = <%=request.getParameter("pg")%>;
-		alert(pg)
 		$("#loadPage").load("/board/list?pg="+pg);
 	})
 

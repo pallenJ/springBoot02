@@ -42,8 +42,8 @@ public class Board {
 	@Column(name = "content")
 	private String content;
 	//@Temporal(TemporalType.TIMESTAMP)
-	//@Column(name = "reg_date")
-	//private String reg_date;
+	@Column(name = "reg_date")
+	private LocalDateTime reg_date;
 	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "update_date")
 	private LocalDateTime update_date;
@@ -65,7 +65,8 @@ public class Board {
 		this.user = user;
 		//this.reg_date = timeFormat();
 		//this.update_date = this.reg_date;
-		this.update_date = this.now();
+		this.reg_date    = this.now();
+		this.update_date = this.reg_date;
 	}
 	
 //	public String timeFormat() {

@@ -8,8 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.pallen.diary.dto.PagingDTO;
@@ -44,6 +46,13 @@ public class BoardController {
 		model.addAttribute("brdList", brdList);
 		
 		return "/page/board/list";
+	}
+	
+	@GetMapping(value = "/{bno}")
+	public String detail(@PathVariable("bno")long bno, ModelMap model) {
+		Board brdDetail = boardService.get(bno); 
+		model.addAttribute("brdDetail", brdDetail);
+		return "/page/board/detail";
 	}
 	
 	private String getIpAddress(HttpServletRequest request) {

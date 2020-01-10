@@ -5,15 +5,15 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
     <div class="panel panel-default">
   <div class="panel-header h4 text-dark border" align="center">board</div>
-  <div class="panel-body bg-secondary" id ="brdList">
+  <div class="panel-body" id ="brdList">
   	
-  	<table class = "table" id = "brdList">
+  	<table class = "table table-hover" id = "brdList">
 
 
 	<tbody>
 		<c:forEach items="${brdList}" var ="brdItem">
-			<tr>
-				<td>${brdItem.bno}
+			<tr class = "brdItem">
+				<td class = "bno" role = "${brdItem.bno}">${brdItem.bno}
 				<td>${brdItem.title}
 				<td>${brdItem.user.name}
 				<td class = "reg_date">${brdItem.reg_date}
@@ -46,42 +46,50 @@
 
 <div align="center">
   <ul class="pagination">
-    <li class="page-item disabled">
-      <a class="page-link" href="#">&laquo;</a>
+  
+  	<c:if test="${paging.hasPrev}">
+  	<li class="page-item">
+      <a class="page-link page-prev" href="${paging.startShow-1}">&laquo;</a>
     </li>
-    <li class="page-item active">
-      <a class="page-link" href="">1</a>
-    </li>
+  	</c:if>
+  
+  	<c:forEach var="i" begin="${paging.startShow}" end="${paging.endShow}">
+  	
     <li class="page-item">
-      <a class="page-link" href="">2</a>
+      <a class="page-link page-num" href="${i}">${i}</a>
     </li>
+  	</c:forEach>
+	<c:if test="${paging.hasNext}">
     <li class="page-item">
-      <a class="page-link" href="">3</a>
+      <a class="page-link page-next" href="${paging.endShow+1}">&raquo;</a>
     </li>
-    <li class="page-item">
-      <a class="page-link" href="">4</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="">5</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="">&raquo;</a>
-    </li>
+    </c:if>
   </ul>
 </div>
-${paging}
+
 <!-- .paging -->
 
 <script type="text/javascript">
 		
 	$(function() {
 		const path = $(location).attr('pathname');
-		
+		const pg = <%=request.getParameter("pg")%>;
+
 		$(".page-link").each(function() {
-			$(this).prop("href", path+"?pg="+$(this).text());
+			var pageValue = $(this).text();
+			$(this).prop("href", path+"?pg="+$(this).attr("href"));
+			
+			
+			if(pageValue.toString() === pg.toString()){
+				$(this).parents("li").addClass("active");
+			}
 		});
 		
-		
+		$(".brdItem").click(function() {
+			const bno = $(this).children(".bno").attr("role");
+			alert("/board/"+bno);
+			location.href = "/board/"+bno;
+		})
 		
 	})
 </script>

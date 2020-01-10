@@ -24,7 +24,7 @@ import lombok.ToString;
 @Getter
 @AllArgsConstructor
 @Builder
-@ToString
+//@ToString
 public class User {
 
 	@Id

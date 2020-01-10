@@ -1,6 +1,7 @@
 package com.pallen.diary.dto;
 
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 @Getter
@@ -15,13 +16,16 @@ public class PagingDTO {//페이지 계산을 위해 만든 클래스
 	private boolean hasPrev = false;
 	private boolean hasNext = false;
 	
+	@Setter
+	private int pageAllcnt = 100000;
+	
 	private int pageCnt;
 	
 	private int startShow;//현재 페이지네이션의 시작
 	private int endShow;//현재 페이지네이션의 끝
 	
 	private void setting() {
-		pageCnt = (page/col_cnt)+(page%col_cnt==0?0:1);
+		pageCnt = (pageAllcnt/col_cnt)+(pageAllcnt%col_cnt==0?0:1);
 		subSetting();
 	}
 	private void subSetting() {
@@ -52,6 +56,13 @@ public class PagingDTO {//페이지 계산을 위해 만든 클래스
 	}
 
 
+	public PagingDTO(int page, int col_cnt, int amount, int pageAllCnt) {
+		this.page = page;
+		this.col_cnt = col_cnt;
+		this.amount = amount;
+		this.pageAllcnt = pageAllCnt;
+		setting();
+	}
 	public PagingDTO(int page, int col_cnt, int amount) {
 		this.page = page;
 		this.col_cnt = col_cnt;
@@ -59,6 +70,11 @@ public class PagingDTO {//페이지 계산을 위해 만든 클래스
 		setting();
 	}
 	
+	public PagingDTO(int page,int pageAllCnt) {
+		this.page = page;
+		this.pageAllcnt = pageAllCnt;
+		setting();
+	}
 	public PagingDTO(int page) {
 		this.page = page;
 		setting();

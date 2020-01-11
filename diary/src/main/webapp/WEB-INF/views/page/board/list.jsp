@@ -6,6 +6,11 @@
     <div class="panel panel-default">
   <div class="panel-header h4 text-dark border" align="center">board</div>
   <div class="panel-body" id ="brdList">
+ 	 <div align="right">
+		<a href="/board/new" class ="btn btn-success btn-sm border text-white"> 
+		<span  class="fa fa-pencil">  new post</span>
+    	</a>
+	</div>
   	
   	<table class = "table table-hover" id = "brdList">
 

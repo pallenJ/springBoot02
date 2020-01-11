@@ -18,6 +18,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -47,6 +48,7 @@ public class Board {
 	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "update_date")
 	private LocalDateTime update_date;
+	@Setter
 	@Column(name = "ip_address")
 	private String ip_address;
 	

@@ -17,7 +17,7 @@
 				</div>
 				<!-- /.panel-heading -->
 				<div class="panel-body">
-					<form action="/board/register" method="post" id="board-form">
+					<form action="/board/add" method="post" id="board-form">
 
 
 						<div class="form-group">
@@ -76,8 +76,8 @@
 					});
 
 			$("#board-submit").click(function() {
-				alert($("#content_div").summernote("code"))
-				//$("#for_form_submit").click();
+				//alert($("#content_div").summernote("code"))
+				$("#for_form_submit").click();
 			});
 
 		});

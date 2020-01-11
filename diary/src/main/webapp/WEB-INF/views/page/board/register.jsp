@@ -30,10 +30,10 @@
 							<div></div>
 						</div>
 
-						<div class="form-group">
+<!-- 						<div class="form-group">
 							<label>Writer</label> <input class="form-control brd-item"
 								name="writer" required="required">
-						</div>
+						</div> -->
 
 						
 						<button hidden="hidden" id="for_form_submit"></button>
@@ -76,7 +76,7 @@
 					});
 
 			$("#board-submit").click(function() {
-				
+				alert($("#content_div").summernote("code"))
 				//$("#for_form_submit").click();
 			});
 

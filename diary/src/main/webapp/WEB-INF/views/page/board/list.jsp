@@ -73,12 +73,13 @@
 		
 	$(function() {
 		const path = $(location).attr('pathname');
-		const pg = <%=request.getParameter("pg")%>;
-
+		var pg = <%=request.getParameter("pg")%>;
+		if(pg==null) pg =1;
+		
 		$(".page-link").each(function() {
 			var pageValue = $(this).text();
 			$(this).prop("href", path+"?pg="+$(this).attr("href"));
-			
+						
 			
 			if(pageValue.toString() === pg.toString()){
 				$(this).parents("li").addClass("active");

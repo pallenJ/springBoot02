@@ -66,9 +66,9 @@
 
 
 </div>
+<jsp:include page="modal/modals.jsp"></jsp:include>
 
-
-<div class="modal fade" id="components_modal">
+<!-- <div class="modal fade" id="components_modal">
 	<div class="modal-dialog" role="dialog"
 		style="max-width: 100%; display: table;">
 		<div class="modal-content">
@@ -82,12 +82,12 @@
 			<div id="modal_form" class="modal-body">
 			</div>
 
-<!-- 			<div class="modal-footer">
+			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			</div> -->
+			</div>
 		</div>
 	</div>
-</div>
+</div> -->
 <script>
 $(function() {
 	$(".modal-component").click(function() {
@@ -99,6 +99,7 @@ $(function() {
 </script>
  <script type="text/javascript" src="<c:url value='/resource/js/core.min.js'/>"></script>
  <script type="text/javascript" src="<c:url value='/resource/js/sha256.min.js'/>"></script>
+ <script type="text/javascript" src="<c:url value='/resource/js/util.js'/>"></script>
  <br>
  <div>
  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">

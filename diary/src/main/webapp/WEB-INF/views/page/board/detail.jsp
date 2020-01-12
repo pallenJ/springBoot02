@@ -9,9 +9,13 @@
 </head>
 <body>
 
-<h1>${brdDetail.title}</h1>
-<h3>${brdDetail.content}</h3>
-<h3>${brdDetail.user.name}</h3>
-
+<div class = "container">
+<h1>title : ${brdDetail.title}</h1>
+<h5>writer :  ${brdDetail.user.name}</h5>
+<div align = "right">
+<small class = "text-secondary">${brdDetail.ip_address}</small>
+</div>
+<div class = "border">${brdDetail.content}</div>
+</div>
 </body>
 </html>

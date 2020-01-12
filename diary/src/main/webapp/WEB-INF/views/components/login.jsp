@@ -37,7 +37,6 @@
 		$("#login_submit_btn").click(function() {
 			var shapw = CryptoJS.SHA256($("#login_pw").val()).toString();
 			$("#pw_param").val(shapw);
-			alert("pw:"+$("#pw_param").val());
 			$("#login_submit").click();
 		})
 	})

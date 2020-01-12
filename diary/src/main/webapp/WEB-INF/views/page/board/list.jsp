@@ -7,7 +7,7 @@
   <div class="panel-header h4 text-dark border" align="center">board</div>
   <div class="panel-body" id ="brdList">
  	 <div align="right">
-		<a href="/board/new" class ="btn btn-success btn-sm border text-white"> 
+		<a id = "new_post" class ="btn btn-success btn-sm border text-white"> 
 		<span  class="fa fa-pencil">  new post</span>
     	</a>
 	</div>
@@ -78,6 +78,7 @@
 		
 	$(function() {
 		const path = $(location).attr('pathname');
+		const user = "${sessionScope.loginUser}";
 		var pg = <%=request.getParameter("pg")%>;
 		if(pg==null) pg =1;
 		
@@ -95,6 +96,14 @@
 			const bno = $(this).children(".bno").attr("role");
 			alert("/board/"+bno);
 			location.href = "/board/"+bno;
+		})
+		
+ 		$("#new_post").click(function() {
+			if(user == null||user ==""){
+				alert("로그인후 이용해주세요")
+				return;
+			}
+			location.href = "/board/new";
 		})
 		
 	})

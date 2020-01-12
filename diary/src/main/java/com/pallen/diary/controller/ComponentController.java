@@ -55,6 +55,7 @@ public class ComponentController {
 	public void login(HttpSession session,ModelMap model) {
 		if(session.getAttribute("loginUser")!=null) {
 			session.removeAttribute("loginUser");
+			session.removeAttribute("loginUserEmail");
 		}
 	}
 	
@@ -67,6 +68,7 @@ public class ComponentController {
 				if(!pw.equals(user.getPassword())) 
 					throw new Exception();
 				session.setAttribute("loginUser", user);
+				session.setAttribute("loginUserEmail", user.getEmail());
 				log.info("로그인 성공");
 			} catch (Exception e) {
 				log.info("로그인 실패");

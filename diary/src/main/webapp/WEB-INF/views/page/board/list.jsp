@@ -3,7 +3,7 @@
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <%@ taglib prefix='fmt' uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-    <div class="panel panel-default">
+  <div class="panel panel-default">
   <div class="panel-header h4 text-dark border" align="center">board</div>
   <div class="panel-body" id ="brdList">
  	 <div align="right">
@@ -105,7 +105,7 @@
 			}
 			location.href = "/board/new";
 		})
-		
+
 	})
 </script>
 

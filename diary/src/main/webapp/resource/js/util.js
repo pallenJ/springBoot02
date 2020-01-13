@@ -54,6 +54,11 @@ $(function () {
 		 	$("#brd_previewModal").modal();
 	 });
 	 
+	 function modalMSG(msg){
+		 $("#modal_message").text(msg);
+		 $("#modalMSG").modal();
+	 }
+	 
 	 function isValid(flag,selector) {//성공 실패 상태를 위한것. toggle처리하기가 곤란해서 메소드를 만듦
         if(flag){
             selector.removeClass("is-invalid")

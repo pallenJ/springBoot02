@@ -36,20 +36,17 @@ public class Board_History {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long hbno;
 	
-	@ManyToOne
-	@JoinColumn(name = "bno")
-	private Board original;
-
+	//@ManyToOne
+	@Column(name = "bno")
+	private Long bno;
 	@Column(name = "board_kind")
 	private int board_kind;
 	@Column(name = "title")
 	private String title;
 	@Column(name = "content")
 	private String content;
-	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "reg_date")
 	private LocalDateTime reg_date;
-	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "update_date")
 	private LocalDateTime update_date;
 	@Column(name = "ip_address")
@@ -59,8 +56,13 @@ public class Board_History {
 	@Column(name = "writer_email")
 	private String writer_email;
 	
-	public void setting(int board_kind, String title, String content, LocalDateTime reg_date,
+	public Board_History(Board brd) {
+		setting(brd);
+	}
+	
+	public void setting(Long bno,int board_kind, String title, String content, LocalDateTime reg_date,
 			LocalDateTime update_date, String ip_address, String state, User user) {
+		this.bno = bno;
 		this.board_kind = board_kind;
 		this.title = title;
 		this.content = content;
@@ -71,8 +73,8 @@ public class Board_History {
 		this.writer_email = user.getEmail();
 	}
 	public void setting(Board brd) {
-		setting(brd.getBoard_kind(), brd.getTitle(), brd.getContent(), 
-				brd.getReg_date(), brd.getUpdate_date(), 
+		setting(brd.getBno(),brd.getBoard_kind(), brd.getTitle(), 
+				brd.getContent(), brd.getReg_date(), brd.getUpdate_date(), 
 				brd.getIp_address(), brd.getState(), brd.getUser());
 	}
 	

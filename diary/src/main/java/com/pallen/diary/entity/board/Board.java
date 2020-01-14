@@ -51,7 +51,9 @@ public class Board {
 	@Setter
 	@Column(name = "ip_address")
 	private String ip_address;
-	
+	@Setter
+	@Column(name = "state")
+	private String state;
 	
 	@ManyToOne
 	@JoinColumn(name="writer_email")
@@ -69,6 +71,7 @@ public class Board {
 		//this.update_date = this.reg_date;
 		this.reg_date    = this.now();
 		this.update_date = this.reg_date;
+		this.state = "NORMAL";
 	}
 	
 //	public String timeFormat() {

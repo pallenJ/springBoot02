@@ -40,11 +40,20 @@ class DiaryApplicationTests {
 
 	@Test
 	void updateBrd() {
-		Board brd = boardRepository.findByBno(300L).get(0);
-		brd.setUpdate_date();
-		boardRepository.save(brd);
+		/*
+		 * Board brd = boardRepository.findByBno(300L).get(0); brd.setUpdate_date();
+		 * boardRepository.save(brd);
+		 */
+		long bno = 319L;
+		String title = "test2";
+		String content = "<h1>modify test</h1>";
+		boardService.modify(bno, title, content);
+		
 	}
-	
+	//@Test
+	void cntTest() {
+		log.info("cnt:{}", boardService.countAll());
+	}
 	//@Test
 	void contextLoads() {
 

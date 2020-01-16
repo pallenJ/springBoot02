@@ -12,10 +12,15 @@ import org.springframework.stereotype.Service;
 
 import com.pallen.diary.entity.board.Board;
 import com.pallen.diary.entity.board.BoardRepository;
+import com.pallen.diary.entity.board.Board_History;
+import com.pallen.diary.entity.board.Board_HistoryRepository;
 import com.pallen.diary.entity.user.User;
 import com.pallen.diary.entity.user.UserRepository;
 import com.pallen.diary.service.BoardService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class BoardServiceImpl implements BoardService{
 	
@@ -25,6 +30,8 @@ public class BoardServiceImpl implements BoardService{
 	@Resource
 	private UserRepository userRepository;
 
+	@Resource
+	private Board_HistoryRepository board_HistoryRepository;
 	
 	@Override
 	public void add(Board brd) {
@@ -62,4 +69,30 @@ public class BoardServiceImpl implements BoardService{
 		return boardRepository.findByUser(user);
 	}
 
+
+
+	@Override
+	public void modify(Long bno, String title, String content) {
+		// TODO Auto-generated method stub
+		Board brd = boardRepository.findByBno(bno).get(0);
+		Board_History history = new Board_History(brd);
+		brd.setUpdate_date();
+		brd.setTitle(title);
+		brd.setContent(content);
+		log.info("ok1");
+		board_HistoryRepository.save(history);
+		log.info("ok2");
+		boardRepository.save(brd);
+		log.info("ok3");
+		
+	}
+
+	@Override
+	public int countAll() {
+		// TODO Auto-generated method stub
+		return (int)boardRepository.count();
+	}
+	
+	
+	
 }

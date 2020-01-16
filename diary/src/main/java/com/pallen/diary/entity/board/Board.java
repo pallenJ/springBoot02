@@ -38,8 +38,10 @@ public class Board {
 	
 	@Column(name = "board_kind")
 	private int board_kind;
+	@Setter
 	@Column(name = "title")
 	private String title;
+	@Setter
 	@Column(name = "content")
 	private String content;
 	//@Temporal(TemporalType.TIMESTAMP)

@@ -40,7 +40,7 @@ public class BoardController {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		PagingDTO paging = new PagingDTO(page);
+		PagingDTO paging = new PagingDTO(page,boardService.countAll());
 		List<Board> brdList = new ArrayList<>();
 		boardService.list(page, paging.getCol_cnt()).forEach(e -> brdList.add(e));
 		//log.info("brd : {}",brdList);

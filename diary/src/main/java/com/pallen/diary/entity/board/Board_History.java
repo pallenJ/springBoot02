@@ -53,8 +53,9 @@ public class Board_History {
 	private String ip_address;
 	@Column(name = "state")
 	private String state;
-	@Column(name = "writer_email")
-	private String writer_email;
+	@ManyToOne
+	@JoinColumn(name="writer_email")
+	private User user;
 	
 	public Board_History(Board brd) {
 		setting(brd);
@@ -70,7 +71,7 @@ public class Board_History {
 		this.update_date = update_date;
 		this.ip_address = ip_address;
 		this.state = state;
-		this.writer_email = user.getEmail();
+		this.user = user;
 	}
 	public void setting(Board brd) {
 		setting(brd.getBno(),brd.getBoard_kind(), brd.getTitle(), 

@@ -25,6 +25,7 @@ import lombok.ToString;
 @Entity
 @Table(name = "board")
 @Getter
+@Setter
 @AllArgsConstructor
 @Builder
 @ToString
@@ -41,7 +42,6 @@ public class Board {
 	@Setter
 	@Column(name = "title")
 	private String title;
-	@Setter
 	@Column(name = "content")
 	private String content;
 	//@Temporal(TemporalType.TIMESTAMP)
@@ -50,10 +50,8 @@ public class Board {
 	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "update_date")
 	private LocalDateTime update_date;
-	@Setter
 	@Column(name = "ip_address")
 	private String ip_address;
-	@Setter
 	@Column(name = "state")
 	private String state;
 	

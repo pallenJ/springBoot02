@@ -66,12 +66,15 @@ public class BoardController {
 	
 	@PostMapping("/add")
 	public String register(HttpSession session,HttpServletRequest request,
-			String title,String content) {
+			Board board/*String title,String content*/) {
+		String title = board.getTitle();
+		String content = board.getContent();
+		int board_kind = board.getBoard_kind();
 		log.info("title:{}",title);
 		log.info("content:{}",content);
 		getIpAddress(request);
 		try {
-			Board brd = new Board(0, title, content, getIpAddress(request), (User)session.getAttribute("loginUser"));
+			Board brd = new Board(board_kind, title, content, getIpAddress(request), (User)session.getAttribute("loginUser"));
 			
 			if(brd.getUser()==null) throw new Exception();
 			log.info("user:{}",brd.getUser().getName());
@@ -86,6 +89,8 @@ public class BoardController {
 		
 		
 	}
+	
+	
 	
 	private String getIpAddress(HttpServletRequest request) {
 		 String ip = request.getHeader("X-Forwarded-For");

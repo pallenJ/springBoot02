@@ -69,8 +69,7 @@ public class Board {
 		this.user = user;
 		//this.reg_date = timeFormat();
 		//this.update_date = this.reg_date;
-		this.reg_date    = this.now();
-		this.update_date = this.reg_date;
+		setDates();
 		this.state = "NORMAL";
 	}
 	
@@ -88,7 +87,10 @@ public class Board {
 		//this.update_date = timeFormat();
 		this.update_date = now();
 	}
-	
+	public void setDates() {
+		this.reg_date    = this.now();
+		this.update_date = this.reg_date;
+	}
 	
 	
 }

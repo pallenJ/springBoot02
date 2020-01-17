@@ -72,18 +72,16 @@ public class BoardServiceImpl implements BoardService{
 
 
 	@Override
-	public void modify(Long bno, String title, String content) {
+	public void modify(Long bno, String title, String content,int board_kind) {
 		// TODO Auto-generated method stub
 		Board brd = boardRepository.findByBno(bno).get(0);
 		Board_History history = new Board_History(brd);
 		brd.setUpdate_date();
+		brd.setBoard_kind(board_kind);
 		brd.setTitle(title);
 		brd.setContent(content);
-		log.info("ok1");
 		board_HistoryRepository.save(history);
-		log.info("ok2");
 		boardRepository.save(brd);
-		log.info("ok3");
 		
 	}
 

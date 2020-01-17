@@ -66,15 +66,12 @@ public class BoardController {
 	
 	@PostMapping("/add")
 	public String register(HttpSession session,HttpServletRequest request,
-			Board board/*String title,String content*/) {
-		String title = board.getTitle();
-		String content = board.getContent();
-		int board_kind = board.getBoard_kind();
+			String title,String content) {//board_kind를 추가할걸 고려하고 만들것
 		log.info("title:{}",title);
 		log.info("content:{}",content);
 		getIpAddress(request);
 		try {
-			Board brd = new Board(board_kind, title, content, getIpAddress(request), (User)session.getAttribute("loginUser"));
+			Board brd = new Board(0, title, content, getIpAddress(request), (User)session.getAttribute("loginUser"));
 			
 			if(brd.getUser()==null) throw new Exception();
 			log.info("user:{}",brd.getUser().getName());
@@ -90,7 +87,18 @@ public class BoardController {
 		
 	}
 	
-	
+	@PostMapping("/modify")
+	public String modify(HttpSession session,Board board) {
+		long bno = board.getBno();
+		board.setBoard_kind(0);//board_kind 추가후엔 주석처리
+		String currectEmail = boardService.get(bno).getUser().getEmail();
+		User sessionUser = ((User)session.getAttribute("loginUser"));
+		if(sessionUser==null||!currectEmail.equals(sessionUser.getEmail())) {
+			return "redirect:/error";
+		}
+			boardService.modify(bno, board.getTitle(), board.getContent(),board.getBoard_kind());
+			return "redirect/board/"+bno;
+	}
 	
 	private String getIpAddress(HttpServletRequest request) {
 		 String ip = request.getHeader("X-Forwarded-For");

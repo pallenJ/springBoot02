@@ -45,9 +45,9 @@ class DiaryApplicationTests {
 		 * boardRepository.save(brd);
 		 */
 		long bno = 319L;
-		String title = "test2";
-		String content = "<h1>modify test</h1>";
-		boardService.modify(bno, title, content);
+		String title = "test22";
+		String content = "<h1>modify test2</h1>";
+		boardService.modify(bno, title, content,0);
 		
 	}
 	//@Test

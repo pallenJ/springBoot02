@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-
+<!-- 기본적인 모달 틀 -->
 <div class="modal fade" id="myModal">
 	<div class="modal-dialog" role="dialog">
 		<div class="modal-content">
@@ -24,6 +24,30 @@
 	</div>
 </div>
 
+<!-- url 복사 -->
+<div class="modal fade" id="URLModal">
+	<div class="modal-dialog" role="dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">URL 공유</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				URL<input type="text" value = "" id = "nowURL" class = "form-control" readonly="readonly">
+			</div>
+			<div class="modal-footer">
+				
+				<button type="button" class="btn btn-primary" id = "shareAction">복사</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 메세지용 -->
 <div class="modal fade" id="modalMSG">
 	<div class="modal-dialog" role="dialog">
 		<div class="modal-content">
@@ -44,6 +68,7 @@
 	</div>
 </div>
 
+<!-- 수정용 -->
 <div class="modal fade" id="modifyModal">
 	<div class="modal-dialog" role="dialog">
 		<div class="modal-content">
@@ -66,6 +91,7 @@
 	</div>
 </div>
 
+<!-- 삭제용 -->
 <div class="modal fade" id="removeModal">
 	<div class="modal-dialog" role="dialog">
 		<div class="modal-content">
@@ -81,13 +107,15 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-danger btn-go"
-					title="remove?bno=${board.bno}" id="remove_save">YES</button>
+					title="remove?bno=${brdDetail.bno}" id="remove_save">YES</button>
 				<button type="button" class="btn btn-warning" data-dismiss="modal">NO</button>
 			</div>
 		</div>
 	</div>
 </div>
 
+
+<!-- 비밀번호 확인용 -->
 <div class="modal fade" id="passwordModal">
 	<div class="modal-dialog" style="width: 310px;" role="dialog">
 		<div class="modal-content">
@@ -169,6 +197,7 @@
 	</div>
 </div>
 
+<!-- 로그인/회원가입및 기타등등용 -->
 <div class="modal fade" id="components_modal">
 	<div class="modal-dialog" role="dialog"
 		style="max-width: 100%; display: table;">

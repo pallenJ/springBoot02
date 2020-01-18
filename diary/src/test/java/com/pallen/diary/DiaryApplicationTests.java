@@ -33,7 +33,7 @@ class DiaryApplicationTests {
 	UserService userService;
 
 	@Resource
-	BoardRepository boardRepository;
+	BoardRepository boardRepository; 
 
 	@Resource
 	BoardService boardService;

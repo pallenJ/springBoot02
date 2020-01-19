@@ -11,7 +11,8 @@ import javax.annotation.Resource;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
 import com.pallen.diary.entity.board.Board;
 import com.pallen.diary.entity.board.BoardRepository;
@@ -38,7 +39,7 @@ class DiaryApplicationTests {
 	@Resource
 	BoardService boardService;
 
-	@Test
+	//@Test
 	void updateBrd() {
 		/*
 		 * Board brd = boardRepository.findByBno(300L).get(0); brd.setUpdate_date();
@@ -50,6 +51,13 @@ class DiaryApplicationTests {
 		boardService.modify(bno, title, content,0);
 		
 	}
+	
+	@Test
+	void deleteTest() {
+		boardRepository.findByStateNot("UPDATED",PageRequest.of(0, 10,Sort.Direction.DESC,"bno"))
+		.forEach(e->log.info(e.toString()));;
+	}
+	
 	//@Test
 	void cntTest() {
 		log.info("cnt:{}", boardService.countAll());

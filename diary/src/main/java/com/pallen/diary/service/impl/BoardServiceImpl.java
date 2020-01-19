@@ -80,6 +80,7 @@ public class BoardServiceImpl implements BoardService{
 		brd.setBoard_kind(board_kind);
 		brd.setTitle(title);
 		brd.setContent(content);
+		brd.setState("UPDATED");
 		board_HistoryRepository.save(history);
 		boardRepository.save(brd);
 		

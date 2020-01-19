@@ -21,9 +21,12 @@
 	<div class = "border panel">
 	<div  class = "panel-head border-primary bg-primary">content</div>
 	<div  class = "panel-head" align="right">
-		<a data-toggle="tooltip" title="edit" class = "btn"><i class="fa fa-edit"></i></a>
-		<a data-toggle="tooltip" title="delete" class = "btn"><i class="fa fa-trash"></i></a>
-		<a data-toggle="tooltip" title="share" class = "btn" id = "shareURL"><i class="fa fa-share"></i></a>
+	<c:if test="${brdDetail.user.email eq sessionScope.loginUser.email}">
+		<a data-toggle="tooltip" title="edit" class = "btn"><span class="fa fa-edit btn-outline-primary"></span></a>
+		<a data-toggle="tooltip" title="delete" class = "btn"><span class="fa fa-trash btn-outline-danger"></span></a>
+	</c:if>
+		
+		<a data-toggle="tooltip" title="share" class = "btn" id = "shareURL"><span class="fa fa-share"></span></a>
 	
 	</div>
 	<div  class = "panel-body border-primary content-div container-fluid">
@@ -36,27 +39,7 @@
 
 </body>
 
-<div class="modal fade" id="URLModal">
-	<div class="modal-dialog" role="dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">URL 공유</h5>
-				<button type="button" class="close" data-dismiss="modal"
-					aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				URL<input type="text" value = "" id = "nowURL" class = "form-control" readonly="readonly">
-			</div>
-			<div class="modal-footer">
-				
-				<button type="button" class="btn btn-primary" id = "shareAction">복사</button>
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">확인</button>
-			</div>
-		</div>
-	</div>
-</div>
+
 <script type="text/javascript">
 
 $(function() {

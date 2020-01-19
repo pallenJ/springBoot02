@@ -86,6 +86,11 @@ public class BoardController {
 		
 		
 	}
+	@GetMapping("/modify")
+	public String modify(long bno,ModelMap model) {
+		model.addAttribute("boardDetail",boardService.get(bno));
+		return "page/board/modify";
+		}
 	
 	@PostMapping("/modify")
 	public String modify(HttpSession session,Board board) {

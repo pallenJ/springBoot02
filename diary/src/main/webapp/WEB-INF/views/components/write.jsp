@@ -1,36 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<jsp:include page="../../header.jsp"></jsp:include>
-<title>Insert title here</title>
-</head>
-<body>
-	
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<div class="btn-group" role="group" aria-label="Basic example">
-						edit</div>
+						new</div>
 				</div>
 				<!-- /.panel-heading -->
 				<div class="panel-body">
-					<form action="/board/modify" method="post" id="board-form">
-						<input type="hidden" value="${brdDetail.bno}" name="bno">
+					<form action="" method="post" id="board-form">
+						
 
 						<div class="form-group">
 							<label>Title</label> <input class="form-control brd-item"
-								name="title" required="required" value="${brdDetail.title}" id = "brdTitle">
+								name="title" required="required" value="${boardDetail.title}" id = "brdTitle">
 								
 						</div>
 						<div class="form-group">
 							<a class='btn btn-default btn-sm text-info btn-preview'>preview</a>
-							<textarea id="content_div" class="brd-item" name="content">
-								${brdDetail.content}
-							</textarea>
+							<input id="content_div" class="brd-item" name="content">
 								
 							<div></div>
 						</div>
@@ -56,9 +45,7 @@
 		</div>
 		<!-- /.col-lg-12 -->
 	</div>
-
-</body>
-
+	
 	<script type="text/javascript">
 		$(function() {
 			$('#content_div').summernote(
@@ -87,8 +74,4 @@
 			});
 
 		});
-</script>
-
-
-
-</html>
+	</script>

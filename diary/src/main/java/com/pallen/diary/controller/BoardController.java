@@ -86,9 +86,15 @@ public class BoardController {
 		
 		
 	}
-	@GetMapping("/modify")
-	public String modify(long bno,ModelMap model) {
-		model.addAttribute("boardDetail",boardService.get(bno));
+	@GetMapping("/{bno}/edit")
+	public String modify(HttpSession session,@PathVariable("bno")long bno,ModelMap model) {
+		Board brdDetail = boardService.get(bno);
+		String loginEmail = ((User)session.getAttribute("loginUser")).getEmail();
+		if(!brdDetail.getUser().getEmail().equals(loginEmail)) {
+			log.info("권한 부족");
+			return "redirect:/error";
+		}
+		model.addAttribute("brdDetail",boardService.get(bno));
 		return "page/board/modify";
 		}
 	
@@ -102,7 +108,7 @@ public class BoardController {
 			return "redirect:/error";
 		}
 			boardService.modify(bno, board.getTitle(), board.getContent(),board.getBoard_kind());
-			return "redirect/board/"+bno;
+			return "redirect:/board/"+bno;
 	}
 	
 	private String getIpAddress(HttpServletRequest request) {

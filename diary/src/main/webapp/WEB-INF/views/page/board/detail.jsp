@@ -22,8 +22,13 @@
 	<div  class = "panel-head border-primary bg-primary">content</div>
 	<div  class = "panel-head" align="right">
 	<c:if test="${brdDetail.user.email eq sessionScope.loginUser.email}">
-		<a data-toggle="tooltip" title="edit" class = "btn"><span class="fa fa-edit btn-outline-primary"></span></a>
-		<a data-toggle="tooltip" title="delete" class = "btn"><span class="fa fa-trash btn-outline-danger"></span></a>
+		<a data-toggle="tooltip" title="edit" class = "btn" href="${brdDetail.bno}/edit">
+		<span class="fa fa-edit btn-outline-primary"></span>
+		</a>
+		
+		<a data-toggle="tooltip" title="delete" class = "btn">
+		<span class="fa fa-trash btn-outline-danger"></span>
+		</a>
 	</c:if>
 		
 		<a data-toggle="tooltip" title="share" class = "btn" id = "shareURL"><span class="fa fa-share"></span></a>

@@ -1,6 +1,7 @@
 package com.pallen.diary.entity.board;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -46,10 +47,10 @@ public class Board {
 	private String content;
 	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "reg_date")
-	private LocalDateTime reg_date;
+	private String reg_date;
 	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "update_date")
-	private LocalDateTime update_date;
+	private String update_date;
 	@Column(name = "ip_address")
 	private String ip_address;
 	@Column(name = "state")
@@ -85,10 +86,10 @@ public class Board {
 	
 	public void setUpdate_date() {
 		//this.update_date = timeFormat();
-		this.update_date = now();
+		this.update_date = now().format(DateTimeFormatter.ofPattern("YYYY-MM-DD hh:mm:ss"));
 	}
 	public void setDates() {
-		this.reg_date    = this.now();
+		this.reg_date    = this.now().format(DateTimeFormatter.ofPattern("YYYY-MM-DD hh:mm:ss"));;
 		this.update_date = this.reg_date;
 	}
 	

@@ -46,9 +46,9 @@ public class Board_History {
 	@Column(name = "content")
 	private String content;
 	@Column(name = "reg_date")
-	private LocalDateTime reg_date;
+	private String reg_date;
 	@Column(name = "update_date")
-	private LocalDateTime update_date;
+	private String update_date;
 	@Column(name = "ip_address")
 	private String ip_address;
 	@Column(name = "state")
@@ -61,8 +61,8 @@ public class Board_History {
 		setting(brd);
 	}
 	
-	public void setting(Long bno,int board_kind, String title, String content, LocalDateTime reg_date,
-			LocalDateTime update_date, String ip_address, String state, User user) {
+	public void setting(Long bno,int board_kind, String title, String content, String reg_date,
+			String update_date, String ip_address, String state, User user) {
 		this.bno = bno;
 		this.board_kind = board_kind;
 		this.title = title;

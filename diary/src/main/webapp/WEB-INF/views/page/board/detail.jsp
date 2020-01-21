@@ -1,7 +1,11 @@
+<%@page import="com.pallen.diary.entity.board.Board"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%
+Board brdDetail = (Board)pageContext.getAttribute("brdDetail");
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +18,11 @@
 <div class = "container border">
 <h1>title : ${brdDetail.title}</h1>
 <h5>writer :  ${brdDetail.user.name}</h5>
+
+<c:if test="${brdDetail.state eq 'UPDATED'}"><a>수정내역</a></c:if>
+
 <div align = "right">
+
 <small class = "text-secondary">${brdDetail.ip_address}</small>
 </div>
 
@@ -37,7 +45,12 @@
 	<div  class = "panel-body border-primary content-div container-fluid">
 	${brdDetail.content}
 	</div>
-		
+	<div class = "panel-footer">
+		<small class = "text-info">${brdDetail.reg_date} 작성</small><br>
+		<small class = "text-info">
+		<c:if test="${brdDetail.state eq 'UPDATED'}">${brdDetail.update_date} 수정</c:if>
+		</small>
+		</div>
 	</div>
 
 </div>

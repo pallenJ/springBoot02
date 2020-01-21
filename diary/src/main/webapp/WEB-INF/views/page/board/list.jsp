@@ -18,10 +18,13 @@
 	<tbody>
 		<c:forEach items="${brdList}" var ="brdItem">
 			<tr class = "brdItem">
-				<td class = "bno" role = "${brdItem.bno}">${brdItem.bno}
+				<td class = "bno" role = "${brdItem.bno}">${brdItem.bno}</td>
 				<td>${brdItem.title}
-				<td>${brdItem.user.name}
-				<td class = "reg_date">${brdItem.reg_date}
+				<c:if test="${brdItem.state eq 'UPDATED'}">
+				<small class = "btn-outline-danger disabled">(수정)</small></c:if>
+				</td>
+				<td>${brdItem.user.name}</td>
+				<td class = "reg_date">${brdItem.reg_date}</td>
 			
 			</tr>
 		</c:forEach>

@@ -39,6 +39,12 @@
 			$("#pw_param").val(shapw);
 			$("#login_submit").click();
 		})
+		
+		$("#login_form").keypress(function(key) {
+			if(key.keyCode == 13)
+				$("#login_submit_btn").click();
+		})
+		
 	})
  </script>     
       

@@ -94,12 +94,27 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public List<Board_History> historyList(long bno) {
+	public List<Board_History> historyListAll(long bno) {
 		// TODO Auto-generated method stub
 		List<Board_History> rsList = board_HistoryRepository.findByBno(bno);
 		Collections.reverse(rsList);
 		return rsList;
+
 	}
+	
+	@Override
+	public List<Board_History> historyList(long bno,int page) {
+		// TODO Auto-generated method stub
+		Pageable pageable = PageRequest.of((page-1), 10,Sort.Direction.DESC,"hbno");
+		return board_HistoryRepository.findByBno(bno,pageable);
+	}
+
+	@Override
+	public Board_History getHistoryOne(long hbno) {
+		// TODO Auto-generated method stub
+		return board_HistoryRepository.findByHbno(hbno).get(0);
+	}
+
 	
 	
 	

@@ -19,5 +19,8 @@ public interface BoardService {
 	List<Board>listByEmail(String email);
 	List<Board>listByUser(User user);
 	void modify(Long bno, String title , String content, int board_kind);
-	List<Board_History> historyList(long bno);
+	
+	List<Board_History> historyListAll(long bno);
+	List<Board_History> historyList(long bno,int page);
+	Board_History getHistoryOne(long hbno);
 }

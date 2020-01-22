@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.pallen.diary.dto.PagingDTO;
 import com.pallen.diary.entity.board.Board;
+import com.pallen.diary.entity.board.Board_History;
 import com.pallen.diary.entity.user.User;
 import com.pallen.diary.service.BoardService;
 
@@ -57,6 +58,30 @@ public class BoardController {
 		model.addAttribute("brdDetail", brdDetail);
 		return "/page/board/detail";
 	}
+	@GetMapping(value = "/{bno}/history")
+	public String history(HttpServletRequest request ,
+			@PathVariable("bno")long bno, ModelMap model) {
+		int page = 1;
+		try {
+			log.info(request.getParameter("pg"));
+			page = Integer.parseInt(request.getParameter("pg"));
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		List<Board_History> hisList = boardService.historyListAll(bno);
+		PagingDTO paging = new PagingDTO(page);
+		model.addAttribute("hisList", hisList);
+		model.addAttribute("paging", paging);
+		model.addAttribute("bno", bno);
+		return "/page/board/edit_history_list";
+	}
+	@GetMapping(value = "/{bno}/history/{hbno}")
+	public String historyDetail(@PathVariable("bno")long bno, @PathVariable("hbno")long hbno,ModelMap model) {
+		Board_History brdHistory = boardService.getHistoryOne(hbno);
+		model.addAttribute("brdDetail", brdHistory);
+		return "/page/board/edit_history";
+	}
+	
 	
 	@GetMapping("/new")
 	public String register() {

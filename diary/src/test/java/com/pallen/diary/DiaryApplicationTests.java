@@ -56,7 +56,7 @@ class DiaryApplicationTests {
 		 * long bno = 319L; String title = "test22"; String content =
 		 * "<h1>modify test2</h1>"; boardService.modify(bno, title, content,0);
 		 */
-		boardService.historyList(319L).forEach(e->log.info("{}",e));
+		//boardService.historyList(319L).forEach(e->log.info("{}",e));
 	}
 	
 	//@Test

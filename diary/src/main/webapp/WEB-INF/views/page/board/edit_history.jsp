@@ -19,7 +19,7 @@ Board brdDetail = (Board)pageContext.getAttribute("brdDetail");
 <h1>title : ${brdDetail.title}</h1>
 <h5>writer :  ${brdDetail.user.name}</h5>
 
-<c:if test="${brdDetail.state eq 'UPDATED'}"><a href="${bno}/history">수정내역</a></c:if>
+
 
 <div align = "right">
 
@@ -29,16 +29,7 @@ Board brdDetail = (Board)pageContext.getAttribute("brdDetail");
 	<div class = "border panel">
 	<div  class = "panel-head border-primary bg-primary">content</div>
 	<div  class = "panel-head" align="right">
-	<c:if test="${brdDetail.user.email eq sessionScope.loginUser.email}">
-		<a data-toggle="tooltip" title="edit" class = "btn" href="${brdDetail.bno}/edit">
-		<span class="fa fa-edit btn-outline-primary"></span>
-		</a>
-		
-		<a data-toggle="tooltip" title="delete" class = "btn">
-		<span class="fa fa-trash btn-outline-danger"></span>
-		</a>
-	</c:if>
-		
+	
 		<a data-toggle="tooltip" title="share" class = "btn" id = "shareURL"><span class="fa fa-share"></span></a>
 	
 	</div>
@@ -51,6 +42,8 @@ Board brdDetail = (Board)pageContext.getAttribute("brdDetail");
 		<c:if test="${brdDetail.state eq 'UPDATED'}">${brdDetail.update_date} 수정</c:if>
 		</small>
 		</div>
+		<a href="/board/${bno}/history" class="btn btn-outline-info">수정내역으로</a>
+		<a href="/board/${bno}" class="btn btn-outline-warning">원글로</a>
 	</div>
 
 </div>

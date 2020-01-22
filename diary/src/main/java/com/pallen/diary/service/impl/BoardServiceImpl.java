@@ -1,5 +1,6 @@
 package com.pallen.diary.service.impl;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -90,6 +91,14 @@ public class BoardServiceImpl implements BoardService{
 	public int countAll() {
 		// TODO Auto-generated method stub
 		return (int)boardRepository.count();
+	}
+
+	@Override
+	public List<Board_History> historyList(long bno) {
+		// TODO Auto-generated method stub
+		List<Board_History> rsList = board_HistoryRepository.findByBno(bno);
+		Collections.reverse(rsList);
+		return rsList;
 	}
 	
 	

@@ -1,6 +1,8 @@
 package com.pallen.diary;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -16,6 +18,8 @@ import org.springframework.data.domain.Sort;
 
 import com.pallen.diary.entity.board.Board;
 import com.pallen.diary.entity.board.BoardRepository;
+import com.pallen.diary.entity.board.Board_History;
+import com.pallen.diary.entity.board.Board_HistoryRepository;
 import com.pallen.diary.entity.user.User;
 import com.pallen.diary.entity.user.UserRepository;
 import com.pallen.diary.service.BoardService;
@@ -38,25 +42,29 @@ class DiaryApplicationTests {
 
 	@Resource
 	BoardService boardService;
+	
+	@Resource
+	Board_HistoryRepository board_historyRepository;
 
-	//@Test
+	@Test
 	void updateBrd() {
 		/*
 		 * Board brd = boardRepository.findByBno(300L).get(0); brd.setUpdate_date();
 		 * boardRepository.save(brd);
 		 */
-		long bno = 319L;
-		String title = "test22";
-		String content = "<h1>modify test2</h1>";
-		boardService.modify(bno, title, content,0);
-		
+		/*
+		 * long bno = 319L; String title = "test22"; String content =
+		 * "<h1>modify test2</h1>"; boardService.modify(bno, title, content,0);
+		 */
+		boardService.historyList(319L).forEach(e->log.info("{}",e));
 	}
 	
-	@Test
+	//@Test
 	void deleteTest() {
 		boardRepository.findByStateNot("UPDATED",PageRequest.of(0, 10,Sort.Direction.DESC,"bno"))
 		.forEach(e->log.info(e.toString()));;
 	}
+	
 	
 	//@Test
 	void cntTest() {

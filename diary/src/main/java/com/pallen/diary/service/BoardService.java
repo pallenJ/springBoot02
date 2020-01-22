@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 
 import com.pallen.diary.entity.board.Board;
+import com.pallen.diary.entity.board.Board_History;
 import com.pallen.diary.entity.user.User;
 
 public interface BoardService {
@@ -18,4 +19,5 @@ public interface BoardService {
 	List<Board>listByEmail(String email);
 	List<Board>listByUser(User user);
 	void modify(Long bno, String title , String content, int board_kind);
+	List<Board_History> historyList(long bno);
 }

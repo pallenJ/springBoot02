@@ -105,7 +105,7 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public List<Board_History> historyList(long bno,int page) {
 		// TODO Auto-generated method stub
-		Pageable pageable = PageRequest.of((page-1), 10,Sort.Direction.DESC,"hbno");
+		Pageable pageable = PageRequest.of((page-1), 5,Sort.Direction.DESC,"hbno");
 		return board_HistoryRepository.findByBno(bno,pageable);
 	}
 

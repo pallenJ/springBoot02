@@ -68,8 +68,8 @@ public class BoardController {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		List<Board_History> hisList = boardService.historyListAll(bno);
-		PagingDTO paging = new PagingDTO(page);
+		List<Board_History> hisList = boardService.historyList(bno, page);
+		PagingDTO paging = new PagingDTO(page,5,5,boardService.historyListAll(bno).size());
 		model.addAttribute("hisList", hisList);
 		model.addAttribute("paging", paging);
 		model.addAttribute("bno", bno);

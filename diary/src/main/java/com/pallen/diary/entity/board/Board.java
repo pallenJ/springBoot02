@@ -79,17 +79,15 @@ public class Board {
 //		SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 //		return dayTime.format(new Date(time));
 //	}
-	
-	private LocalDateTime now() {
-		return LocalDateTime.now().plusHours(9L);
-	}
-	
+	/*
+	 * private LocalDateTime now() { return LocalDateTime.now().plusHours(9L); }
+	 */
 	public void setUpdate_date() {
 		//this.update_date = timeFormat();
-		this.update_date = now().format(DateTimeFormatter.ofPattern("YYYY-MM-DD hh:mm:ss"));
+		this.update_date =  LocalDateTime.now().format(DateTimeFormatter.ofPattern("YYYY-MM-DD hh:mm:ss"));
 	}
 	public void setDates() {
-		this.reg_date    = this.now().format(DateTimeFormatter.ofPattern("YYYY-MM-DD hh:mm:ss"));;
+		this.reg_date    =  LocalDateTime.now().format(DateTimeFormatter.ofPattern("YYYY-MM-DD hh:mm:ss"));;
 		this.update_date = this.reg_date;
 	}
 	

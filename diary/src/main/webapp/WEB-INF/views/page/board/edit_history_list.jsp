@@ -31,7 +31,7 @@
 				<td>${brdItem.title}
 				</td>
 				<td>${brdItem.user.name}</td>
-				<td class = "reg_date">${brdItem.reg_date}</td>
+				<td class = "reg_date">${brdItem.update_date}</td>
 			
 			</tr>
 		</c:forEach>

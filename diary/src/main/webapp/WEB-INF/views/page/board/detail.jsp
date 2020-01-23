@@ -34,7 +34,7 @@ Board brdDetail = (Board)pageContext.getAttribute("brdDetail");
 		<span class="fa fa-edit btn-outline-primary"></span>
 		</a>
 		
-		<a data-toggle="tooltip" title="delete" class = "btn">
+		<a data-toggle="tooltip" title="delete" class = "btn" id= "deleteBtn">
 		<span class="fa fa-trash btn-outline-danger"></span>
 		</a>
 	</c:if>
@@ -73,6 +73,10 @@ $(function() {
 		$("#nowURL").select();
 		document.execCommand("Copy");
 		$("#nowURL").blur();
+	})
+	
+	$("#deleteBtn").click(function() {
+		location.href = "/Main?pg=${pg}";
 	})
 })
 

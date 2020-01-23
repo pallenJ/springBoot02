@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,7 +36,7 @@ public class BoardController {
 	private BoardService boardService;
 	
 	@GetMapping("list")
-	public String list(HttpServletRequest request , ModelMap model) {
+	public String list(HttpServletRequest request ,HttpServletResponse response , ModelMap model) {
 		int page = 1;
 		try {
 			log.info(request.getParameter("pg"));
@@ -45,7 +48,9 @@ public class BoardController {
 		List<Board> brdList = new ArrayList<>();
 		boardService.list(page, paging.getCol_cnt()).forEach(e -> brdList.add(e));
 		//log.info("brd : {}",brdList);
+		addCookie(response, "page", page+"");
 		log.info("page:{}",page);
+		
 		model.addAttribute("paging", paging);
 		model.addAttribute("brdList", brdList);
 		
@@ -53,9 +58,11 @@ public class BoardController {
 	}
 	
 	@GetMapping(value = "/{bno}")
-	public String detail(@PathVariable("bno")long bno, ModelMap model) {
+	public String detail(@PathVariable("bno")long bno,
+			@CookieValue(value="page", required = false)Cookie pageCookie, ModelMap model) {
 		Board brdDetail = boardService.get(bno); 
 		model.addAttribute("brdDetail", brdDetail);
+		model.addAttribute("pg", pageCookie.getValue());
 		return "/page/board/detail";
 	}
 	@GetMapping(value = "/{bno}/history")
@@ -164,6 +171,14 @@ public class BoardController {
 	    
 	}
 	
+	private void addCookie(HttpServletResponse response,String name,String value) {
+		addCookie(response, name, value,60*60*24);
+	}
+	private void addCookie(HttpServletResponse response,String name,String value,int maxAge) {
+		Cookie setCookie = new Cookie(name, value);
+		setCookie.setMaxAge(maxAge);
+		response.addCookie(setCookie);
+	}
 	
 	
 	

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pallen.diary.dto.PagingDTO;
 import com.pallen.diary.entity.board.Board;
@@ -141,6 +142,13 @@ public class BoardController {
 		}
 			boardService.modify(bno, board.getTitle(), board.getContent(),board.getBoard_kind());
 			return "redirect:/board/"+bno;
+	}
+	
+	@PostMapping("/delete/{bno}")
+	@ResponseBody
+	public void delete(@PathVariable("bno")long bno) {
+		boardService.remove(bno);
+		log.info("delete bno :{}",bno);
 	}
 	
 	private String getIpAddress(HttpServletRequest request) {

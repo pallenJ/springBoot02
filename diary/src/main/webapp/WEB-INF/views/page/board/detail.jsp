@@ -16,6 +16,7 @@ Board brdDetail = (Board)pageContext.getAttribute("brdDetail");
 <body>
 
 <div class = "container border">
+
 <h1>title : ${brdDetail.title}</h1>
 <h5>writer :  ${brdDetail.user.name}</h5>
 
@@ -76,7 +77,16 @@ $(function() {
 	})
 	
 	$("#deleteBtn").click(function() {
-		location.href = "/Main?pg=${pg}";
+		if(!confirm("정말 삭제하시겠습니까?")) return;
+		$.ajax({
+			url : "/board/delete/${brdDetail.bno}",
+			type : 'POST',
+			async : false,
+			success : function(){
+				alert("삭제되었습니다")
+				location.href = "/Main?pg=${pg}";
+			}
+		});
 	})
 })
 

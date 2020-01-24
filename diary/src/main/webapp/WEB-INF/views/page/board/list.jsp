@@ -97,7 +97,7 @@
 		
 		$(".brdItem").click(function() {
 			const bno = $(this).children(".bno").attr("role");
-			alert("/board/"+bno);
+			//alert("/board/"+bno);
 			location.href = "/board/"+bno;
 		})
 		

@@ -46,7 +46,7 @@ class DiaryApplicationTests {
 	@Resource
 	Board_HistoryRepository board_historyRepository;
 
-	@Test
+	//@Test
 	void updateBrd() {
 		/*
 		 * Board brd = boardRepository.findByBno(300L).get(0); brd.setUpdate_date();
@@ -59,10 +59,9 @@ class DiaryApplicationTests {
 		//boardService.historyList(319L).forEach(e->log.info("{}",e));
 	}
 	
-	//@Test
+	@Test
 	void deleteTest() {
-		boardRepository.findByStateNot("UPDATED",PageRequest.of(0, 10,Sort.Direction.DESC,"bno"))
-		.forEach(e->log.info(e.toString()));;
+		boardService.remove(112L);
 	}
 	
 	

@@ -23,4 +23,7 @@ public interface BoardService {
 	List<Board_History> historyListAll(long bno);
 	List<Board_History> historyList(long bno,int page);
 	Board_History getHistoryOne(long hbno);
+	
+	void remove(long bno);
+	
 }

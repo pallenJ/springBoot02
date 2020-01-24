@@ -1,6 +1,7 @@
 package com.pallen.diary.entity.board;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -79,5 +80,8 @@ public class Board_History {
 				brd.getIp_address(), brd.getState(), brd.getUser());
 	}
 	
+	public void setUpdateDate() {
+		this.update_date =  LocalDateTime.now().format(DateTimeFormatter.ofPattern("YYYY-MM-DD hh:mm:ss"));
+	}
 	
 }

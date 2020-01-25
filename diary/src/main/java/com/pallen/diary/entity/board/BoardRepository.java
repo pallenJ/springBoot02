@@ -24,6 +24,9 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
 	@Query(value = "SELECT B FROM Board B WHERE B.state != ?1")
 	Page<Board> findByStateNot(@Param("state") String state,Pageable pageable);
 	
+	@Query("SELECT B FROM Board B WHERE B.title like %:keyword% or B.content like %:keyword%")
+	Page<Board> findbyTitleOrContentLike(@Param("keyword") String title ,Pageable pageable);
+	
 //	default void deleteByBno(long bno) {
 //		delete(findByBno(bno).get(0));
 //	}

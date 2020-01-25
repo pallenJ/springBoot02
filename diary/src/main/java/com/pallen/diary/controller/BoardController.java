@@ -25,6 +25,7 @@ import com.pallen.diary.entity.board.Board;
 import com.pallen.diary.entity.board.Board_History;
 import com.pallen.diary.entity.user.User;
 import com.pallen.diary.service.BoardService;
+import com.pallen.diary.util.PageUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -46,8 +47,7 @@ public class BoardController {
 			// TODO: handle exception
 		}
 		PagingDTO paging = new PagingDTO(page,boardService.countAll());
-		List<Board> brdList = new ArrayList<>();
-		boardService.list(page, paging.getCol_cnt()).forEach(e -> brdList.add(e));
+		List<Board> brdList = PageUtil.pageToList(boardService.list(page, paging.getCol_cnt()));
 		//log.info("brd : {}",brdList);
 		addCookie(response, "page", page+"");
 		log.info("page:{}",page);
@@ -188,6 +188,7 @@ public class BoardController {
 		response.addCookie(setCookie);
 	}
 	
+
 	
 	
 }

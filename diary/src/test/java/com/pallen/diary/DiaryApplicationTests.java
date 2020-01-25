@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import com.pallen.diary.entity.board.Board;
@@ -59,11 +60,17 @@ class DiaryApplicationTests {
 		//boardService.historyList(319L).forEach(e->log.info("{}",e));
 	}
 	
-	@Test
+	//@Test
 	void deleteTest() {
 		boardService.remove(112L);
 	}
 	
+	@Test
+	void searchTest() {
+		Pageable pageable = PageRequest.of(0, 10,Sort.Direction.DESC,"bno");
+		boardRepository.findbyTitleOrContentLike("bizzare",pageable).forEach(e -> log.info(e.toString()));
+		
+	}
 	
 	//@Test
 	void cntTest() {

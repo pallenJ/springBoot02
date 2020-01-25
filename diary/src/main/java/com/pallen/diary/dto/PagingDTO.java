@@ -1,5 +1,10 @@
 package com.pallen.diary.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -79,7 +84,7 @@ public class PagingDTO {//페이지 계산을 위해 만든 클래스
 		this.page = page;
 		setting();
 	}
-
+	
 
 	
 	

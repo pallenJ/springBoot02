@@ -30,7 +30,10 @@
 
 	$(function() {
 		const pg = <%=request.getParameter("pg")%>;
-		$("#loadPage").load("/board/list?pg="+pg);
+		const search = <%=request.getParameter("search")%>;
+		var searchKeyword = "";
+		
+		$("#loadPage").load("/board/list?pg="+pg+"&search="+(search!=null));
 	})
 
 </script>

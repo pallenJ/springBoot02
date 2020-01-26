@@ -18,6 +18,7 @@ import com.pallen.diary.entity.board.Board_HistoryRepository;
 import com.pallen.diary.entity.user.User;
 import com.pallen.diary.entity.user.UserRepository;
 import com.pallen.diary.service.BoardService;
+import com.pallen.diary.util.PageUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -52,10 +53,16 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public Page<Board> list(int page, int col_cnt) {
+	public List<Board> list(int page, int col_cnt) {
 		// TODO Auto-generated method stub
 		Pageable pageable = PageRequest.of((page-1), col_cnt,Sort.Direction.DESC,"bno");
-		return boardRepository.findAll(pageable);
+		return PageUtil.pageToList(boardRepository.findAll(pageable));
+	}
+	@Override
+	public List<Board> list(int page, int col_cnt, String keyword) {
+		// TODO Auto-generated method stub
+		Pageable pageable = PageRequest.of((page-1), col_cnt,Sort.Direction.DESC,"bno");
+		return PageUtil.pageToList(boardRepository.findbyTitleOrContentLike(keyword, pageable));
 	}
 
 	@Override

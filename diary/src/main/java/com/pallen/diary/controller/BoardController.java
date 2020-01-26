@@ -1,6 +1,5 @@
 package com.pallen.diary.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -9,9 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +22,6 @@ import com.pallen.diary.entity.board.Board;
 import com.pallen.diary.entity.board.Board_History;
 import com.pallen.diary.entity.user.User;
 import com.pallen.diary.service.BoardService;
-import com.pallen.diary.util.PageUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -47,7 +43,7 @@ public class BoardController {
 			// TODO: handle exception
 		}
 		PagingDTO paging = new PagingDTO(page,boardService.countAll());
-		List<Board> brdList = PageUtil.pageToList(boardService.list(page, paging.getCol_cnt()));
+		List<Board> brdList = boardService.list(page, paging.getCol_cnt());
 		//log.info("brd : {}",brdList);
 		addCookie(response, "page", page+"");
 		log.info("page:{}",page);

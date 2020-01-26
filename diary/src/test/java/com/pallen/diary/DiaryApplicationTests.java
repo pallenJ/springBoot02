@@ -67,9 +67,12 @@ class DiaryApplicationTests {
 	
 	@Test
 	void searchTest() {
-		Pageable pageable = PageRequest.of(0, 10,Sort.Direction.DESC,"bno");
-		boardRepository.findbyTitleOrContentLike("bizzare",pageable).forEach(e -> log.info(e.toString()));
-		
+		/*
+		 * Pageable pageable = PageRequest.of(0, 10,Sort.Direction.DESC,"bno");
+		 * boardRepository.findbyTitleOrContentLike("bizzare",pageable).forEach(e ->
+		 * log.info(e.toString()));
+		 */
+		boardService.list(1, 10, "jo").forEach(e -> log.info("jo:{}",e));
 	}
 	
 	//@Test

@@ -2,7 +2,6 @@ package com.pallen.diary.service;
 
 import java.util.List;
 
-import org.springframework.data.domain.Page;
 
 import com.pallen.diary.entity.board.Board;
 import com.pallen.diary.entity.board.Board_History;
@@ -15,7 +14,7 @@ public interface BoardService {
 	int countAll();
 //	int countBY();
 	List<Board>listAll();
-	Page<Board>list(int page, int amount);
+	List<Board>list(int page, int amount);
 	List<Board>listByEmail(String email);
 	List<Board>listByUser(User user);
 	void modify(Long bno, String title , String content, int board_kind);
@@ -25,5 +24,6 @@ public interface BoardService {
 	Board_History getHistoryOne(long hbno);
 	
 	void remove(long bno);
+	List<Board> list(int page, int col_cnt, String keyword);
 	
 }

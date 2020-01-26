@@ -84,7 +84,7 @@ $(function() {
 			async : false,
 			success : function(){
 				alert("삭제되었습니다")
-				location.href = "/Main?pg=${pg}";
+				location.href = "/board/list?pg=${pg}&kwd=${kwd}";
 			}
 		});
 	})

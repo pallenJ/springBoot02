@@ -68,6 +68,13 @@
 
 
 <div align="center">
+
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" name = "kwd">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+      <input type="hidden" value = "1" name = "pg">
+    </form>
+
   <ul class="pagination">
   
   	<c:if test="${paging.hasPrev}">
@@ -112,11 +119,15 @@
 		const user = "${sessionScope.loginUser}";
 		var pg = <%=request.getParameter("pg")%>;
 		if(pg==null) pg =1;
-		
+				
 		$(".page-link").each(function() {
 			var pageValue = $(this).text();
-			$(this).prop("href", path+"?pg="+$(this).attr("href"));
-						
+			var pageURL = path+"?pg="+$(this).attr("href");
+			
+			if("${keyword}"!=""){
+				pageURL+="&kwd=${keyword}";
+			}			
+			$(this).prop("href", pageURL);
 			
 			if(pageValue.toString() === pg.toString()){
 				$(this).parents("li").addClass("active");

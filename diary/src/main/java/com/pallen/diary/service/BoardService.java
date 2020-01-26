@@ -25,5 +25,6 @@ public interface BoardService {
 	
 	void remove(long bno);
 	List<Board> list(int page, int col_cnt, String keyword);
+	int countSearch(String keyword);
 	
 }

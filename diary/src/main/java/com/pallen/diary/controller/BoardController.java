@@ -36,30 +36,48 @@ public class BoardController {
 	@GetMapping("list")
 	public String list(HttpServletRequest request ,HttpServletResponse response , ModelMap model) {
 		int page = 1;
+		Object keyword = request.getParameter("kwd");
+		
+		log.info("kwd :{}",keyword);
 		try {
 			log.info(request.getParameter("pg"));
 			page = Integer.parseInt(request.getParameter("pg"));
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		PagingDTO paging = new PagingDTO(page,boardService.countAll());
-		List<Board> brdList = boardService.list(page, paging.getCol_cnt());
+		
+		
+		List<Board> brdList;
+		PagingDTO paging;
+		if(keyword == null ||((String)keyword).equals("")) {
+			paging = new PagingDTO(page,boardService.countAll());
+			brdList = boardService.list(page, paging.getCol_cnt());
+		}else {
+			paging = new PagingDTO(page,boardService.countSearch((String)keyword));
+			brdList = boardService.list(page, paging.getCol_cnt(),(String)keyword);
+		}
 		//log.info("brd : {}",brdList);
-		addCookie(response, "page", page+"");
 		log.info("page:{}",page);
 		
+		addCookie(response, "page", page+"");
+		addCookie(response, "keyword", (String)keyword);
+		
 		model.addAttribute("paging", paging);
+		model.addAttribute("keyword",(String)keyword);
 		model.addAttribute("brdList", brdList);
 		
 		return "/page/board/list";
 	}
 	
 	@GetMapping(value = "/{bno}")
-	public String detail(@PathVariable("bno")long bno,
-			@CookieValue(value="page", required = false)Cookie pageCookie, ModelMap model) {
+	public String detail(@PathVariable("bno")long bno , ModelMap model,
+			@CookieValue(value="page", required = false)Cookie pageCookie,
+			@CookieValue(value="keyword", required = false)Cookie keywordCookie
+			) {
 		Board brdDetail = boardService.get(bno); 
 		model.addAttribute("brdDetail", brdDetail);
 		model.addAttribute("pg", pageCookie.getValue());
+		model.addAttribute("kwd", keywordCookie.getValue());
 		return "/page/board/detail";
 	}
 	@GetMapping(value = "/{bno}/history")

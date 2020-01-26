@@ -72,7 +72,9 @@ class DiaryApplicationTests {
 		 * boardRepository.findbyTitleOrContentLike("bizzare",pageable).forEach(e ->
 		 * log.info(e.toString()));
 		 */
-		boardService.list(1, 10, "jo").forEach(e -> log.info("jo:{}",e));
+		//boardService.list(1, 10, "jo").forEach(e -> log.info("jo:{}",e));
+		log.info(boardRepository.countbyTitleOrContentLike("test")+"");
+		
 	}
 	
 	//@Test

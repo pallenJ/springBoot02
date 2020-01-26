@@ -99,6 +99,11 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		return (int)boardRepository.count();
 	}
+	@Override
+	public int countSearch(String keyword) {
+		// TODO Auto-generated method stub
+		return (int)boardRepository.countbyTitleOrContentLike(keyword);
+	}
 
 	@Override
 	public List<Board_History> historyListAll(long bno) {

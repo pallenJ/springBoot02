@@ -27,6 +27,9 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
 	@Query("SELECT B FROM Board B WHERE B.title like %:keyword% or B.content like %:keyword%")
 	Page<Board> findbyTitleOrContentLike(@Param("keyword") String keyword,Pageable pageable);
 	
+	@Query("SELECT COUNT(*) FROM Board B WHERE B.title like %:keyword% or B.content like %:keyword%")
+	long countbyTitleOrContentLike(@Param("keyword") String keyword);
+	
 //	default void deleteByBno(long bno) {
 //		delete(findByBno(bno).get(0));
 //	}

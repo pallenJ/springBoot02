@@ -69,11 +69,7 @@
 
 <div align="center">
 
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" name = "kwd">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-      <input type="hidden" value = "1" name = "pg">
-    </form>
+
 
   <ul class="pagination">
   
@@ -98,8 +94,15 @@
 </div>
 
 <!-- .paging -->
-
-
+<div align="center" class = "form-group">
+    <form class="form-inline" method="get" action="/board/list">
+      <input class="form-control" type="text" placeholder="Search" name = "kwd">
+      <button class="btn btn-secondary" type="submit">Search</button>
+      <input type="hidden" value = "1" name = "pg">
+      
+      
+    </form>
+</div>
 
 </div>
 </div>

@@ -6,4 +6,6 @@ public interface UserService {
 
 	void register(User user);
 	User  get(String email);
+	User getByName(String name);
+	boolean exist(String email, String name);
 }

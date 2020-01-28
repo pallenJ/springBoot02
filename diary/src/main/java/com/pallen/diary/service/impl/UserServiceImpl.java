@@ -23,5 +23,13 @@ public class UserServiceImpl implements UserService{
 	public User get(String email) {
 		return userRepository.findById(email).get();
 	}
+	@Override
+	public User getByName(String name) {
+		return userRepository.findByName(name).get(0);
+	}
+	@Override
+	public boolean exist(String email, String name) {
+		return userRepository.countByEmailOrName(email, name)>0;
+	}
 
 }

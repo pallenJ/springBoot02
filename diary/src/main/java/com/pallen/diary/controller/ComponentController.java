@@ -51,6 +51,19 @@ public class ComponentController {
 		return true;
 	}
 	
+	@PostMapping("/nameExist")
+	@ResponseBody
+	public boolean nameExist(String name) {
+		log.info(name);
+		try {
+			userService.getByName(name);
+			
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+	
 	@GetMapping("login")
 	public void login(HttpSession session,ModelMap model) {
 		if(session.getAttribute("loginUser")!=null) {

@@ -47,6 +47,12 @@ class DiaryApplicationTests {
 	@Resource
 	Board_HistoryRepository board_historyRepository;
 
+	@Test
+	void userTest() {
+		long temp =  userRepository.countByEmailOrName("vhxj1@naver.com", "준모");
+		log.info("cnt:{}",temp);
+	}
+	
 	//@Test
 	void updateBrd() {
 		/*
@@ -65,7 +71,7 @@ class DiaryApplicationTests {
 		boardService.remove(112L);
 	}
 	
-	@Test
+	//@Test
 	void searchTest() {
 		/*
 		 * Pageable pageable = PageRequest.of(0, 10,Sort.Direction.DESC,"bno");

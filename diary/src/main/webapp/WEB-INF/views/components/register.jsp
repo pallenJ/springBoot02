@@ -50,15 +50,18 @@ $(function() {
 		
 		var email = $("#reg_email").val();
 		var pw = $("#reg_pw").val();
-		
+		var name = $("#reg_name").val();
 		if(emailExist(email)){
 			alert("이미 사용중인 이메일 입니다.");
 			return;
-		}else if($("#reg_name").val()==""){
+		}else if(name==""){
 			alert("이름을 입력해 주세요");
 			return;
 		}else if(!pw_regex.test(pw)){
 			alert("비밀번호는 8자리이상 20자리이하의 영문,숫자,특수문자가 포함된 문자열이어야 합니다.")
+			return;
+		}else if(nameExist(name)){
+			alert("이미 사용중인 닉네임 입니다")
 			return;
 		}
 		var shapw = CryptoJS.SHA256(pw).toString();
@@ -74,6 +77,25 @@ $(function() {
 		    url : "/components/userExist",
 		    async:false,
 		    data : {email:email},  
+		    dataType : "json",  
+		    success : function(data){  
+				rs = data;
+		    	
+		    },  
+		    error:function(xhr,status,error){ //ajax 오류인경우  
+		            alert("error\nxhr : " + xhr + ", status : " + status + ", error : " + error);                 
+		    }  
+		}); 
+		return rs;
+	}
+	
+	function nameExist(name){
+		var rs;
+		$.ajax({  
+		    type : "POST",  
+		    url : "/components/nameExist",
+		    async:false,
+		    data : {name:name},  
 		    dataType : "json",  
 		    success : function(data){  
 				rs = data;

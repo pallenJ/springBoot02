@@ -62,6 +62,7 @@ public class BoardController {
 		addCookie(response, "page", page+"");
 		addCookie(response, "keyword", (String)keyword);
 		
+		log.info("paging:{}",paging);
 		model.addAttribute("paging", paging);
 		model.addAttribute("keyword",(String)keyword);
 		model.addAttribute("brdList", brdList);

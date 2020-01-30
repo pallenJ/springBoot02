@@ -24,10 +24,10 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
 	@Query(value = "SELECT B FROM Board B WHERE B.state != ?1")
 	Page<Board> findByStateNot(@Param("state") String state,Pageable pageable);
 	
-	@Query("SELECT B FROM Board B WHERE B.title like %:keyword% or B.content like %:keyword%")
+	@Query("SELECT B FROM Board B WHERE B.title like %:keyword% or B.content like %:keyword% or B.user.name like %:keyword%")
 	Page<Board> findbyTitleOrContentLike(@Param("keyword") String keyword,Pageable pageable);
 	
-	@Query("SELECT COUNT(*) FROM Board B WHERE B.title like %:keyword% or B.content like %:keyword%")
+	@Query("SELECT COUNT(*) FROM Board B WHERE B.title like %:keyword% or B.content like %:keyword% or B.user.name like %:keyword%")
 	long countbyTitleOrContentLike(@Param("keyword") String keyword);
 	
 //	default void deleteByBno(long bno) {

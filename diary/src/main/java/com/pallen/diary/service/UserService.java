@@ -1,5 +1,7 @@
 package com.pallen.diary.service;
 
+import java.util.List;
+
 import com.pallen.diary.entity.user.User;
 
 public interface UserService {

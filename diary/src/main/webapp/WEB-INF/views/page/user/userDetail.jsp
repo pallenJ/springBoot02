@@ -18,17 +18,12 @@
 ${userName}
 </h2>
 
-<div id = "userDetail_list"></div>
+<button class = "form-control btn btn-outline-primary" onclick="location.href = $(location).attr('pathname')+'/brdList'">작성글 리스트</button>
 
 </div>
 
 </body>
 <script type="text/javascript">
-
-$(function () {
-	
-$("#userDetail_list").load($(location).attr('pathname')+'/brdList')
-})
 
 </script>
 

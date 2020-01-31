@@ -4,6 +4,20 @@
 <%@ taglib prefix='fmt' uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>    
 <!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<jsp:include page="../../header.jsp"></jsp:include>
+</head>
+<body>
+
+<div class = "container">
+
+<h2>
+${user.name}
+</h2>
+
  <div class="panel panel-default">
   <div class="panel-header h4 text-dark border" align="center">board</div>
   <div class="panel-body" id ="brdList">
@@ -98,13 +112,48 @@
 </div>
 </div>
 
+</div>
+
+</body>
 
 
 <script type="text/javascript">
+		
+	$(function() {
+		const path = $(location).attr('pathname');
+		const user = "${sessionScope.loginUser}";
+		var pg = <%=request.getParameter("pg")%>;
+		if(pg==null) pg =1;
+				
+		$(".page-link").each(function() {
+			var pageValue = $(this).text();
+			var pageURL = path+"?pg="+$(this).attr("href");
+			
+			if("${keyword}"!=""){
+				pageURL+="&kwd=${keyword}";
+			}			
+			$(this).prop("href", pageURL);
+			
+			if(pageValue.toString() === pg.toString()){
+				$(this).parents("li").addClass("active");
+			}
+		});
+		
+		$(".brdItem").click(function() {
+			const bno = $(this).children(".bno").attr("role");
+			//alert("/board/"+bno);
+			location.href = "/board/"+bno;
+		})
+		
+ 		$("#new_post").click(function() {
+			if(user == null||user ==""){
+				alert("로그인후 이용해주세요")
+				return;
+			}
+			location.href = "/board/new";
+		})
 
-$(function () {
-	
-alert($(location).attr('pathname')+'/brdList')
-})
-
+	})
 </script>
+
+</html>

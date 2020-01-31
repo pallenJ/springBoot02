@@ -1,0 +1,110 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
+<%@ taglib prefix='fmt' uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>    
+<!DOCTYPE html>
+ <div class="panel panel-default">
+  <div class="panel-header h4 text-dark border" align="center">board</div>
+  <div class="panel-body" id ="brdList">
+ 	 <div align="right">
+		<a id = "new_post" class ="btn btn-success btn-sm border text-white"> 
+		<span  class="fa fa-pencil">  new post</span>
+    	</a>
+	</div>
+  	
+  	<table class = "table table-hover" id = "brdList">
+
+
+	<tbody>
+		<c:forEach items="${brdList}" var ="brdItem">
+			<tr class = "brdItem">
+				<td class = "bno" role = "${brdItem.bno}">${brdItem.bno}</td>
+				<td>${brdItem.title}
+				<c:if test="${brdItem.state eq 'UPDATED'}">
+				<small class = "btn-outline-danger disabled">(수정)</small></c:if>
+				</td>
+				<td>
+				<a href="/userInfo/${brdItem.user.name}">
+				${brdItem.user.name}
+				</a>
+				
+				</td>
+				<td class = "reg_date">${brdItem.reg_date}</td>
+			
+			</tr>
+		</c:forEach>
+	
+	</tbody>
+	
+	<thead>
+		<tr>
+			<th> no 		
+			<th> title 		
+			<th> writer		
+			<th> date 		
+		
+		</tr>
+	</thead>
+
+</table>
+  
+  </div>
+  
+  
+<div class="panel-footer">
+  
+<!-- paging -->
+
+
+
+<div align="center">
+
+
+
+<%--   <ul class="pagination">
+  
+  	<c:if test="${paging.hasPrev}">
+  	<li class="page-item">
+      <a class="page-link page-prev" href="${paging.startShow-1}">&laquo;</a>
+    </li>
+  	</c:if>
+  
+  	<c:forEach var="i" begin="${paging.startShow}" end="${paging.endShow}">
+  	
+    <li class="page-item">
+      <a class="page-link page-num" href="${i}">${i}</a>
+    </li>
+  	</c:forEach>
+	<c:if test="${paging.hasNext}">
+    <li class="page-item">
+      <a class="page-link page-next" href="${paging.endShow+1}">&raquo;</a>
+    </li>
+    </c:if>
+  </ul> --%>
+</div>
+
+<!-- .paging -->
+<!-- <div align="center" class = "form-group">
+    <form class="form-inline" method="get" action="/board/list">
+      <input class="form-control" type="text" placeholder="Search" name = "kwd">
+      <button class="btn btn-secondary" type="submit">Search</button>
+      <input type="hidden" value = "1" name = "pg">
+      
+      
+    </form>
+</div> -->
+
+</div>
+</div>
+
+
+
+<script type="text/javascript">
+
+$(function () {
+	
+alert($(location).attr('pathname')+'/brdList')
+})
+
+</script>

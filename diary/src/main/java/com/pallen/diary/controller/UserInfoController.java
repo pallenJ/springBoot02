@@ -26,11 +26,21 @@ public class UserInfoController {
 	
 	@GetMapping("/{name}")
 	public String userInfo(@PathVariable("name") String name, ModelMap model) {
+//		User user = userService.getByName(name);
+//		model.addAttribute("user", user);
+		model.addAttribute("userName", name);
+		//model.addAttribute("brdList",boardService.listByUser(user));
+		
+		return "/page/user/userDetail";
+	}
+	
+	@GetMapping("/{name}/brdList")
+	public String userInfo_list(@PathVariable("name") String name, ModelMap model) {
 		User user = userService.getByName(name);
 		model.addAttribute("user", user);
 		model.addAttribute("brdList",boardService.listByUser(user));
 		
-		return "/page/user/userDetail";
+		return "/page/user/userDetail_list";
 	}
 	
 }

@@ -49,8 +49,15 @@ class DiaryApplicationTests {
 
 	@Test
 	void userTest() {
-		long temp =  userRepository.countByEmailOrName("vhxj1@naver.com", "준모");
-		log.info("cnt:{}",temp);
+		/*
+		 * long temp = userRepository.countByEmailOrName("vhxj1@naver.com", "준모");
+		 * log.info("cnt:{}",temp);
+		 */
+		
+		User user = userRepository.findByName("pallen").get(0);
+		//log.info(boardRepository.countByUser(user)+"");
+		boardService.listByUser(user,1,3).forEach(e->log.info(e.toString()));
+		
 	}
 	
 	//@Test

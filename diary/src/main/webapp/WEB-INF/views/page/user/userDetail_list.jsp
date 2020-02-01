@@ -22,8 +22,8 @@ ${user.name}
   <div class="panel-header h4 text-dark border" align="center">board</div>
   <div class="panel-body" id ="brdList">
  	 <div align="right">
-		<a id = "new_post" class ="btn btn-success btn-sm border text-white"> 
-		<span  class="fa fa-pencil">  new post</span>
+		<a id = "toUserDetail" class ="btn btn-info btn-sm border text-white"> 
+		<span  class="fa fa-file"> back</span>
     	</a>
 	</div>
   	
@@ -76,7 +76,7 @@ ${user.name}
 
 
 
-<%--   <ul class="pagination">
+  <ul class="pagination">
   
   	<c:if test="${paging.hasPrev}">
   	<li class="page-item">
@@ -95,7 +95,7 @@ ${user.name}
       <a class="page-link page-next" href="${paging.endShow+1}">&raquo;</a>
     </li>
     </c:if>
-  </ul> --%>
+  </ul>
 </div>
 
 <!-- .paging -->
@@ -145,12 +145,9 @@ ${user.name}
 			location.href = "/board/"+bno;
 		})
 		
- 		$("#new_post").click(function() {
-			if(user == null||user ==""){
-				alert("로그인후 이용해주세요")
-				return;
-			}
-			location.href = "/board/new";
+ 		$("#toUserDetail").click(function() {
+			
+			location.href = "/userInfo/${user.name}";
 		})
 
 	})

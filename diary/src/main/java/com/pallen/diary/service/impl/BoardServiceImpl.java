@@ -76,8 +76,20 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		return boardRepository.findByUser(user);
 	}
+	@Override
+	public List<Board> listByUser(User user,int page, int col_cnt) {
+		// TODO Auto-generated method stub
+		Pageable pageable = PageRequest.of((page-1), col_cnt,Sort.Direction.DESC,"bno");
+		return boardRepository.findByUser(user, pageable);
+	}
+	
+	@Override
+	public int countByUserAll(User user) {
+		// TODO Auto-generated method stub
+		return (int)boardRepository.countByUser(user);
+	}
 
-
+	
 
 	@Override
 	public void modify(Long bno, String title, String content,int board_kind) {

@@ -16,7 +16,13 @@ import java.lang.Long;
 
 @Repository
 public interface BoardRepository extends JpaRepository<Board, Long>{
+	
+	
 	List<Board> findByUser(User user);
+	List<Board> findByUser(User user,Pageable pageable);
+	@Query("SELECT COUNT(*) FROM Board B WHERE B.user =?1")
+	long countByUser(@Param("user")User user);
+	
 	List<Board> findByBno(Long bno);
 
 	Page<Board> findAll(Pageable pageable);
@@ -30,9 +36,6 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
 	@Query("SELECT COUNT(*) FROM Board B WHERE B.title like %:keyword% or B.content like %:keyword% or B.user.name like %:keyword%")
 	long countbyTitleOrContentLike(@Param("keyword") String keyword);
 	
-//	default void deleteByBno(long bno) {
-//		delete(findByBno(bno).get(0));
-//	}
-	
+
 	
 }

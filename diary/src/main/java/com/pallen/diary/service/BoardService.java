@@ -17,6 +17,8 @@ public interface BoardService {
 	List<Board>list(int page, int amount);
 	List<Board>listByEmail(String email);
 	List<Board>listByUser(User user);
+	List<Board> listByUser(User user, int page, int col_cnt);
+	
 	void modify(Long bno, String title , String content, int board_kind);
 	
 	List<Board_History> historyListAll(long bno);
@@ -25,6 +27,8 @@ public interface BoardService {
 	
 	void remove(long bno);
 	List<Board> list(int page, int col_cnt, String keyword);
+	
 	int countSearch(String keyword);
+	int countByUserAll(User user);
 	
 }

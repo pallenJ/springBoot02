@@ -23,6 +23,7 @@ import com.pallen.diary.entity.board.Board_History;
 import com.pallen.diary.entity.board.Board_HistoryRepository;
 import com.pallen.diary.entity.user.User;
 import com.pallen.diary.entity.user.UserRepository;
+
 import com.pallen.diary.service.BoardService;
 import com.pallen.diary.service.UserService;
 
@@ -34,6 +35,7 @@ class DiaryApplicationTests {
 
 	@Resource
 	UserRepository userRepository;
+	
 
 	@Resource
 	UserService userService;
@@ -55,8 +57,8 @@ class DiaryApplicationTests {
 		 */
 		
 		User user = userRepository.findByName("pallen").get(0);
-		//log.info(boardRepository.countByUser(user)+"");
-		boardService.listByUser(user,1,3).forEach(e->log.info(e.toString()));
+		log.info(user.toString());
+		//boardService.listByUser(user,1,3).forEach(e->log.info(e.toString()));
 		
 	}
 	

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -29,6 +30,14 @@ public class UserInfoController {
 	private UserService userService;
 	@Resource
 	private BoardService boardService;
+	
+	@GetMapping("/myInfo")
+	public String myInfo(HttpSession session, ModelMap model) {
+		User user = (User)(session.getAttribute("loginUser"));
+		model.addAttribute("userName", user.getName());
+		model.addAttribute("mySetting",user);
+		return "/page/user/userDetail";
+	}
 	
 	@GetMapping("/{name}")
 	public String userInfo(@PathVariable("name") String name, ModelMap model) {

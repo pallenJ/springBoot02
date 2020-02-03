@@ -6,7 +6,7 @@
 <meta name="google-signin-client_id" content="134117933681-b7itj3i408ntkkfpofkjp5chl72v0322.apps.googleusercontent.com"> -->
   <fieldset>
   <legend id = "login_leg" class = "btn btn-lg btn-default text-default">로그인</legend>
-
+<script src="https://developers.kakao.com/docs/js/kakaologin#예제-로그인-버튼-추가"></script>
 <form action="/components/login" method="post" id = "login_form">
 	<div>
     <div class="form-group">
@@ -31,7 +31,23 @@
 
 
   </fieldset>
-
+<a href="http://developers.kakao.com/logout"></a>
+   <!--  <script type='text/javascript'>
+      //<![CDATA[
+        // 사용할 앱의 JavaScript 키를 설정해 주세요.
+        Kakao.init('18ea9e4c272c2816afa80ec4e04d8b6a');
+        // 카카오 로그인 버튼을 생성합니다.
+        Kakao.Auth.createLoginButton({
+          container: '#kakao-login-btn',
+          success: function(authObj) {
+            alert(JSON.stringify(authObj));
+          },
+          fail: function(err) {
+             alert(JSON.stringify(err));
+          }
+        });
+      //]]>
+    </script> -->
  <script type="text/javascript">
 	$(function() {
 		$("#login_submit_btn").click(function() {

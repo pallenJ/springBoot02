@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>INDEX</title>
-
+<jsp:include page="include/header.jsp"></jsp:include>
 </head>
 <body>
 <div align="center">

@@ -11,7 +11,7 @@
 	String[] themes = new String[] { "cerulean", "cosmo", "cyborg", "darkly", "flatly", "journal", "litera",
 			"lumen", "lux", "materia", "minty", "pulse", "sandstone", "simplex", "sketchy", "slate", "solar",
 			"spacelab", "superhero", "united", "yeti" };
-	String designTheme = themes[0];
+	String designTheme = themes[3];
 	pageContext.setAttribute("theme", designTheme);//21개 테마
 %>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">

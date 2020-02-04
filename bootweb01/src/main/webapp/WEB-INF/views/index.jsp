@@ -12,7 +12,7 @@
 <div align="center">
 <h1>LOGIN</h1>
     <c:if test="${userId eq null}">
-        <a href="">
+        <a href="https://kauth.kakao.com/oauth/authorize?client_id=cd38b0930f04cc1506e2a3beecf1923c&redirect_uri=http://localhost:8007/login&response_type=code">
             <img src="/img/kakao_account_login_btn_medium_narrow.png">
         </a>
     </c:if>

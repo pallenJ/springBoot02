@@ -2,6 +2,7 @@ package com.example.bootweb01.service;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -48,14 +49,7 @@ public class KakaoAPI {
 			log.info("response code:{}", responseCode);
 
 			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-			String line = "";
-			StringBuffer rsSb = new StringBuffer();
-			String result = "";
-			
-			while ((line = br.readLine()) != null) {
-				rsSb.append(line);
-			}
-			result = rsSb.toString();
+			String result = getRS(br);
 			log.info("response body:{}", result);
 
 			//Json 파싱
@@ -91,13 +85,7 @@ public class KakaoAPI {
 	        
 	        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 	        
-	        String line = "";
-	        String result = "";
-	        StringBuffer rsSb = new StringBuffer();
-	        while ((line = br.readLine()) != null) {
-	            rsSb.append(line);
-	        }
-	        result = rsSb.toString();
+	        String result = getRS(br);
 	        log.info("response body : {}" , result);
 	        
 	        JsonParser parser = new JsonParser();
@@ -131,18 +119,20 @@ public class KakaoAPI {
 	        log.info("responseCode : {}" , responseCode);
 	        
 	        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-	        
-	        String line = "";
-	        StringBuffer rsSb = new StringBuffer();
-	        while ((line = br.readLine()) != null) {
-	            rsSb.append(line);
-	        }
-	        String result = rsSb.toString();
+	        String result = getRS(br);
 	        log.info(result);
 	    } catch (Exception e) {
 	        // TODO Auto-generated catch block
 	        e.printStackTrace();
 	    }
 	}
-
+	
+	private String getRS(BufferedReader br) throws IOException {
+		String line = "";
+        StringBuffer sb = new StringBuffer();
+        while ((line = br.readLine()) != null) {
+            sb.append(line);
+        }
+        return sb.toString();
+	}
 }

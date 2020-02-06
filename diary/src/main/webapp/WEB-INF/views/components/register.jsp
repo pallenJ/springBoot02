@@ -17,8 +17,11 @@
     </div>
     
     <div class="form-group">
-      <label for="exampleInputName" class = "text-left">Name</label>
-      <input type="text" class="form-control" id="reg_name" placeholder="Enter name" name = "name" required="required">
+      <label for="exampleInputName" class = "text-left">Nick Name</label>
+      <input type="text" class="form-control form-inline" id="reg_name" placeholder="Enter name" name = "name" required="required">
+	      <a id = "nameCheck" class = "btn btn-success text-white form-inline">유효성체크</a>
+    	  <div class="invalid-feedback">사용할 수 없는 닉네임 입니다</div>
+	  	  <div class="valid-feedback">사용 가능한 닉네임 입니다</div>
     </div>
     
     
@@ -45,23 +48,28 @@
       
  <script type="text/javascript">
 	const pw_regex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;	
+	const name_regex = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"]/gi;
 $(function() {
+	$("#nameCheck").click(function() {
+	var name = $("#reg_name").val();
+	isValid(!nameExist(name)&&(name!=""),$("#reg_name"))
+	})
+	
 	$("#reg_submit_btn").click(function() {
 		
 		var email = $("#reg_email").val();
 		var pw = $("#reg_pw").val();
-		var name = $("#reg_name").val();
 		if(emailExist(email)){
 			alert("이미 사용중인 이메일 입니다.");
 			return;
 		}else if(name==""){
-			alert("이름을 입력해 주세요");
+			alert("닉네임을 입력해 주세요");
 			return;
 		}else if(!pw_regex.test(pw)){
 			alert("비밀번호는 8자리이상 20자리이하의 영문,숫자,특수문자가 포함된 문자열이어야 합니다.")
 			return;
 		}else if(nameExist(name)){
-			alert("이미 사용중인 닉네임 입니다")
+			alert("이미 사용중이거나 사용할 수 없는 닉네임 입니다")
 			return;
 		}
 		var shapw = CryptoJS.SHA256(pw).toString();
@@ -108,6 +116,15 @@ $(function() {
 		return rs;
 	}
 	
+	 function isValid(flag,selector) {
+	        if(flag){
+	            selector.removeClass("is-invalid")
+	            selector.addClass("is-valid")
+	        }else{
+	            selector.removeClass("is-valid")
+	            selector.addClass("is-invalid")
+	        }
+	    }
 	
 });
 

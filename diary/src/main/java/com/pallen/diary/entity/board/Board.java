@@ -84,10 +84,10 @@ public class Board {
 	 */
 	public void setUpdate_date() {
 		//this.update_date = timeFormat();
-		this.update_date =  LocalDateTime.now().format(DateTimeFormatter.ofPattern("YYYY-MM-DD hh:mm:ss"));
+		this.update_date =  LocalDateTime.now().format(DateTimeFormatter.ofPattern("YYYY-MM-dd hh:mm:ss"));
 	}
 	public void setDates() {
-		this.reg_date    =  LocalDateTime.now().format(DateTimeFormatter.ofPattern("YYYY-MM-DD hh:mm:ss"));;
+		this.reg_date    =  LocalDateTime.now().format(DateTimeFormatter.ofPattern("YYYY-MM-dd hh:mm:ss"));;
 		this.update_date = this.reg_date;
 	}
 	

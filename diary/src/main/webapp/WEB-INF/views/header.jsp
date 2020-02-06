@@ -54,7 +54,7 @@
 			<span class = "text-border">${sessionScope.loginUser.name}</span>
 			님<br> 환영합니다
 		</h4>
-		<a href = "/components/logout">로그아웃</a>|<a href="">내정보</a>
+		<a href = "/components/logout">로그아웃</a>|<a href="/userInfo/myInfo">내정보</a>
 	</c:when>
 	<c:otherwise>
 		<a href="#" data-toggle="modal" data-target="#components_modal" class = "modal-component" role = "login">로그인</a>|

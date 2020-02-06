@@ -38,15 +38,35 @@ public class UserInfoController {
 		model.addAttribute("mySetting",user);
 		return "/page/user/userDetail";
 	}
+	@GetMapping("/myInfo/brdList")
+	public String myInfoBrdList(HttpSession session,HttpServletRequest request, ModelMap model) {
+		int page = 1;
+		try {
+			page = Integer.parseInt(request.getParameter("pg"));
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		User user = (User)(session.getAttribute("loginUser"));
+		List<Board> brdList = user.getBoardList();
 	
-	@GetMapping("/{name}")
+		Collections.reverse(brdList);
+		PagingDTO paging = new PagingDTO(page,user.getBoardList().size());
+		int tempPG = (page - 1 )*paging.getCol_cnt();
+		model.addAttribute("user", user);
+		model.addAttribute("brdList",brdList.subList(tempPG, Math.min(tempPG+paging.getCol_cnt(), brdList.size() ) ));
+		model.addAttribute("paging",paging);
+		return "/page/user/userDetail_list";
+	}
+	
+	@GetMapping("/@{name}")
 	public String userInfo(@PathVariable("name") String name, ModelMap model) {
 		model.addAttribute("userName", name);
 		return "/page/user/userDetail";
 	}
 	
-	@GetMapping("/{name}/brdList")
-	public String userInfo_list(@PathVariable("name") String name,HttpServletRequest request, ModelMap model) {
+	@GetMapping("/@{name}/brdList")
+	public String userInfo_list(@PathVariable("name") String name,HttpSession session,HttpServletRequest request, ModelMap model) {
+		
 		int page = 1;
 		try {
 			page = Integer.parseInt(request.getParameter("pg"));
@@ -59,7 +79,7 @@ public class UserInfoController {
 		PagingDTO paging = new PagingDTO(page,user.getBoardList().size());
 		int tempPG = (page - 1 )*paging.getCol_cnt();
 		model.addAttribute("user", user);
-		model.addAttribute("brdList",brdList.subList(tempPG, tempPG+paging.getCol_cnt()));
+		model.addAttribute("brdList",brdList.subList(tempPG, Math.min(tempPG+paging.getCol_cnt(), brdList.size() ) ));
 		model.addAttribute("paging",paging);
 		return "/page/user/userDetail_list";
 	}

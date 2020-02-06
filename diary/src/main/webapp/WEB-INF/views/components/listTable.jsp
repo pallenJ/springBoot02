@@ -12,7 +12,7 @@
 				<small class = "btn-outline-danger disabled">(수정)</small></c:if>
 				</td>
 				<td>
-				<a href="/userInfo/${brdItem.user.name}">
+				<a href="/userInfo/@${brdItem.user.name}">
 				${brdItem.user.name}
 				</a>
 				

@@ -147,7 +147,7 @@ ${user.name}
 		
  		$("#toUserDetail").click(function() {
 			
-			location.href = "/userInfo/${user.name}";
+			location.href = "/userInfo/@${user.name}";
 		})
 
 	})

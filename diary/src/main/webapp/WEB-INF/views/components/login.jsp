@@ -6,7 +6,16 @@
 <meta name="google-signin-client_id" content="134117933681-b7itj3i408ntkkfpofkjp5chl72v0322.apps.googleusercontent.com"> -->
   <fieldset>
   <legend id = "login_leg" class = "btn btn-lg btn-default text-default">로그인</legend>
-<script src="https://developers.kakao.com/docs/js/kakaologin#예제-로그인-버튼-추가"></script>
+  <div align="center" id = "sns_form"> 
+  		<!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
+		<button  title="Kakao" class="btn btn-circle btn-kakao"><span class="fa fa-kakao fa-comment fa-lg"></span> </button> &nbsp;
+		<button  title="Google" class="btn btn-circle btn-google"><span class="fa fa-google fa-lg"></span> </button> &nbsp;
+		<button  title="Naver" class="btn btn-circle btn-naver"><span class="fa fa-naver fa-lg font-weight-bold">N</span> </button> &nbsp;
+		<button title="Facebook" class="btn btn-circle btn-facebook"><span class="fa fa-facebook fa-lg"></span> </button> &nbsp;
+		<button  title="twitter" class="btn btn-circle btn-twitter"><span class = "fa fa-twitter fa-lg"></span></button> &nbsp;
+		<button  title="GitHub" class="btn btn-circle btn-github"><span class="fa fa-github fa-lg"></span> </button> &nbsp;
+		<button  title="email" class="btn btn-circle btn-secondary"><span class="fa fa-envelope fa-lg" id = "email_login"></span> </button> &nbsp;
+	</div>
 <form action="/components/login" method="post" id = "login_form">
 	<div>
     <div class="form-group">

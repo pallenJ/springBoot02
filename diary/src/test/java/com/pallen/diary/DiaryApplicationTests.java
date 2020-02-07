@@ -11,6 +11,7 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
@@ -48,8 +49,13 @@ class DiaryApplicationTests {
 	
 	@Resource
 	Board_HistoryRepository board_historyRepository;
-
 	@Test
+	void stringUtilTest() {
+		String rdpw = RandomStringUtils.randomAlphanumeric(8, 14);
+		log.info("random pw:{}", rdpw);
+		log.info("random len:{}", rdpw.length());
+	}
+	//@Test
 	void userTest() {
 		/*
 		 * long temp = userRepository.countByEmailOrName("vhxj1@naver.com", "준모");

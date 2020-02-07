@@ -36,7 +36,16 @@
 	</div>
 	
 </form>  
-
+  <div align="center" id = "sns_form"> 
+  		<!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
+  		<button  title="Kakao" class="btn btn-circle btn-kakao"><span class="fa fa-kakao fa-comment fa-lg"></span> </button> &nbsp;
+		<button  title="Google" class="btn btn-circle btn-google"><span class="fa fa-google fa-lg"></span> </button> &nbsp;
+		<button  title="Naver" class="btn btn-circle btn-naver"><span class="fa fa-naver fa-lg font-weight-bold">N</span> </button> &nbsp;
+		<button title="Facebook" class="btn btn-circle btn-facebook"><span class="fa fa-facebook fa-lg"></span> </button> &nbsp;
+		<button  title="twitter" class="btn btn-circle btn-twitter"><span class = "fa fa-twitter fa-lg"></span></button> &nbsp;
+		<button  title="GitHub" class="btn btn-circle btn-github"><span class="fa fa-github fa-lg"></span> </button> &nbsp;
+		<button  title="email" class="btn btn-circle btn-secondary"><span class="fa fa-envelope fa-lg" id = "email_login"></span> </button> &nbsp;
+	</div>
    
 <div align="right" class = "modal-footer">
         <button type="button" class="btn btn-primary btn-modal-save" id= "reg_submit_btn">register</button>
@@ -125,7 +134,18 @@ $(function() {
 	            selector.addClass("is-invalid")
 	        }
 	    }
-	
+	$("#sns_form").children("button").click(function() {
+		const sns_kind = $(this).prop("title");
+		
+		switch (sns_kind) {
+		case "Kakao":
+			location.href = "https://kauth.kakao.com/oauth/authorize?client_id=2be8ff7fef3ad0496a3a4f8ad7053c99&redirect_uri=http://localhost:8010/kakao_register&response_type=code";
+			break;
+
+		default:
+			break;
+		}
+	})
 });
 
 

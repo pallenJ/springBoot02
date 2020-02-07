@@ -44,7 +44,10 @@ public class User {
 	@Column(name = "grade", nullable = false)
 	@ColumnDefault(value = "NORMAL")
 	private String grade;
-
+	
+	@Column(name = "sns_reg")
+	private String sns_reg;
+	
 	@PrePersist
 	public void prePersist() {
 	this.infoLock = 0;

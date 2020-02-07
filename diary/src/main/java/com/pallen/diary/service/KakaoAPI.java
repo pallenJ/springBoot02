@@ -1,4 +1,4 @@
-package com.example.bootweb01.service;
+package com.pallen.diary.service;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -37,10 +37,10 @@ public class KakaoAPI {
 
 			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
 			StringBuffer sb = new StringBuffer();
-			// https://kauth.kakao.com/oauth/authorize?client_id=cd38b0930f04cc1506e2a3beecf1923c&redirect_uri=http://localhost:8007/login&response_type=code
+			
 			sb.append("grant_type=authorization_code");
-			sb.append("&client_id=cd38b0930f04cc1506e2a3beecf1923c");
-			sb.append("&redirect_uri=http://localhost:8007/login");
+			sb.append("&client_id=2be8ff7fef3ad0496a3a4f8ad7053c99");
+			sb.append("&redirect_uri=http://localhost:8010");
 			sb.append("&code=" + authorize_code);
 			bw.write(sb.toString());
 			bw.flush();

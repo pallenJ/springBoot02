@@ -61,24 +61,33 @@
 $(function() {
 	$("#nameCheck").click(function() {
 	var name = $("#reg_name").val();
-	isValid(!nameExist(name)&&(name!=""),$("#reg_name"))
+	const nameEmpty = name=="";
+	const nameExt = nameExist(name);
+	const nameRegex = name_regex.test(name);
+	
+	if (nameEmpty) {$(".invalid-feedback").text("닉네임을 입력해주세요"); isValid(false,$("#reg_name"));}
+	else if(nameExt){ $(".invalid-feedback").text("이미 사용중인 닉네임 입니다"); isValid(false,$("#reg_name"));}
+	else if (nameRegex) {$(".invalid-feedback").text("특수문자는 사용할 수 없습니다"); isValid(false,$("#reg_name"));}
+	else{isValid(true,$("#reg_name"));}
 	})
 	
 	$("#reg_submit_btn").click(function() {
 		
 		var email = $("#reg_email").val();
 		var pw = $("#reg_pw").val();
-		if(emailExist(email)){
+		var name = $("#reg_name").val();
+		if(email == ""){
+			alert("이메일을 입력해 주세요");
+			return;
+		}else if(emailExist(email)){
 			alert("이미 사용중인 이메일 입니다.");
 			return;
-		}else if(name==""){
-			alert("닉네임을 입력해 주세요");
+		}else if(name==""||nameExist(name)||name_regex.test(name)){
+			alert("닉네임을 확인해 주세요");
+			$("#nameCheck").click();
 			return;
 		}else if(!pw_regex.test(pw)){
 			alert("비밀번호는 8자리이상 20자리이하의 영문,숫자,특수문자가 포함된 문자열이어야 합니다.")
-			return;
-		}else if(nameExist(name)){
-			alert("이미 사용중이거나 사용할 수 없는 닉네임 입니다")
 			return;
 		}
 		var shapw = CryptoJS.SHA256(pw).toString();

@@ -1,4 +1,4 @@
-package com.pallen.diary.service;
+package com.pallen.diary.service.api;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -22,6 +22,8 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class KakaoAPI {
 
+	
+	
 	public String getAccessToken(String authorize_code) {
 		String access_Token = "";
 		String refresh_Token = "";

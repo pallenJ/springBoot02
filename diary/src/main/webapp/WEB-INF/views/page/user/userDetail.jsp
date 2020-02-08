@@ -20,7 +20,7 @@ ${userName}
 <hr>
 
 <button class = "form-control btn btn-outline-primary" onclick="location.href = $(location).attr('pathname')+'/brdList'">작성글 리스트</button>
-<button class = "form-control btn btn-outline-info" onclick="">설정변경</button>
+<button class = "form-control btn btn-outline-info" onclick="">자세히</button>
 
 </div>
 

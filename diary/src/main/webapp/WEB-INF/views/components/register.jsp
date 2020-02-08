@@ -56,9 +56,9 @@
   </fieldset>
       
  <script type="text/javascript">
+$(function() {
 	const pw_regex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;	
 	const name_regex = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"]/gi;
-$(function() {
 	$("#nameCheck").click(function() {
 	var name = $("#reg_name").val();
 	const nameEmpty = name=="";

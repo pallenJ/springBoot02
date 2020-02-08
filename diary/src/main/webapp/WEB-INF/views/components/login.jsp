@@ -69,7 +69,18 @@
 			if(key.keyCode == 13)
 				$("#login_submit_btn").click();
 		})
+			$("#sns_form").children("button").click(function() {
+		const sns_kind = $(this).prop("title");
 		
+		switch (sns_kind) {
+		case "Kakao":
+			location.href = "https://kauth.kakao.com/oauth/authorize?client_id=2be8ff7fef3ad0496a3a4f8ad7053c99&redirect_uri=http://localhost:8010/kakao_login&response_type=code";
+			break;
+
+		default:
+			break;
+		}
+	})
 	})
  </script>     
       

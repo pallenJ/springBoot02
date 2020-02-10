@@ -5,14 +5,17 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pallen.diary.service.UserService;
+import com.pallen.diary.service.api.KakaoAPI;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,30 +25,49 @@ public class HomeController {
 
 	@Resource
 	private UserService userService;
-	
+
+	@Autowired
+	KakaoAPI kakaoAPI;
+
 	@RequestMapping("/")
 	public String home() {
 		log.info("idx");
 		return "index";
 	}
+
+	@GetMapping("{sns}_login")
+	public String kakaoLogin(HttpSession session, HttpServletRequest request,
+			@PathVariable("sns")String loginBy) {
+			snsLogin(session, request, loginBy);
+			return "index";
+	}
 	
-	@GetMapping("{type}_login")
-	public String snsLogin(@PathVariable("type")String login_type, HttpServletRequest request) {
-		switch (login_type) {
+	private void snsLogin(HttpSession session, HttpServletRequest request,String loginBy) {
+		
+		switch (loginBy) {
 		case "kakao":
-			String code = (String)request.getParameter("code");
-			Map<String, Object> paramInfo = new HashMap<String, Object>();
-			paramInfo.put("code", code);
-			log.info("code:{}",code);
-			Object email = (userService.snsLogin(login_type, paramInfo).get("email"));
-			log.info("email:{}",email);
-			//log.info(userService.get(email)==null?"실패":"성공");
+			String code = (String) request.getParameter("code");
+			log.info("kakao code : {}",code);
+			String access_Token = kakaoAPI.getAccessToken(code,"login");
+			Map<String, Object> userInfo = kakaoAPI.getUserInfo(access_Token);
+			log.info("login Controller : {}", userInfo);
 			
+			// 클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
+			if (userInfo.get("email") != null) {
+				String email = (String)userInfo.get("email");
+				session.setAttribute("loginUser", userService.get(email));
+				session.setAttribute("access_Token", access_Token);
+				session.setAttribute("loginBy", loginBy);
+				log.info("email : {}",userInfo.get("email").toString());
+			}
+
 			break;
 
 		default:
 			break;
 		}
-		return "index";
+		
 	}
+	
+	
 }

@@ -24,7 +24,7 @@ public class KakaoAPI {
 
 	
 	
-	public String getAccessToken(String authorize_code) {
+	public String getAccessToken(String authorize_code , String url_end) {
 		String access_Token = "";
 		String refresh_Token = "";
 		String reqURL = "https://kauth.kakao.com/oauth/token";
@@ -42,7 +42,7 @@ public class KakaoAPI {
 			
 			sb.append("grant_type=authorization_code");
 			sb.append("&client_id=2be8ff7fef3ad0496a3a4f8ad7053c99");
-			sb.append("&redirect_uri=http://localhost:8010");
+			sb.append("&redirect_uri=http://localhost:8010/kakao_"+url_end);
 			sb.append("&code=" + authorize_code);
 			bw.write(sb.toString());
 			bw.flush();
@@ -61,6 +61,9 @@ public class KakaoAPI {
 			
 			access_Token  = element.getAsJsonObject().get("access_token").getAsString();
 			refresh_Token = element.getAsJsonObject().get("refresh_token").getAsString();
+			
+			log.info("Access Token :", access_Token);
+			log.info("Refresh Token :", refresh_Token);
 			
 			br.close();
 			bw.close();

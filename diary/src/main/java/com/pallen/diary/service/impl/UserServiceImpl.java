@@ -45,32 +45,6 @@ public class UserServiceImpl implements UserService{
 		return userRepository.countByEmailOrName(email, name)>0;
 	}
 
-	@Override
-	public Map<String, Object> snsLogin(String sns_key, Map<String, Object> paramInfo) {
-		// TODO Auto-generated method stub
-		Map<String ,Object> rs = getInfo(sns_key, paramInfo);
-		if(rs == null) {
-		rs = new HashMap<String, Object>();
-		rs.put("email", "");
-		} 
-		log.info("email:{}",rs.get("email").toString());
-			
-		return getInfo(sns_key, paramInfo);
-	}
-	
-	private Map<String, Object> getInfo(String sns_key, Map<String, Object> paramInfo) {
-		switch (sns_key) {
-		case "kakao":
-			String code = (String)paramInfo.get("code");
-			String access_Token = kakaoAPI.getAccessToken(code);
-			Map<String, Object> rs = kakaoAPI.getUserInfo(access_Token);
-			log.info("rs:{}",rs);
-		    return rs;
 
-		default:
-			break;
-		}
-		return null;
-	}
 	
 }

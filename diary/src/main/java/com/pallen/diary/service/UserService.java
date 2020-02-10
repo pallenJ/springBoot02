@@ -13,5 +13,4 @@ public interface UserService {
 	User getByName(String name);
 	boolean exist(String email, String name);
 	
-	Map<String, Object> snsLogin(String sns_key, Map<String, Object> paramInfo);
 }

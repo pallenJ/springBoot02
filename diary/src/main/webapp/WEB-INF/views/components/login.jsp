@@ -74,6 +74,7 @@
 		
 		switch (sns_kind) {
 		case "Kakao":
+			alert("kakao")
 			location.href = "https://kauth.kakao.com/oauth/authorize?client_id=2be8ff7fef3ad0496a3a4f8ad7053c99&redirect_uri=http://localhost:8010/kakao_login&response_type=code";
 			break;
 

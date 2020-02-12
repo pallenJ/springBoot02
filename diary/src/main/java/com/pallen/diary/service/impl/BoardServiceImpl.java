@@ -142,12 +142,12 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void remove(long bno) {
 		// TODO Auto-generated method stub
-		Board entity = boardRepository.findByBno(bno).get(0);
-		Board_History history = new Board_History(entity);
+		Board brd = boardRepository.findByBno(bno).get(0);
+		Board_History history = new Board_History(brd);
 		history.setUpdateDate();
 		history.setState("DELETED");
 		board_HistoryRepository.save(history);
-		boardRepository.delete(entity);
+		boardRepository.delete(brd);
 	}
 
 	

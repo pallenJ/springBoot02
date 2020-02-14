@@ -123,6 +123,7 @@
 <script type="text/javascript">
 		
 	$(function() {
+		
 		const path = $(location).attr('pathname');
 		const user = "${sessionScope.loginUser}";
 		var pg = <%=request.getParameter("pg")%>;
@@ -155,7 +156,12 @@
 			}
 			location.href = "/board/new";
 		})
-
+		const modalMsg = "${modal_message}";
+		if(modalMsg != ""){
+			$("#modal_message").text(modalMsg);
+			$("#modalMSG").modal();
+		}
+		
 	})
 </script>
 

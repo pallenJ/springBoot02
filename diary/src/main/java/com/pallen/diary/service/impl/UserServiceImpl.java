@@ -22,8 +22,6 @@ public class UserServiceImpl implements UserService{
 	@Resource
 	private UserRepository userRepository;
 	
-	@Autowired
-	private KakaoAPI kakaoAPI;
 
 	@Override
 	public void register(User user) {

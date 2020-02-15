@@ -20,6 +20,8 @@
         <h1>로그인 성공입니다</h1>
          <input type="button" class = "btn btn-outline-warning" value="로그아웃" onclick="location.href='/logout'">
     </c:if>
+    <br>
+    <a href="/google/login" class="btn btn-danger"> google </a>
 </div>    
 </body>
 </html>

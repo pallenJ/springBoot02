@@ -43,6 +43,12 @@ public class UserServiceImpl implements UserService{
 		return userRepository.countByEmailOrName(email, name)>0;
 	}
 
+	@Override
+	public boolean exist(String email) {
+		// TODO Auto-generated method stub
+		return userRepository.countByEmail(email)>0;
+	}
+
 
 	
 }

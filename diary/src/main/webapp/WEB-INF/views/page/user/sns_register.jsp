@@ -5,8 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<jsp:include page="../../header.jsp"></jsp:include>
 </head>
 <body>
+	<div class = "card">
 	<fieldset>
 		<legend id="login_leg" class="btn btn-lg btn-default text-default">회원가입</legend>
 
@@ -15,16 +17,16 @@
 				<div>
 					<div class="form-group">
 						<label for="exampleInputEmail1" class="text-left">Email
-							address</label> <input type="email" class="form-control" id="reg_email"
+							address</label> <input type="email" class="form-control" id="reg_email" value="${reg_email}"
 							name="email" aria-describedby="emailHelp"
-							placeholder="Enter email" required="required"> <small
+							placeholder="Enter email" required="required" disabled="disabled"> <small
 							id="emailHelp" class="form-text text-muted">We'll never
 							share your email with anyone else.</small>
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputName" class="text-left">Nick Name</label>
-						<input type="text" class="form-control form-inline" id="reg_name"
+						<input type="text" class="form-control form-inline" id="reg_name" value = "${reg_name}"
 							placeholder="Enter name" name="name" required="required">
 						<a id="nameCheck" class="btn btn-success text-white form-inline">유효성체크</a>
 						<div class="invalid-feedback">사용할 수 없는 닉네임 입니다</div>
@@ -42,7 +44,9 @@
 				<div hidden="hidden">
 					<button type="submit" id="reg_submit"></button>
 				</div>
-
+				<div>
+					<input type = "hidden" value = "${sns_reg}" name = "sns_reg">
+				</div>
 			</form>
 
 			<div align="right" class="modal-footer">
@@ -53,6 +57,7 @@
 		</div>
 
 	</fieldset>
+	</div>
 
 	<script type="text/javascript">
 		$(function() {

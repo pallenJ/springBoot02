@@ -44,15 +44,40 @@ public class MainController {
 	
 	@GetMapping("{sns}_register")
 	public String snsRegister(HttpServletRequest request, @PathVariable("sns")String regBy, ModelMap model) {
-		if(snsRegisterAction(request, regBy)) {
+		
+		return snsRegisterAction(request, regBy,model);
+	}
+	
+	private String snsRegisterAction(HttpServletRequest request,String regBy,ModelMap model) {
+		String email = "";
+		String nickname  = "";
+		switch (regBy) {
+		case "kakao":
+			String code = (String) request.getParameter("code");
+			log.info("kakao code : {}",code);
+			String access_Token = kakaoAPI.getAccessToken(code,"register");
+			Map<String, Object> userInfo = kakaoAPI.getUserInfo(access_Token);
+			log.info("login Controller : {}", userInfo);
+			
+			// 클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
+			if (userInfo.get("email") != null) {
+				email = (String)userInfo.get("email");
+				nickname  = (String)userInfo.get("nickname");
+			}
+
+			break;
+
+		default:
+			break;
+		}
+		boolean fail = email.equals("") ||userService.exist(email) ;
+		if(fail) {
 			model.addAttribute("modal_message","이미 존재하거나 사용할 수 없는 계정 입니다.");
 			return "index";
 		}
+		model.addAttribute("reg_email", email);
+		model.addAttribute("reg_name", nickname);
 		return "/page/user/sns_register";
-	}
-	
-	private boolean snsRegisterAction(HttpServletRequest request,String regBy) {
-		return false;
 	}
 	
 	@GetMapping("{sns}_login")

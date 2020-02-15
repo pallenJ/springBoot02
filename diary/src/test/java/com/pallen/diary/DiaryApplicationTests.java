@@ -49,21 +49,23 @@ class DiaryApplicationTests {
 	
 	@Resource
 	Board_HistoryRepository board_historyRepository;
-	@Test
+	//@Test
 	void stringUtilTest() {
 		String rdpw = RandomStringUtils.randomAlphanumeric(8, 14);
 		log.info("random pw:{}", rdpw);
 		log.info("random len:{}", rdpw.length());
 	}
-	//@Test
+	@Test
 	void userTest() {
 		/*
 		 * long temp = userRepository.countByEmailOrName("vhxj1@naver.com", "준모");
 		 * log.info("cnt:{}",temp);
 		 */
 		
-		User user = userRepository.findByName("pallen").get(0);
-		log.info(user.toString());
+		//User user = userRepository.findByName("pallen").get(0);
+		//log.info(user.toString());
+		log.info(""+userService.exist(""));
+		
 		//boardService.listByUser(user,1,3).forEach(e->log.info(e.toString()));
 		
 	}

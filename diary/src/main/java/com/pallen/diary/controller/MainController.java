@@ -72,11 +72,13 @@ public class MainController {
 		}
 		boolean fail = email.equals("") ||userService.exist(email) ;
 		if(fail) {
+			log.info("이미 존재하거나 사용할 수 없는 계정 입니다.");
 			model.addAttribute("modal_message","이미 존재하거나 사용할 수 없는 계정 입니다.");
 			return "index";
 		}
 		model.addAttribute("reg_email", email);
 		model.addAttribute("reg_name", nickname);
+		model.addAttribute("sns_reg",regBy.toUpperCase());
 		return "/page/user/sns_register";
 	}
 	

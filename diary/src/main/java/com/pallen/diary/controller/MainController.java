@@ -66,7 +66,11 @@ public class MainController {
 			}
 
 			break;
-
+		case "google":
+			email = request.getParameter("email");
+			nickname  = request.getParameter("name");
+			log.info("{}/{}",email,nickname);
+			break;
 		default:
 			break;
 		}

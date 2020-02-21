@@ -84,10 +84,12 @@
 </div>
  
  
-<form id = "snsForm" action="" method="get">
-
+<!-- sns register -->      
+<form id = "snsRegisterForm" action="" method="get">
+	<input type = "hidden" name = "email">
+	<input type = "hidden" name = "email">
 </form> 
-      
+<!-- .sns register end -->      
  <script type="text/javascript">
 $(function() {
 	const pw_regex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;	
@@ -205,17 +207,19 @@ $(function() {
 		  console.log('Image URL: ' + profile.getImageUrl());
 		  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 		
-		 
-		$("#googleModal").modal("hide");  
+		  
+		  $("input[name=email]").val(profile.getEmail());
+		  $("input[name=name]").val(profile.getName());
+		   $("#snsRegisterForm").attr("action", "/google_register")			  
+		 	console.log("rs :" + $("input[name=email]").val()+"/"+$("input[name=name]").val())
 		  
 	 	var auth2 = gapi.auth2.getAuthInstance();
 	    auth2.signOut().then(function () {
 	      console.log('User signed out.');
 	    });
 	    auth2.disconnect();
-		 $("#login_form").submit()
+		$("#snsRegisterForm").submit();			  
 		  
-		}  
 		}
  </script>
       

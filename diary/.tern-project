@@ -4,11 +4,21 @@
     "outline": {
       
     },
+    "jshint": {
+      
+    },
+    "browser-extension": {
+      
+    },
+    "bootstrap": {
+      
+    },
     "jquery-extension": {
       
     }
   },
   "libs": [
+    "browser",
     "jquery"
   ]
 }

@@ -4,6 +4,13 @@
 <html lang="ko">
 <!-- <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id" content="134117933681-b7itj3i408ntkkfpofkjp5chl72v0322.apps.googleusercontent.com"> -->
+
+<script src="https://apis.google.com/js/platform.js">
+</script>
+<meta name="google-signin-client_id" content="134117933681-vdjbrsu59fsgtgneu5mh3f1dvh2a4d3h.apps.googleusercontent.com">
+
+<script src="https://apis.google.com/js/platform.js?onload=init" ></script>
+
   <fieldset>
   <legend id = "login_leg" class = "btn btn-lg btn-default text-default">회원가입</legend>
 
@@ -54,6 +61,32 @@
 </div>
 
   </fieldset>
+
+<div class="modal fade" id="googleModal">
+	<div class="modal-dialog" role="dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">google login</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<a class="g-signin2 btn" data-onsuccess="onSignIn"></a>
+			</div>
+			<div class="modal-footer">
+				
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+ 
+ 
+<form id = "snsForm" action="" method="get">
+
+</form> 
       
  <script type="text/javascript">
 $(function() {
@@ -150,14 +183,39 @@ $(function() {
 		case "Kakao":
 			location.href = "https://kauth.kakao.com/oauth/authorize?client_id=2be8ff7fef3ad0496a3a4f8ad7053c99&redirect_uri=http://localhost:8010/kakao_register&response_type=code";
 			break;
-
+		case "Google":
+			$("#googleModal").modal();
+			break;
 		default:
 			break;
 		}
 	})
+	
+	
 });
 
-
-
  </script>     
+ 
+ <script type="text/javascript">
+ function onSignIn(googleUser) {//구글 로그인용 처리
+
+		  var profile = googleUser.getBasicProfile();
+		  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+		  console.log('Name: ' + profile.getName());
+		  console.log('Image URL: ' + profile.getImageUrl());
+		  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+		
+		 
+		$("#googleModal").modal("hide");  
+		  
+	 	var auth2 = gapi.auth2.getAuthInstance();
+	    auth2.signOut().then(function () {
+	      console.log('User signed out.');
+	    });
+	    auth2.disconnect();
+		 $("#login_form").submit()
+		  
+		}  
+		}
+ </script>
       

@@ -4,6 +4,14 @@
 <html lang="ko">
 <!-- <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id" content="134117933681-b7itj3i408ntkkfpofkjp5chl72v0322.apps.googleusercontent.com"> -->
+
+<!-- 구글 로그인용 설정 -->
+<script src="https://apis.google.com/js/platform.js">
+</script>
+<meta name="google-signin-client_id" content="134117933681-vdjbrsu59fsgtgneu5mh3f1dvh2a4d3h.apps.googleusercontent.com">
+<!--  -->
+
+
   <fieldset>
   <legend id = "login_leg" class = "btn btn-lg btn-default text-default">로그인</legend>
   <div align="center" id = "sns_form"> 
@@ -40,7 +48,12 @@
 
 
   </fieldset>
-<a href="http://developers.kakao.com/logout"></a>
+  
+  <form id = "snsLoginForm" action="" method="get">
+	<input type = "hidden" name = "email" id = "sns_login_email">  
+  </form>
+  
+<!-- <a href="http://developers.kakao.com/logout"></a> -->
    <!--  <script type='text/javascript'>
       //<![CDATA[
         // 사용할 앱의 JavaScript 키를 설정해 주세요.
@@ -77,11 +90,38 @@
 			alert("kakao")
 			location.href = "https://kauth.kakao.com/oauth/authorize?client_id=2be8ff7fef3ad0496a3a4f8ad7053c99&redirect_uri=http://localhost:8010/kakao_login&response_type=code";
 			break;
-
+			
+		case "Google":
+			$("#googleModal").modal();
+			break;
+			
 		default:
 			break;
 		}
 	})
 	})
  </script>     
-      
+ 
+  <script type="text/javascript">
+ function onSignIn(googleUser) {//구글 로그인용 처리
+
+		  var profile = googleUser.getBasicProfile();
+		  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+		  console.log('Name: ' + profile.getName());
+		  console.log('Image URL: ' + profile.getImageUrl());
+		  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+		
+		  
+		  $("#sns_login_email").val(profile.getEmail());
+		  $("#snsLoginForm").attr("action", "/google_login")			  
+		 	//console.log("rs :" + $("input[name=email]").val()+"/"+$("input[name=name]").val())
+		  
+	 	  var auth2 = gapi.auth2.getAuthInstance();
+	      auth2.signOut().then(function () {
+	        console.log('User signed out.');
+	      });
+	      auth2.disconnect();
+		  $("#snsLoginForm").submit();			  
+		  
+		}
+ </script>     

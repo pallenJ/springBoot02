@@ -5,9 +5,11 @@
 <!-- <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id" content="134117933681-b7itj3i408ntkkfpofkjp5chl72v0322.apps.googleusercontent.com"> -->
 
+<!-- 구글 로그인용 설정 -->
 <script src="https://apis.google.com/js/platform.js">
 </script>
 <meta name="google-signin-client_id" content="134117933681-vdjbrsu59fsgtgneu5mh3f1dvh2a4d3h.apps.googleusercontent.com">
+<!--  -->
 
 <script src="https://apis.google.com/js/platform.js?onload=init" ></script>
 
@@ -62,32 +64,11 @@
 
   </fieldset>
 
-<div class="modal fade" id="googleModal">
-	<div class="modal-dialog" role="dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">google login</h5>
-				<button type="button" class="close" data-dismiss="modal"
-					aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<a class="g-signin2 btn" data-onsuccess="onSignIn"></a>
-			</div>
-			<div class="modal-footer">
-				
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			</div>
-		</div>
-	</div>
-</div>
- 
  
 <!-- sns register -->      
 <form id = "snsRegisterForm" action="" method="get">
 	<input type = "hidden" name = "email">
-	<input type = "hidden" name = "email">
+	<input type = "hidden" name = "name">
 </form> 
 <!-- .sns register end -->      
  <script type="text/javascript">

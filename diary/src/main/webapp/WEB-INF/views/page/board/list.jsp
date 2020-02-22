@@ -158,8 +158,9 @@
 		})
 		const modalMsg = "${modal_message}";
 		if(modalMsg != ""){
-			$("#modal_message").text(modalMsg);
-			$("#modalMSG").modal();
+			alert(modalMsg)
+			/*$("#modal_message").text(modalMsg);
+			$("#modalMSG").modal(); */
 		}
 		
 	})

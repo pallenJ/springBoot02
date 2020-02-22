@@ -47,6 +47,7 @@
 	</div>
 </div>
 
+
 <!-- 메세지용 -->
 <div class="modal fade" id="modalMSG">
 	<div class="modal-dialog" role="dialog">
@@ -218,3 +219,26 @@
 		</div>
 	</div>
 </div>
+
+<!-- 구글 로그인 -->
+<div class="modal fade" id="googleModal">
+	<div class="modal-dialog" role="dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">google login</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<a class="g-signin2 btn" data-onsuccess="onSignIn"></a>
+			</div>
+			<div class="modal-footer">
+				
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+ 

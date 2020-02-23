@@ -21,7 +21,8 @@
          <input type="button" class = "btn btn-outline-warning" value="로그아웃" onclick="location.href='/logout'">
     </c:if>
     <br>
-    <a href="/google/login" class="btn btn-danger"> google </a>
+    <a href="/google/login" class="btn btn-danger"> google </a><br>
+    <a href="/naver/login" class="btn btn-success"> naver </a>
 </div>    
 </body>
 </html>

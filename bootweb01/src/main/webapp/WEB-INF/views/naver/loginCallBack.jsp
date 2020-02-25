@@ -26,6 +26,8 @@
   naver_id_login.get_naver_userprofile("naverSignInCallback()");
   // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
   function naverSignInCallback() {
+	  
+	  location.href = "/naver/login?access_tocken="+naver_id_login.oauthParams.access_token
    // alert(naver_id_login.getProfileData('nickname'));
 /*     alert(naver_id_login.getProfileData('nickname'));
     alert(naver_id_login.getProfileData('age')); */

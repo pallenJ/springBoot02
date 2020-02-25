@@ -9,4 +9,7 @@ public class NaverController {
 	@GetMapping("/naver/login")
 	public void login() {}
 	
+	@GetMapping("/naver/loginCallBack")
+	public void loginCmpt() {}
+	
 }

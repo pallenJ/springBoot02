@@ -96,9 +96,9 @@ $(function() {
 		
 	})
 	
-	
 })
 </script>
+ <script type="text/javascript" src="<c:url value='/resource/js/crawling.js'/>"></script>
  <script type="text/javascript" src="<c:url value='/resource/js/core.min.js'/>"></script>
  <script type="text/javascript" src="<c:url value='/resource/js/sha256.min.js'/>"></script>
  <script type="text/javascript" src="<c:url value='/resource/js/util.js'/>"></script>

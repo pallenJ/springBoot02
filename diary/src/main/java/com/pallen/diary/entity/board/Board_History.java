@@ -83,7 +83,7 @@ public class Board_History {
 	}
 	
 	public void setUpdateDate() {
-		this.update_date =  LocalDateTime.now().format(DateTimeFormatter.ofPattern("YYYY-MM-DD hh:mm:ss"));
+		this.update_date =  LocalDateTime.now().format(DateTimeFormatter.ofPattern("YYYY-MM-dd hh:mm:ss"));
 	}
 	
 }

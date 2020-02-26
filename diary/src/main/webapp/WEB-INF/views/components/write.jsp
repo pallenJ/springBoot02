@@ -19,8 +19,8 @@
 						</div>
 						<div class="form-group">
 							<a class='btn btn-default btn-sm text-info btn-preview'>preview</a>
-							<input id="content_div" class="brd-item" name="content">
-								
+							<textarea id="content_div" class="brd-item" name="content">
+								</textarea>
 							<div></div>
 						</div>
 

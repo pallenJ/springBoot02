@@ -34,12 +34,13 @@ Board brdDetail = (Board)pageContext.getAttribute("brdDetail");
 		<a data-toggle="tooltip" title="edit" class = "btn" href="${brdDetail.bno}/edit">
 		<span class="fa fa-edit btn-outline-primary"></span>
 		</a>
+	</c:if>
 		
+	<c:if test="${brdDetail.user.email eq sessionScope.loginUser.email or 'ADMIN' eq sessionScope.loginUser.grade}">
 		<a data-toggle="tooltip" title="delete" class = "btn" id= "deleteBtn">
 		<span class="fa fa-trash btn-outline-danger"></span>
 		</a>
-	</c:if>
-		
+	</c:if>		
 		<a data-toggle="tooltip" title="share" class = "btn" id = "shareURL"><span class="fa fa-share"></span></a>
 	
 	</div>

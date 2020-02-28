@@ -20,7 +20,17 @@
     <th>닉네임</th>
     <th>정보공개</th>
     <th>가입경로</th>
+    <th>권한</th>
   </tr>
+  <c:forEach items="${userList}" var = "userInfo">
+  <tr>
+  	<td>${userInfo.email}
+  	<td>${userInfo.name}
+  	<td>${userInfo.infoLock==1?'YES':'NO'}
+  	<td>${userInfo.sns_reg==null?'E-mail':userInfo.sns_reg}
+  	<td>${userInfo.grade}
+  </c:forEach>
+  
 <!--   <tr>
   </tr> -->
 </table>

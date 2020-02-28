@@ -66,6 +66,15 @@
 								[ 'help', [ 'help' ] ] ],
 						height : 300,
 						lang : 'ko-KR', // 언어 세팅
+						callbacks: {
+					          onImageUpload: function(files, editor, welEditable) {
+					        	  alert(editor);
+					          
+					            for (var i = files.length - 1; i >= 0; i--) {
+					              console.log(files[i])
+					            }
+					          }
+						}
 					});
 			
 			$("#board-submit").click(function() {

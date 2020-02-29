@@ -13,17 +13,23 @@ import javax.persistence.TemporalType;
  
 import org.hibernate.annotations.CreationTimestamp;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name="upload_file")
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+
 public class UploadFile {
  
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id")
-    private int id;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private long id;
     
     @Column(name="file_name")
     private String fileName;
@@ -38,4 +44,14 @@ public class UploadFile {
     @Column(name="insert_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date insertDate;
+
+	public UploadFile(String fileName, long size, String mimeType) {
+		super();
+		this.fileName = fileName;
+		this.size = size;
+		this.mimeType = mimeType;
+	}
+    
+    
+    
 }

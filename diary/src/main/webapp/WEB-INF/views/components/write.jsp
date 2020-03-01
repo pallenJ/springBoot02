@@ -68,14 +68,40 @@
 						lang : 'ko-KR', // 언어 세팅
 						callbacks: {
 					          onImageUpload: function(files, editor, welEditable) {
-					        	  alert(editor);
+					        	  //alert(editor);
 					          
 					            for (var i = files.length - 1; i >= 0; i--) {
-					              console.log(files[i])
+					              console.log(files[i]);
+					              alert("파일 첨부는 불가능 합니다.");
+					             // sendFile(files[i], this);
 					            }
 					          }
 						}
 					});
+			
+			function sendFile(file, el) {
+				
+				var form_data = new FormData();
+				form_data.append("file", file)
+				$.ajax({  
+				    type : "POST",  
+				    url : "/uploadMultipleFiles",
+				    async:false,
+				    data : {file:file},  
+			        contentType: false,
+			        enctype: 'multipart/form-data',
+			        processData: false,
+				    success : function(data){  
+				    	 //$(el).summernote('editor.insertImage', url);
+				          //$('#imageBoard > ul').append('<li><img src="'+url+'" width="480" height="auto"/></li>');
+
+				    },  
+				    error:function(xhr,status,error){ //ajax 오류인경우  
+				            alert("error\nxhr : " + xhr + ", status : " + status + ", error : " + error);                 
+				    }  
+				}); 
+			}
+			
 			
 			$("#board-submit").click(function() {
 				//alert($("#content_div").summernote("code"))

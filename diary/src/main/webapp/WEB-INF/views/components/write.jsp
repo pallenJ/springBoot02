@@ -61,7 +61,7 @@
 								[ 'para', [ 'ul', 'ol', 'paragraph' ] ],
 								[ 'height', [ 'height' ] ],
 								[ 'table', [ 'table' ] ],
-								[ 'insert', [ 'link', 'picture', 'hr' ] ],
+								[ 'insert', [ 'link', 'hr' ] ],
 								[ 'view', [ 'fullscreen', 'codeview' ] ],
 								[ 'help', [ 'help' ] ] ],
 						height : 300,
@@ -69,23 +69,24 @@
 						callbacks: {
 					          onImageUpload: function(files, editor, welEditable) {
 					        	  //alert(editor);
-					          
+					          	//sendFile(files[0], editor, welEditable);
 					            for (var i = files.length - 1; i >= 0; i--) {
 					              console.log(files[i]);
-					              alert("파일 첨부는 불가능 합니다.");
-					             // sendFile(files[i], this);
+					             // alert("파일 첨부는 불가능 합니다.");
 					            }
+					            
+					            
 					          }
 						}
 					});
 			
-			function sendFile(file, el) {
+			function sendFile(file, editor, welEditable) {
 				
 				var form_data = new FormData();
-				form_data.append("file", file)
+				form_data.append("file", files)
 				$.ajax({  
 				    type : "POST",  
-				    url : "/uploadMultipleFiles",
+				    url : "/uploadFile",
 				    async:false,
 				    data : {file:file},  
 			        contentType: false,
@@ -94,7 +95,7 @@
 				    success : function(data){  
 				    	 //$(el).summernote('editor.insertImage', url);
 				          //$('#imageBoard > ul').append('<li><img src="'+url+'" width="480" height="auto"/></li>');
-
+						editor.insertImage(data)
 				    },  
 				    error:function(xhr,status,error){ //ajax 오류인경우  
 				            alert("error\nxhr : " + xhr + ", status : " + status + ", error : " + error);                 

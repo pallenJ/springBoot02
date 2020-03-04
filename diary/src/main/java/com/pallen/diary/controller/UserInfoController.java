@@ -83,5 +83,18 @@ public class UserInfoController {
 		model.addAttribute("paging",paging);
 		return "/page/user/userDetail_list";
 	}
+	@GetMapping("/@{name}/setting")
+	public String user_Setting(@PathVariable("name") String name ,HttpSession session ,ModelMap model) {
+		try {
+			User user = (User)session.getAttribute("loginUser");
+			if(!user.getName().equals(name)&&!user.getGrade().equals("ADMIN")) throw new Exception();
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.info("권한이 부족합니다");
+			return "redirect:/Main";
+		}
+		model.addAttribute("userInfo", userService.getByName(name));
+		return "/page/user/setting";
+	}
 	
 }

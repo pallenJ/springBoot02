@@ -26,7 +26,7 @@
 	href="https://bootswatch.com/4/${theme}/bootstrap.min.css">
 <link rel="stylesheet" id="v-scss"
 	href="https://bootswatch.com/4/${theme}/_variables.scss">
-<link rel="stylesheet" id="b-scss"
+<link rel="stylesheet" id="b-scss" 
 	href="https://bootswatch.com/4/${theme}/_bootswatch.scss">
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 

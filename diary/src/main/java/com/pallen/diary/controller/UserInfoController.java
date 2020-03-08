@@ -38,6 +38,18 @@ public class UserInfoController {
 		model.addAttribute("mySetting",user);
 		return "/page/user/userDetail";
 	}
+	@GetMapping("/myInfo/setting")
+	public String myInfoSetting(HttpSession session, ModelMap model) {
+		try {
+			User user = (User)session.getAttribute("loginUser");
+			model.addAttribute("userInfo", user);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.info("권한이 부족합니다");
+			return "redirect:/Main";
+		}
+		return "/page/user/userSetting";
+	}
 	@GetMapping("/myInfo/brdList")
 	public String myInfoBrdList(HttpSession session,HttpServletRequest request, ModelMap model) {
 		int page = 1;
@@ -94,7 +106,7 @@ public class UserInfoController {
 			return "redirect:/Main";
 		}
 		model.addAttribute("userInfo", userService.getByName(name));
-		return "/page/user/setting";
+		return "/page/user/userSetting";
 	}
 	
 }

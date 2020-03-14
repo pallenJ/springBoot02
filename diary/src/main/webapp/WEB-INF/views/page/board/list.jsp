@@ -39,9 +39,17 @@
 				<small class = "btn-outline-danger disabled">(수정)</small></c:if>
 				</td>
 				<td>
-				<a href="/userInfo/@${brdItem.user.name}">
-				${brdItem.user.name}
-				</a>
+				<c:choose>
+					<c:when test="${brdItem.user.infoLock eq 0}">
+						<a href="/userInfo/@${brdItem.user.name}">
+						${brdItem.user.name}
+						</a>
+					</c:when>
+					<c:otherwise>
+					
+						<span class="text-secondary fa fa-lock"> ${brdItem.user.name}</span>
+					</c:otherwise>
+				</c:choose>
 				
 				</td>
 				<td class = "reg_date">${brdItem.reg_date}</td>
@@ -123,6 +131,9 @@
 <script type="text/javascript">
 		
 	$(function() {
+		
+		if("${alertMSG}" != "")
+		alert("${alertMSG}")
 		
 		const path = $(location).attr('pathname');
 		const user = "${sessionScope.loginUser}";

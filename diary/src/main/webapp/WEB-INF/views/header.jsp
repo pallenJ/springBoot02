@@ -95,7 +95,7 @@ $(function() {
 		$("#modal_form").load("/components/"+role)
 		
 	})
-	
+
 })
 </script>
  <script type="text/javascript" src="<c:url value='/resource/js/crawling.js'/>"></script>

@@ -13,4 +13,6 @@ public interface UserService {
 	User getByName(String name);
 	boolean exist(String email, String name);
 	boolean exist(String email);
+	
+	
 }
